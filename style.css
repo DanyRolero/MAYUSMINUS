@@ -2,14 +2,29 @@ header button {
     font-weight: bold;
 }
 
-#toggle-font-family-1 {
+#choose-font-family-1 {
     font-family: sans-serif;
 }
 
-#toggle-font-family-2 {
+#choose-font-family-2 {
     font-family: 'Times New Roman', Times, serif;
 }
 
-#toggle-font-family-3 {
+#choose-font-family-3 {
     font-family:fantasy;
+}
+
+#current-chars-answers {
+    text-align: center;
+}
+
+#current-chars-answers button {
+    width: 200px;
+    height: 400px;
+    font-size: 5em;
+}
+
+#current-char-question {
+    font-size: 10rem;
+    text-align: center;
 }
