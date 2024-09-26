@@ -1,3 +1,8 @@
+* {
+    border: 1px solid;
+    box-sizing: border-box;
+}
+
 header button {
     font-weight: bold;
 }
@@ -14,17 +19,26 @@ header button {
     font-family:fantasy;
 }
 
-#current-chars-answers {
+#current-char-question {
+    font-size: 10rem;
     text-align: center;
 }
 
+
+#current-chars-answers {
+    display: grid;
+    width: 100%;
+
+    gap: 15px;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 1rem),1fr));
+}
+
+
 #current-chars-answers button {
-    width: 200px;
     height: 400px;
     font-size: 5em;
 }
 
-#current-char-question {
-    font-size: 10rem;
-    text-align: center;
+.button-disabled {
+    opacity: 0;
 }
