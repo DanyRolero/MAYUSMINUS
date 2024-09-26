@@ -1,34 +1,44 @@
 class GamePlayController {
     constructor() {
+        this.question;
+        this.answers = [];
         this.app = document.getElementById('app');
-        this.alphabetModel = new AlphabetModel();
+        this.abcQuestions = new AlphabetModel2();
+        this.abcAnswers = new AlphabetModel2();
         this.gamePlayView = new GamePlayView();
         this.gamePlayView.bindButtonClick(this.handleButtonClick.bind(this));
         this.gamePlayView.addView(this.app);
         this.restartGame();
-        this.nextCharExercise();
+        this.nextExercise();
     }
 
     //---------------------------------------------------------------------------------
     restartGame() {
-        this.alphabetModel.reset();
+        this.abcQuestions.resetChars();
     }
 
     //---------------------------------------------------------------------------------
-    nextCharExercise() {
-        this.alphabetModel.resetAnswerChars();
+    nextExercise() {
+        this.abcAnswers.resetChars();
         this.gamePlayView.removeCharsButtons();
         this.gamePlayView.removeResultMessage();
-        this.alphabetModel.randomQuestionCharFromRemainings();
-        this.alphabetModel.addNotRepeatedRandomAnswersChars(4); 
-        this.gamePlayView.updateQuestionChartContent(this.alphabetModel.currentQuestionChar);
-        this.gamePlayView.addAnswerCharsButtons(this.alphabetModel.currentAnswerChars);
+        
+        this.question = this.abcQuestions.extractRandomChar();
+        this.gamePlayView.updateQuestionChartContent(this.question);
+        
+        console.log(this.abcAnswers.extractCharFromChar(this.question));
+        this.answers = this.abcAnswers.getRandomUniqueChars(4);
+        console.log(this.answers);
+        this.answers.push(this.question);
+        this.answers.sort();
+
+        this.gamePlayView.addAnswerCharsButtons(this.answers);
     }
     
     //---------------------------------------------------------------------------------
     handleButtonClick(button) {
-        if(this.alphabetModel.currentQuestionChar == button.textContent) {
-            this.nextCharExercise();
+        if(this.question == button.textContent) {
+            this.nextExercise();
             return;
         }
         this.gamePlayView.disbledCharFailedButton(button);
