@@ -4,9 +4,10 @@ class GamePlayView {
     #answersCharsElement;
     #resultMessageElement;
 
-    constructor() {
+    constructor(viewElementID) {
         this.handleButtonClick;
 
+        /*
         this.#questionCharElement = document.createElement('div');
         this.#questionCharElement.id = 'current-char-question';
         
@@ -16,11 +17,12 @@ class GamePlayView {
         this.#resultMessageElement = document.createElement('div');
         this.#resultMessageElement.id = 'result-message';
         
-        this.#viewElement = document.createElement('div');
+        this.#viewElement = document.getElementById(viewElementID);
         this.#viewElement.id = 'gameplay-view';
         this.#viewElement.appendChild(this.#questionCharElement);
         this.#viewElement.appendChild(this.#resultMessageElement);
         this.#viewElement.appendChild(this.#answersCharsElement);
+        */
     }
 
     //---------------------------------------------------------------------------------

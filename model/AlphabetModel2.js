@@ -27,11 +27,10 @@ class AlphabetModel2 {
 
     //---------------------------------------------------------------------------------
     getRandomUniqueChars(count) {
-        let chars = this.getcopyAllChars();
         let result = [];
         for(let i = 0; i < count; i++) {
-            let randomIndex = Math.floor(Math.random() * chars.length);
-            result.push(chars.splice(randomIndex, 1)[0]);
+            let randomIndex = Math.floor(Math.random() * this.chars.length);
+            result.push(this.chars.splice(randomIndex, 1)[0]);
         }
         return result;
     }
