@@ -1,4 +1,4 @@
-class OptionClass {
+class OptionsView {
     #viewElement;
     #toggleSoundButton;
     #toggleMayusMinusButton;
@@ -14,12 +14,48 @@ class OptionClass {
     constructor() {
         this.handleToggleSoundClick;
         this.handleToggleMayusMinusClick;
-        this.handleFontFamilyClick;
-        this.handleLevelClick;
+        this.handleSelectFontFamilyClick;
+        this.handleSelectLevelClick;
+
+        this.#toggleSoundButton = document.getElementById('toggle-sound-buton');
+        this.#toggleSoundButton.addEventListener
+
+        this.#toggleMayusMinusButton = documen.getElementById('toggle-mayus-minus-button');
+
+        this.#fontFamilyButton_1 = document.getElementById('select-font-family-button-1');
+        this.#fontFamilyButton_1 = document.getElementById('select-font-family-button-2');
+        this.#fontFamilyButton_1 = document.getElementById('select-font-family-button-3');
+
+        this.#levelButton_1 = document.getElementById('select-level-button-1');
+        this.#levelButton_1 = document.getElementById('select-level-button-2');
+        this.#levelButton_1 = document.getElementById('select-level-button-3');
+        this.#levelButton_1 = document.getElementById('select-level-button-4');
+        
+    }
+
+
+
+    //---------------------------------------------------------------------------------
+    bindSoundButtonClick(handle) {
+        this.handleToggleSoundClick = handle; 
     }
 
     //---------------------------------------------------------------------------------
-    
+    bindToggleMayusMinusClick(handle) {
+        this.handleToggleMayusMinusClick = handle;
+    }
+
+    //---------------------------------------------------------------------------------
+    bindSelecFontFamilyClick(handle) {
+        this.handleSelectFontFamilyClick = handle;
+    }
+
+    //---------------------------------------------------------------------------------
+    bindSelectLevelClick(handle) {
+        this.handleSelectLevelClick = handle;
+    }
+
+
 
 }
 
