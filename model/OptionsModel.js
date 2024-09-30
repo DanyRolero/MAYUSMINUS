@@ -6,6 +6,12 @@ class OptionsModel {
     #fonts = [];
     #upperQuestionLowerAnswers = true;
     #soundActive = true;
+
+    constructor() {
+        this.#fonts['sans'] = 'Arial, Helvetica, sans-serif';
+        this.#fonts['serif'] = "font-family: 'Times New Roman', Times, serif";
+        this.#fonts['handwrite'] = 'fantasy';
+    }
     
 
     //---------------------------------------------------------------------------------

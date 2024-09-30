@@ -4,30 +4,9 @@ class GamePlayView {
     #answersCharsElement;
     #resultMessageElement;
 
-    constructor(viewElementID) {
+    constructor() {
         this.handleButtonClick;
-
-        /*
-        this.#questionCharElement = document.createElement('div');
-        this.#questionCharElement.id = 'current-char-question';
-        
-        this.#answersCharsElement = document.createElement('div');
-        this.#answersCharsElement.id = 'current-chars-answers';
-        
-        this.#resultMessageElement = document.createElement('div');
-        this.#resultMessageElement.id = 'result-message';
-        
-        this.#viewElement = document.getElementById(viewElementID);
-        this.#viewElement.id = 'gameplay-view';
-        this.#viewElement.appendChild(this.#questionCharElement);
-        this.#viewElement.appendChild(this.#resultMessageElement);
-        this.#viewElement.appendChild(this.#answersCharsElement);
-        */
     }
-
-    //---------------------------------------------------------------------------------
-    addView(parentElement) { parentElement.appendChild(this.#viewElement); }
-    removeView(parentElement) { parentElement.removeChild(this.#viewElement); }
 
     //---------------------------------------------------------------------------------
     updateQuestionChartContent(content) {

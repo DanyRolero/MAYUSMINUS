@@ -74,6 +74,8 @@ class GamePlayController {
     //---------------------------------------------------------------------------------
     handlerSelectFontFamilyClick(font) {
         this.options.selectFont(font);
+        let varCSSfont = document.querySelector(':root');
+        varCSSfont.style.setProperty('--font-chars', this.options.currentFont);
     }
 
     //---------------------------------------------------------------------------------
