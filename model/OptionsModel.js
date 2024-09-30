@@ -2,10 +2,8 @@ class OptionsModel {
     #level = 1;
     #maxLevel = 27;
     #minLevel = 1;
-    #fonts = [];
     #currentFont;
-    #themes = [];
-    #currentTheme;
+    #fonts = [];
     #upperQuestionLowerAnswers = true;
     #soundActive = true;
     
@@ -17,7 +15,6 @@ class OptionsModel {
     //---------------------------------------------------------------------------------
     get level() { return this.#level; }
     get currentFont() { return this.#currentFont; }
-    get currentTheme() { return this.#currentTheme; }
     get upperQuestionLowerAnswers() {return this.#upperQuestionLowerAnswers; }
 
 
@@ -27,28 +24,23 @@ class OptionsModel {
 
     //---------------------------------------------------------------------------------
     selectLevel(level) {
-        if(level < this.minLevel) level = this.minLevel;
-        if(level > this.maxLevel) level = this.maxLevel;
-        this.level = level;
+        if(level < this.#minLevel) level = this.#minLevel;
+        if(level > this.#maxLevel) level = this.#maxLevel;
+        this.#level = level;
     }
 
     //---------------------------------------------------------------------------------
-    selectFont(index) {
-        this.currentFont = fonts[index];
-    }
-
-    //---------------------------------------------------------------------------------
-    selectTheme(index) {
-        this.currentTheme = this.themes[index];
+    selectFont(font) {
+        this.#currentFont = this.#fonts[font];
     }
 
     //---------------------------------------------------------------------------------
     toggleUpperQuestionLowerAnswer() {
-        this.upperQuestionLowerAnswers = this.upperQuestionLowerAnswers ? false : true;
+        this.#upperQuestionLowerAnswers = this.#upperQuestionLowerAnswers ? false : true;
     }
 
     //---------------------------------------------------------------------------------
     toggleSound() {
-        this.soundActive = this.soundActive ? false : true;
+        this.#soundActive = this.#soundActive ? false : true;
     }
 }

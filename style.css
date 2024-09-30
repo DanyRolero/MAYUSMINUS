@@ -1,6 +1,15 @@
+:root {
+    --
+}
+
+
 * {
-    /*border: 1px solid;*/
+    border: 1px solid;
     box-sizing: border-box;
+}
+
+body {
+    background-color:darkkhaki;
 }
 
 header button {
@@ -62,4 +71,22 @@ header button {
     background-color: green;
     color:black;
     opacity: .75;
+}
+
+/* OPTIONS VIEW */
+#options-view {
+    display:grid;
+    grid-template-columns: repeat(auto-fit, 200px);
+}
+
+#p1 {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#p2 {
+    font-family:fantasy;
+}
+
+#p3 {
+    font-family:'Times New Roman', Times, serif;
 }

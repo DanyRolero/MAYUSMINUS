@@ -3,17 +3,28 @@ class GamePlayController {
         this.question;
         this.answers = [];
         this.fails = [];
-/*
-        this.app = document.getElementById('app');
+
+        //---------------------------------------------------------------------------------
+        // MODELS
+        //---------------------------------------------------------------------------------
         this.abcQuestions = new AlphabetModel2();
         this.abcAnswers = new AlphabetModel2();
+        this.abcFails = new AlphabetModel2();
+        this.options = new OptionsModel();
+
+        //---------------------------------------------------------------------------------
+        // VIEWS
+        //---------------------------------------------------------------------------------
+        this.optionsView = new OptionsView();
+        this.optionsView.bindSoundButtonClick(this.handlerToggleSoundClick.bind(this));
+        this.optionsView.bindToggleMayusMinusClick(this.handlerToggleMayusMinusClick.bind(this));
+        this.optionsView.bindSelecFontFamilyClick(this.handlerSelectFontFamilyClick.bind(this));
+        this.optionsView.bindSelectLevelClick(this.handlerSelectLevelClick.bind(this));
+        
+        
         this.gamePlayView = new GamePlayView();
         this.gamePlayView.bindButtonClick(this.handleButtonClick.bind(this));
-        this.gamePlayView.addView(this.app);
-        this.restartGame();
-        this.nextExercise();
-        this.gamePlayView.tryAgainResultMessage();
-        */
+        
     }
 
     //---------------------------------------------------------------------------------
@@ -50,4 +61,23 @@ class GamePlayController {
         this.gamePlayView.tryAgainResultMessage();
     }
     
+    //---------------------------------------------------------------------------------
+    handlerToggleSoundClick() {
+        this.options.toggleSound();
+    }
+
+    //---------------------------------------------------------------------------------
+    handlerToggleMayusMinusClick() {
+        this.options.toggleUpperQuestionLowerAnswer();
+    }
+
+    //---------------------------------------------------------------------------------
+    handlerSelectFontFamilyClick(font) {
+        this.options.selectFont(font);
+    }
+
+    //---------------------------------------------------------------------------------
+    handlerSelectLevelClick(level) {
+        this.options.selectLevel(level);
+    }
 }

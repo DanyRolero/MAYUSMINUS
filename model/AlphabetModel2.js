@@ -11,6 +11,12 @@ class AlphabetModel2 {
     //---------------------------------------------------------------------------------
     constructor() {
         Object.freeze(this.#CHARS);
+        this.chars = [];
+    }
+
+    //---------------------------------------------------------------------------------
+    fullFillAlphabet() {
+        this.chars = [];
         this.chars = this.#CHARS.slice(0, this.#CHARS.length);
     }
 
@@ -36,6 +42,13 @@ class AlphabetModel2 {
     }
 
     //---------------------------------------------------------------------------------
+    addChar(char) {
+        if(this.chars.indexOf(char) > -1) return;
+        this.chars.push(char);
+        this.chars.sort();
+    }
+
+    //---------------------------------------------------------------------------------
     extractCharFromIndex(index) {
         return this.chars.splice(index, 1)[0];
     }
@@ -52,10 +65,4 @@ class AlphabetModel2 {
         let randomIndex = Math.floor(Math.random() * this.chars.length);
         return this.chars.splice(randomIndex, 1)[0];
     }
-
-    //---------------------------------------------------------------------------------
-    resetChars() {
-        this.chars = this.#CHARS.slice(0, this.#CHARS.length);
-    }
-
 }
