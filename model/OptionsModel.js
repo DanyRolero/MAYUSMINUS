@@ -21,7 +21,7 @@ class OptionsModel {
     //---------------------------------------------------------------------------------
     get level() { return this.#level; }
     get currentFont() { return this.#currentFont; }
-    get upperQuestionLowerAnswers() {return this.#upperQuestionLowerAnswers; }
+    get upperQuestionLowerAnswers() { return this.#upperQuestionLowerAnswers; }
 
 
     //---------------------------------------------------------------------------------

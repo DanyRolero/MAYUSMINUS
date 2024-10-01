@@ -1,86 +1,83 @@
 class AlphabetModel {
+    #CHARS = [
+        'a','b','c','d','e',
+        'f','g','h','i','j',
+        'k','l','m','n','ñ',
+        'o','p','q','r','s',
+        't','u','v','w','x',
+        'y','z'
+    ];
+    
+    //---------------------------------------------------------------------------------
     constructor() {
-        this.CHARS = [
-            'a','b','c','d','e',
-            'f','g','h','i','j',
-            'k','l','m','n','ñ',
-            'o','p','q','r','s',
-            't','u','v','w','x',
-            'y','z'
-        ];
-    
-        Object.freeze(this.CHARS);
-
-        this.remainingsChars = this.CHARS.slice(0, this.CHARS.length);
-        this.failedChars = [];
-        this.currentQuestionChar = '?';
-        this.currentAnswerChars = [];
+        Object.freeze(this.#CHARS);
+        this.chars = [];
     }
 
     //---------------------------------------------------------------------------------
-    resetRemainingsCharsList() {
-        this.remainingsChars = this.CHARS.slice(0, this.CHARS.length);
+    getChar(index){
+        return this.chars[index];
     }
 
     //---------------------------------------------------------------------------------
-    resetFailedChars() {
-        this.failedChars = [];
+    fullFillAlphabet() {
+        this.chars = [];
+        this.chars = this.#CHARS.slice(0, this.#CHARS.length);
     }
 
     //---------------------------------------------------------------------------------
-    resetAnswerChars() {
-        this.currentAnswerChars = [];
+    clearAlphabet() {
+        this.chars = [];
     }
 
     //---------------------------------------------------------------------------------
-    extractRandomRemainingChar() {
-        if(this.remainingsChars.length == 0) this.resetRemainingsCharsList();
-    
-        let randomIndex = Math.floor(Math.random() * this.remainingsChars.length);
-        this.currentQuestionChar = this.remainingsChars.splice(randomIndex, 1)[0];
-        this.currentAnswerChars.push(this.currentQuestionChar);
-    }
-    
-    //---------------------------------------------------------------------------------
-    addNotRepeatedRandomAnswerChar() {
-        if(this.currentAnswerChars.length >= this.CHARS.length) throw new Error("No more characters in the alphabet");
-        let randomAnswerChar;
-        do {
-            randomAnswerChar = this.CHARS[Math.floor(Math.random() * this.CHARS.length)];
-        } while (this.currentAnswerChars.includes(randomAnswerChar));
-    
-        this.currentAnswerChars.push(randomAnswerChar);
-        this.currentAnswerChars = this.currentAnswerChars.sort();
+    getcopyAllChars() {
+        return this.#CHARS.slice(0, this.#CHARS.length);
     }
 
     //---------------------------------------------------------------------------------
-    addNotRepeatedRandomAnswersChars(count) {
-        for(let i = 0; i < count; i++) this.addNotRepeatedRandomAnswerChar();
+    getRandomChar() {
+        let randomIndex = Math.floor(Math.random() * this.#CHARS.length);
+        return this.#CHARS[randomIndex];
     }
 
     //---------------------------------------------------------------------------------
-    removeAnswerChar() {
-        for(let i = 0; i < this.currentAnswerChars.length; i++) {
-            if(this.currentAnswerChars[i] != this.currentQuestionChar) {
-                this.currentAnswerChars.splice(i, 1);
-                return;
-            }
+    getRandomUniqueChars(count) {
+        let result = [];
+        for(let i = 0; i < count; i++) {
+            let randomIndex = Math.floor(Math.random() * this.chars.length);
+            result.push(this.chars.splice(randomIndex, 1)[0]);
         }
+        return result;
     }
 
     //---------------------------------------------------------------------------------
-    reset() {
-        this.resetRemainingsCharsList();
-        this.resetFailedChars();
-        this.resetAnswerChars();
+    addChar(char) {
+        if(this.chars.indexOf(char) > -1) return;
+        this.chars.push(char);
+        this.chars.sort();
     }
 
     //---------------------------------------------------------------------------------
-    /* 
-        - chars -> datos
-        - getRandomChar
-        - getRandomUnrepeatedChars(count);
-        - extractRandomChar
-    
-    */
+    setChars(chars) {
+        this.chars = chars;
+    }
+
+    //---------------------------------------------------------------------------------
+    extractCharFromIndex(index) {
+        return this.chars.splice(index, 1)[0];
+    }
+
+    //---------------------------------------------------------------------------------
+    extractCharFromChar(char) {
+        let indexOfChart = this.chars.indexOf(char);
+        return this.chars.splice(indexOfChart, 1)[0];
+    }
+
+    //---------------------------------------------------------------------------------
+    extractRandomChar() {
+        if(this.chars.length == 0) this.fullFillAlphabet();
+        let randomIndex = Math.floor(Math.random() * this.chars.length);
+        return this.chars.splice(randomIndex, 1)[0];
+    }
 }

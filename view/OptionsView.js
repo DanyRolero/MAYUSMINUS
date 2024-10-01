@@ -23,25 +23,25 @@ class OptionsView {
         this.#toggleMayusMinusButton.addEventListener('click', () => this.handlerToggleMayusMinusClick());
 
         this.#fontFamilyButton_1 = document.getElementById('select-font-family-button-1');
-        this.#fontFamilyButton_1.addEventListener('click', () => this.handleSelectFontFamilyClick('sans'));
+        this.#fontFamilyButton_1.addEventListener('click', () => this.handlerSelectFontFamilyClick('sans'));
 
         this.#fontFamilyButton_2 = document.getElementById('select-font-family-button-2');
-        this.#fontFamilyButton_2.addEventListener('click', () => this.handleSelectFontFamilyClick('serif'));
+        this.#fontFamilyButton_2.addEventListener('click', () => this.handlerSelectFontFamilyClick('serif'));
 
         this.#fontFamilyButton_3 = document.getElementById('select-font-family-button-3');
-        this.#fontFamilyButton_3.addEventListener('click', () => this.handleSelectFontFamilyClick('handwrite'));
+        this.#fontFamilyButton_3.addEventListener('click', () => this.handlerSelectFontFamilyClick('handwrite'));
 
         this.#levelButton_1 = document.getElementById('select-level-button-1');
-        this.#levelButton_1.addEventListener('click', () => this.handleSelectLevelClick(1));
+        this.#levelButton_1.addEventListener('click', () => this.handlerSelectLevelClick(1));
         
         this.#levelButton_2 = document.getElementById('select-level-button-2');
-        this.#levelButton_2.addEventListener('click', () => this.handleSelectLevelClick(2));
+        this.#levelButton_2.addEventListener('click', () => this.handlerSelectLevelClick(2));
 
         this.#levelButton_3 = document.getElementById('select-level-button-3');
-        this.#levelButton_3.addEventListener('click', () => this.handleSelectLevelClick(3));
+        this.#levelButton_3.addEventListener('click', () => this.handlerSelectLevelClick(3));
 
         this.#levelButton_4 = document.getElementById('select-level-button-4');
-        this.#levelButton_4.addEventListener('click', () => this.handleSelectLevelClick(4));
+        this.#levelButton_4.addEventListener('click', () => this.handlerSelectLevelClick(4));
         
     }
 
@@ -49,21 +49,21 @@ class OptionsView {
     // BIND FUNCTIONS
     //---------------------------------------------------------------------------------
     bindSoundButtonClick(handle) {
-        this.handleToggleSoundClick = handle; 
+        this.handlerToggleSoundClick = handle; 
     }
 
     //---------------------------------------------------------------------------------
     bindToggleMayusMinusClick(handle) {
-        this.handleToggleMayusMinusClick = handle;
+        this.handlerToggleMayusMinusClick = handle;
     }
 
     //---------------------------------------------------------------------------------
     bindSelecFontFamilyClick(handle) {
-        this.handleSelectFontFamilyClick = handle;
+        this.handlerSelectFontFamilyClick = handle;
     }
 
     //---------------------------------------------------------------------------------
     bindSelectLevelClick(handle) {
-        this.handleSelectLevelClick = handle;
+        this.handlerSelectLevelClick = handle;
     }
 }

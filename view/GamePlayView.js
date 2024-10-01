@@ -1,29 +1,35 @@
 class GamePlayView {
-    #viewElement;
     #questionCharElement;
     #answersCharsElement;
     #resultMessageElement;
 
     constructor() {
         this.handleButtonClick;
+        this.#questionCharElement = document.getElementById('current-char-question');
+        this.#resultMessageElement = document.getElementById('result-message');
+        this.#answersCharsElement = document.getElementById('current-chars-answers');
     }
 
     //---------------------------------------------------------------------------------
-    updateQuestionChartContent(content) {
+    updateQuestionChartContent(content, upperCase = true) {
+        if(upperCase) content = content.toUpperCase();
         this.#questionCharElement.textContent = content;
     }
 
     //---------------------------------------------------------------------------------
-    addAnswerCharButton(content) {
+    addAnswerCharButton(content, upperCase = false) {
         let answerCharButton = document.createElement('button');
+
+        if(upperCase) content = content.toUpperCase();
         answerCharButton.textContent = content;
         answerCharButton.addEventListener('click', () => this.handleButtonClick(answerCharButton));
+        answerCharButton.classList.add('alphabet');
         this.#answersCharsElement.appendChild(answerCharButton);
     }
 
     //---------------------------------------------------------------------------------
-    addAnswerCharsButtons(contentList) {
-        for(let i = 0; i < contentList.length; i++) this.addAnswerCharButton(contentList[i]);
+    addAnswerCharsButtons(contentList, upperCase = false) {
+        for(let i = 0; i < contentList.length; i++) this.addAnswerCharButton(contentList[i], upperCase);
     }
 
     //---------------------------------------------------------------------------------

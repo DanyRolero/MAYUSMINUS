@@ -1,15 +1,15 @@
 class GamePlayController {
     constructor() {
-        this.question;
-        this.answers = [];
-        this.fails = [];
 
         //---------------------------------------------------------------------------------
         // MODELS
         //---------------------------------------------------------------------------------
-        this.abcQuestions = new AlphabetModel2();
-        this.abcAnswers = new AlphabetModel2();
-        this.abcFails = new AlphabetModel2();
+        this.currentChar = null;
+        this.failedChars = [];
+        this.currentAnswersChars = [];
+        
+        this.abcRemainingsChars = new AlphabetModel();
+        this.abcAnswersChars = new AlphabetModel();
         this.options = new OptionsModel();
 
         //---------------------------------------------------------------------------------
@@ -21,40 +21,45 @@ class GamePlayController {
         this.optionsView.bindSelecFontFamilyClick(this.handlerSelectFontFamilyClick.bind(this));
         this.optionsView.bindSelectLevelClick(this.handlerSelectLevelClick.bind(this));
         
-        
         this.gamePlayView = new GamePlayView();
         this.gamePlayView.bindButtonClick(this.handleButtonClick.bind(this));
         
+        this.restartGame();
+        this.nextExercise();
     }
 
     //---------------------------------------------------------------------------------
     restartGame() {
-        this.abcQuestions.resetChars();
+        this.abcRemainingsChars.fullFillAlphabet();
+        this.abcAnswersChars.fullFillAlphabet();
+        this.failedChars = [];
     }
 
     //---------------------------------------------------------------------------------
     nextExercise() {
-        this.abcAnswers.resetChars();
-        this.gamePlayView.removeCharsButtons();
-        this.gamePlayView.removeResultMessage();
-        
-        this.question = this.abcQuestions.extractRandomChar();
-        this.abcAnswers.extractCharFromChar(this.question);
+        this.currentAnswersChars = [];
+        this.currentChar = this.abcRemainingsChars.extractRandomChar();
 
-        this.answers = this.abcAnswers.getRandomUniqueChars(4);
-        this.answers.push(this.question);
-        this.answers.sort();
-        
-        this.gamePlayView.updateQuestionChartContent(this.question);
-        this.gamePlayView.addAnswerCharsButtons(this.answers);
+        this.gamePlayView.updateQuestionChartContent(this.currentChar, this.options.upperQuestionLowerAnswers);
+        this.abcAnswersChars.fullFillAlphabet();
+        this.abcAnswersChars.extractCharFromChar(this.currentChar);
+        this.currentAnswersChars = this.abcAnswersChars.getRandomUniqueChars(this.options.level);
+        this.currentAnswersChars.push(this.currentChar);
+        this.currentAnswersChars.sort();
+
+        this.gamePlayView.removeCharsButtons();
+        this.gamePlayView.addAnswerCharsButtons(this.currentAnswersChars, !this.options.upperQuestionLowerAnswers);
     }
     
     //---------------------------------------------------------------------------------
     handleButtonClick(button) {
-        if(this.question == button.textContent) {
+        if(this.currentChar == button.textContent) {
             this.gamePlayView.veryGoodResultMessage();
             button.classList.add('correct-press-button');
-            setTimeout(this.nextExercise.bind(this), 500);
+            setTimeout(() => {
+                this.gamePlayView.removeResultMessage();
+                this.nextExercise();
+            }, 500);
             return;
         }
         this.gamePlayView.disbledCharFailedButton(button);
@@ -69,6 +74,9 @@ class GamePlayController {
     //---------------------------------------------------------------------------------
     handlerToggleMayusMinusClick() {
         this.options.toggleUpperQuestionLowerAnswer();
+        this.gamePlayView.updateQuestionChartContent(this.currentChar, this.options.upperQuestionLowerAnswers);
+        this.gamePlayView.removeCharsButtons();
+        this.gamePlayView.addAnswerCharsButtons(this.currentAnswersChars, !this.options.upperQuestionLowerAnswers);
     }
 
     //---------------------------------------------------------------------------------
@@ -81,5 +89,13 @@ class GamePlayController {
     //---------------------------------------------------------------------------------
     handlerSelectLevelClick(level) {
         this.options.selectLevel(level);
+        this.currentAnswersChars = [];
+        this.abcAnswersChars.fullFillAlphabet();
+        this.abcAnswersChars.extractCharFromChar(this.currentChar);
+        this.currentAnswersChars = this.abcAnswersChars.getRandomUniqueChars(this.options.level);
+        this.currentAnswersChars.push(this.currentChar);
+        this.currentAnswersChars.sort();
+        this.gamePlayView.removeCharsButtons();
+        this.gamePlayView.addAnswerCharsButtons(this.currentAnswersChars);
     }
 }
