@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAYUSMINUS</title>
+    <style>
+        :root {
+    --font-chars: Arial, Helvetica, sans-serif;
+}
+
+* {
+    border: 1px solid;
+    box-sizing: border-box;
+}
+
+body {
+    background-color:darkkhaki;
+}
+
+header button {
+    font-weight: bold;
+}
+
+#choose-font-family-1 {
+    font-family: sans-serif;
+}
+
+#choose-font-family-2 {
+    font-family: 'Times New Roman', Times, serif;
+}
+
+#choose-font-family-3 {
+    font-family:fantasy;
+}
+
+#current-char-question {
+    font-size: 10rem;
+    text-align: center;
+}
+
+
+#current-chars-answers {
+    display: grid;
+    width: 100%;
+
+    gap: 15px;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 1rem),1fr));
+}
+
+
+#current-chars-answers button {
+    height: 200px;
+    font-size: 5em;
+    border-radius: 15px;
+}
+
+.button-disabled {
+    background-color: red;
+    color:black;
+    opacity: .5;
+}
+
+#result-message {
+    text-align: center;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    letter-spacing: .3px;
+    font-size: 4em;
+    height: 100px;
+}
+
+.very-good-message {
+    color: green;
+}
+
+.correct-press-button {
+    background-color: green;
+    color:black;
+    opacity: .75;
+}
+
+/* OPTIONS VIEW */
+#options-view {
+    display:grid;
+    grid-template-columns: repeat(auto-fit, 200px);
+}
+
+#options-view button {
+    width: 50px;
+    height: 50px;
+    
+}
+
+
+#select-font-family-button-1 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 700;
+}
+
+#select-font-family-button-2 {
+    font-family:'Times New Roman', Times, serif;
+    font-weight: 700;
+}
+
+#select-font-family-button-3 {
+    font-family: fantasy;
+    font-weight: 700;
+}
+
+#restart-menu-view {
+    
+}
+
+/*-------------------------------------------------*/
+.alphabet {
+    font-family: var(--font-chars);
+}
+
+.hidden {
+    display: none !important;
+}
+    </style>
+</head>
+<body>
+    <main id="app">
+        <!-- OPTIONS VIEW -->
+        <div id="options-view">
+            <div id="button-group-1">
+                <button id="toggle-sound-buton">SONIDO</button>
+                <button id="toggle-mayus-minus-button">A -> a<br>a -> A</button>
+            </div>
+
+            <div id="button-group-2">
+                <button id="select-font-family-button-1">ABC</buttton>
+                <button id="select-font-family-button-2">ABC</buttton>
+                <button id="select-font-family-button-3">ABC</buttton>
+            </div>
+
+            <div id="button-group-3">
+                <button id="select-level-button-1">1</button>
+                <button id="select-level-button-2">2</button>
+                <button id="select-level-button-3">3</button>
+                <button id="select-level-button-4">4</button>
+            </div>
+        </div>
+
+        <!-- GAMEPLAY VIEW -->
+        <div id="gameplay-view">
+            <div id="current-char-question" class="alphabet"></div>
+            <div id="result-message"></div>
+            <div id="current-chars-answers" class="alphabet"></div>
+        </div>
+
+        <div id="restart-menu-view">
+            <button id="restart-button">REINICIAR</button>
+            <button id="revise-button">REPASAR</button>
+        </div>
+    </main>
+    <script>
+        class AlphabetModel {
+    #CHARS = [
+        'a','b','c','d','e',
+        'f','g','h','i','j',
+        'k','l','m','n','ñ',
+        'o','p','q','r','s',
+        't','u','v','w','x',
+        'y','z'
+    ];
+    
+    //---------------------------------------------------------------------------------
+    constructor() {
+        Object.freeze(this.#CHARS);
+        this.chars = [];
+    }
+
+    //---------------------------------------------------------------------------------
+    getChar(index){
+        return this.chars[index];
+    }
+
+    //---------------------------------------------------------------------------------
+    fullFillAlphabet() {
+        this.chars = [];
+        this.chars = this.#CHARS.slice(0, this.#CHARS.length);
+    }
+
+    //---------------------------------------------------------------------------------
+    get length() {
+        return this.chars.length;
+    }
+
+    //---------------------------------------------------------------------------------
+    clearAlphabet() {
+        this.chars = [];
+    }
+
+    //---------------------------------------------------------------------------------
+    getcopyAllChars() {
+        return this.#CHARS.slice(0, this.#CHARS.length);
+    }
+
+    //---------------------------------------------------------------------------------
+    getRandomChar() {
+        let randomIndex = Math.floor(Math.random() * this.#CHARS.length);
+        return this.#CHARS[randomIndex];
+    }
+
+    //---------------------------------------------------------------------------------
+    getRandomUniqueChars(count) {
+        let result = [];
+        for(let i = 0; i < count; i++) {
+            let randomIndex = Math.floor(Math.random() * this.chars.length);
+            result.push(this.chars.splice(randomIndex, 1)[0]);
+        }
+        return result;
+    }
+
+    //---------------------------------------------------------------------------------
+    addChar(char) {
+        if(this.chars.indexOf(char) > -1) return;
+        this.chars.push(char);
+        this.chars.sort();
+    }
+
+    //---------------------------------------------------------------------------------
+    setChars(chars) {
+        this.chars = chars;
+    }
+
+    //---------------------------------------------------------------------------------
+    extractCharFromIndex(index) {
+        return this.chars.splice(index, 1)[0];
+    }
+
+    //---------------------------------------------------------------------------------
+    extractCharFromChar(char) {
+        let indexOfChart = this.chars.indexOf(char);
+        return this.chars.splice(indexOfChart, 1)[0];
+    }
+
+    //---------------------------------------------------------------------------------
+    extractRandomChar() {
+        let randomIndex = Math.floor(Math.random() * this.chars.length);
+        return this.chars.splice(randomIndex, 1)[0];
+    }
+}
+
+//---------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------
+
+class OptionsModel {
+    #level = 1;
+    #maxLevel = 27;
+    #minLevel = 1;
+    #currentFont;
+    #fonts = [];
+    #upperQuestionLowerAnswers = true;
+    #soundActive = true;
+
+    constructor() {
+        this.#fonts['sans'] = 'Arial, Helvetica, sans-serif';
+        this.#fonts['serif'] = "font-family: 'Times New Roman', Times, serif";
+        this.#fonts['handwrite'] = 'fantasy';
+    }
+    
+
+    //---------------------------------------------------------------------------------
+    // GETTERS
+    //---------------------------------------------------------------------------------
+    
+    //---------------------------------------------------------------------------------
+    get level() { return this.#level; }
+    get currentFont() { return this.#currentFont; }
+    get upperQuestionLowerAnswers() { return this.#upperQuestionLowerAnswers; }
+
+
+    //---------------------------------------------------------------------------------
+    // SETTERS
+    //---------------------------------------------------------------------------------
+
+    //---------------------------------------------------------------------------------
+    selectLevel(level) {
+        if(level < this.#minLevel) level = this.#minLevel;
+        if(level > this.#maxLevel) level = this.#maxLevel;
+        this.#level = level;
+    }
+
+    //---------------------------------------------------------------------------------
+    selectFont(font) {
+        this.#currentFont = this.#fonts[font];
+    }
+
+    //---------------------------------------------------------------------------------
+    toggleUpperQuestionLowerAnswer() {
+        this.#upperQuestionLowerAnswers = this.#upperQuestionLowerAnswers ? false : true;
+    }
+
+    //---------------------------------------------------------------------------------
+    toggleSound() {
+        this.#soundActive = this.#soundActive ? false : true;
+    }
+}
+
+//---------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------
+class GamePlayView {
+    #questionCharElement;
+    #answersCharsElement;
+
+    constructor() {
+        this.handleButtonClick;
+        this.#questionCharElement = document.getElementById('current-char-question');
+        this.#answersCharsElement = document.getElementById('current-chars-answers');
+    }
+
+    //---------------------------------------------------------------------------------
+    updateQuestionChartContent(content, upperCase = true) {
+        if(upperCase) content = content.toUpperCase();
+        this.#questionCharElement.textContent = content;
+    }
+
+    //---------------------------------------------------------------------------------
+    addAnswerCharButton(content, upperCase = false) {
+        let answerCharButton = document.createElement('button');
+
+        if(upperCase) content = content.toUpperCase();
+        answerCharButton.textContent = content;
+        answerCharButton.addEventListener('click', () => this.handleButtonClick(answerCharButton));
+        answerCharButton.classList.add('alphabet');
+        this.#answersCharsElement.appendChild(answerCharButton);
+    }
+
+    //---------------------------------------------------------------------------------
+    addAnswerCharsButtons(contentList, upperCase = false) {
+        for(let i = 0; i < contentList.length; i++) this.addAnswerCharButton(contentList[i], upperCase);
+    }
+
+    //---------------------------------------------------------------------------------
+    removeCharsButtons() {
+        this.#answersCharsElement.innerHTML = '';
+    }
+
+    //---------------------------------------------------------------------------------
+    disbledCharFailedButton(button) {
+        button.disabled = true;
+        button.classList.add('button-disabled');
+    }
+
+    //---------------------------------------------------------------------------------
+    hideAnswersButtons() {
+        this.#answersCharsElement.classList.add('hidden');
+    }
+
+    //---------------------------------------------------------------------------------
+    showAnswersButtons() {
+        this.#answersCharsElement.classList.remove('hidden');
+    }
+
+    //---------------------------------------------------------------------------------
+    // Para enlazar el evento click de los botones con el controlador
+    bindButtonClick(handler) {
+        this.handleButtonClick = handler;
+    }
+}
+
+
+//---------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------
+class OptionsView {
+    #toggleSoundButton;
+    #toggleMayusMinusButton;
+    #fontFamilyButton_1;
+    #fontFamilyButton_2;
+    #fontFamilyButton_3;
+    #levelButton_1;
+    #levelButton_2;
+    #levelButton_3;
+    #levelButton_4;
+
+    
+    constructor() {
+        this.handlerToggleSoundClick;
+        this.handlerToggleMayusMinusClick;
+        this.handlerSelectFontFamilyClick;
+        this.handlerSelectLevelClick;
+
+        this.#toggleSoundButton = document.getElementById('toggle-sound-buton');
+        this.#toggleSoundButton.addEventListener('click', () => this.handlerToggleSoundClick());
+
+        this.#toggleMayusMinusButton = document.getElementById('toggle-mayus-minus-button');
+        this.#toggleMayusMinusButton.addEventListener('click', () => this.handlerToggleMayusMinusClick());
+
+        this.#fontFamilyButton_1 = document.getElementById('select-font-family-button-1');
+        this.#fontFamilyButton_1.addEventListener('click', () => this.handlerSelectFontFamilyClick('sans'));
+
+        this.#fontFamilyButton_2 = document.getElementById('select-font-family-button-2');
+        this.#fontFamilyButton_2.addEventListener('click', () => this.handlerSelectFontFamilyClick('serif'));
+
+        this.#fontFamilyButton_3 = document.getElementById('select-font-family-button-3');
+        this.#fontFamilyButton_3.addEventListener('click', () => this.handlerSelectFontFamilyClick('handwrite'));
+
+        this.#levelButton_1 = document.getElementById('select-level-button-1');
+        this.#levelButton_1.addEventListener('click', () => this.handlerSelectLevelClick(1));
+        
+        this.#levelButton_2 = document.getElementById('select-level-button-2');
+        this.#levelButton_2.addEventListener('click', () => this.handlerSelectLevelClick(2));
+
+        this.#levelButton_3 = document.getElementById('select-level-button-3');
+        this.#levelButton_3.addEventListener('click', () => this.handlerSelectLevelClick(3));
+
+        this.#levelButton_4 = document.getElementById('select-level-button-4');
+        this.#levelButton_4.addEventListener('click', () => this.handlerSelectLevelClick(4));
+        
+    }
+
+    //---------------------------------------------------------------------------------
+    // BIND FUNCTIONS
+    //---------------------------------------------------------------------------------
+    bindSoundButtonClick(handle) {
+        this.handlerToggleSoundClick = handle; 
+    }
+
+    //---------------------------------------------------------------------------------
+    bindToggleMayusMinusClick(handle) {
+        this.handlerToggleMayusMinusClick = handle;
+    }
+
+    //---------------------------------------------------------------------------------
+    bindSelecFontFamilyClick(handle) {
+        this.handlerSelectFontFamilyClick = handle;
+    }
+
+    //---------------------------------------------------------------------------------
+    bindSelectLevelClick(handle) {
+        this.handlerSelectLevelClick = handle;
+    }
+}
+
+//---------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------
+class RestartMenuView {
+    #viewElement;
+    #restartButtonElement;
+    #reviseButtonElement;
+    
+    constructor() {
+        this.handlerRestartClickButton = null;
+        this.handlerReviseClickButton = null;
+
+        this.#viewElement = document.getElementById('restart-menu-view');
+        this.#viewElement.classList.add('hidden');
+
+        this.#restartButtonElement = document.getElementById('restart-button');
+        this.#restartButtonElement.addEventListener('clcik', () => this.handlerRestartClickButton());
+
+        this.#reviseButtonElement = document.getElementById('revise-button');
+        this.#reviseButtonElement.addEventListener('click', () => this.handlerReviseClickButton());
+        this.#reviseButtonElement.classList.add('hidden');
+    }
+
+    //---------------------------------------------------------------------------------
+    showView() {
+        this.#viewElement.classList.remove('hidden');
+    }
+
+    //---------------------------------------------------------------------------------
+    hideView() {
+        this.#viewElement.classList.add('hidden');
+    }
+
+    //---------------------------------------------------------------------------------
+    showReviseButton() {
+        this.#reviseButtonElement.classList.remove('hidden');
+    }
+
+    //---------------------------------------------------------------------------------
+    hideReviseButton() {
+        this.#reviseButtonElement.classList.add('hidden');
+    }
+
+
+    //---------------------------------------------------------------------------------
+    bindRestartClickButton(handler) {
+        this.handlerRestartClickButton = handler;
+    }
+
+    //---------------------------------------------------------------------------------
+    bindReviseClickButton(handler) {
+        this.handlerReviseClickButton = handler;
+    }
+}
+
+//---------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------
+class GamePlayController {
+    constructor() {
+
+        //---------------------------------------------------------------------------------
+        // MODELS
+        //---------------------------------------------------------------------------------
+        this.currentChar = null;
+        this.failedChars = [];
+        this.currentAnswersChars = [];
+        
+        this.abcRemainingsChars = new AlphabetModel();
+        this.abcAnswersChars = new AlphabetModel();
+        this.options = new OptionsModel();
+
+        //---------------------------------------------------------------------------------
+        // VIEWS
+        //---------------------------------------------------------------------------------
+        this.optionsView = new OptionsView();
+        this.optionsView.bindSoundButtonClick(this.handlerToggleSoundClick.bind(this));
+        this.optionsView.bindToggleMayusMinusClick(this.handlerToggleMayusMinusClick.bind(this));
+        this.optionsView.bindSelecFontFamilyClick(this.handlerSelectFontFamilyClick.bind(this));
+        this.optionsView.bindSelectLevelClick(this.handlerSelectLevelClick.bind(this));
+        
+        this.gamePlayView = new GamePlayView();
+        this.gamePlayView.bindButtonClick(this.handleButtonClick.bind(this));
+
+        this.restartMenuView = new RestartMenuView();
+        
+        this.restartGame();
+    }
+
+    //---------------------------------------------------------------------------------
+    // FLOW STATES
+    //---------------------------------------------------------------------------------
+    // Comienza una partida para jugar con todas las letras del abecedario
+    restartGame() {
+        this.abcRemainingsChars.fullFillAlphabet();
+        this.abcAnswersChars.fullFillAlphabet();
+        this.failedChars = [];
+        this.gameStateManager()
+    }
+
+    //---------------------------------------------------------------------------------
+    // Comienza una partida para jugar con las letras falladas
+    reviseGame() {
+
+    }
+
+    //---------------------------------------------------------------------------------
+    // Prepara el siguiente ejercicio
+    nextExercise() {
+        this.currentAnswersChars = [];
+        this.currentChar = this.abcRemainingsChars.extractRandomChar();
+
+        this.gamePlayView.updateQuestionChartContent(this.currentChar, this.options.upperQuestionLowerAnswers);
+        this.abcAnswersChars.fullFillAlphabet();
+        this.abcAnswersChars.extractCharFromChar(this.currentChar);
+        this.currentAnswersChars = this.abcAnswersChars.getRandomUniqueChars(this.options.level);
+        this.currentAnswersChars.push(this.currentChar);
+        this.currentAnswersChars.sort();
+
+        this.gamePlayView.removeCharsButtons();
+        this.gamePlayView.addAnswerCharsButtons(this.currentAnswersChars, !this.options.upperQuestionLowerAnswers);
+    }
+
+    //---------------------------------------------------------------------------------
+    // Muestra un mensaje y un menu para reiniciar o repasar en el siguiente juego
+    gameCompleteMenu() {
+        this.gamePlayView.hideAnswersButtons();
+        this.restartMenuView.showView();
+        if(this.failedChars.length > 0) this.restartMenuView.showReviseButton();
+    }
+
+    //---------------------------------------------------------------------------------
+    // Controla que estado de juego debe ejecutarse
+    gameStateManager() {
+        if(this.abcRemainingsChars.length == 0) {
+            this.gameCompleteMenu();
+            return;
+        }
+
+        this.nextExercise();
+    }
+
+
+            // Esconder Cartas de respuesta.
+            // Mostrar Menú restart
+
+            //Mostrar mensaje: Muy bien, has completado todas las letras!
+            //Añadir mensaje: pulsa en reiniciar para jugar con todas las letras
+
+            //Si hay fallos -> 
+            //Añadir mensaje: pulsa en repasar para volver a jugar con las letras difíciles
+                //mostrar botón Repasar
+
+
+    //---------------------------------------------------------------------------------
+    // INTERACTIVITY
+    //---------------------------------------------------------------------------------
+    handleButtonClick(button) {
+        if(this.currentChar.toLowerCase() == button.textContent.toLowerCase()) {
+            button.classList.add('correct-press-button');
+            setTimeout(() => {
+                this.gameStateManager();
+            }, 500);
+            return;
+        }
+        this.gamePlayView.disbledCharFailedButton(button);
+        this.failedChars.push(button.textContent.toLowerCase());
+    }
+    
+    //---------------------------------------------------------------------------------
+    handlerToggleSoundClick() {
+        this.options.toggleSound();
+    }
+
+    //---------------------------------------------------------------------------------
+    handlerToggleMayusMinusClick() {
+        this.options.toggleUpperQuestionLowerAnswer();
+        this.gamePlayView.updateQuestionChartContent(this.currentChar, this.options.upperQuestionLowerAnswers);
+        this.gamePlayView.removeCharsButtons();
+        this.gamePlayView.addAnswerCharsButtons(this.currentAnswersChars, !this.options.upperQuestionLowerAnswers);
+    }
+
+    //---------------------------------------------------------------------------------
+    handlerSelectFontFamilyClick(font) {
+        this.options.selectFont(font);
+        let varCSSfont = document.querySelector(':root');
+        varCSSfont.style.setProperty('--font-chars', this.options.currentFont);
+    }
+
+    //---------------------------------------------------------------------------------
+    handlerSelectLevelClick(level) {
+        this.options.selectLevel(level);
+        this.currentAnswersChars = [];
+        this.abcAnswersChars.fullFillAlphabet();
+        this.abcAnswersChars.extractCharFromChar(this.currentChar);
+        this.currentAnswersChars = this.abcAnswersChars.getRandomUniqueChars(this.options.level);
+        this.currentAnswersChars.push(this.currentChar);
+        this.currentAnswersChars.sort();
+        this.gamePlayView.removeCharsButtons();
+        this.gamePlayView.addAnswerCharsButtons(this.currentAnswersChars);
+    }
+}
+
+//---------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------
+let app = new GamePlayController();
+
+
+    </script>
+    
+</body>
+</html>

@@ -23,19 +23,31 @@ class GamePlayController {
         
         this.gamePlayView = new GamePlayView();
         this.gamePlayView.bindButtonClick(this.handleButtonClick.bind(this));
+
+        this.restartMenuView = new RestartMenuView();
         
         this.restartGame();
-        this.nextExercise();
     }
 
     //---------------------------------------------------------------------------------
+    // FLOW STATES
+    //---------------------------------------------------------------------------------
+    // Comienza una partida para jugar con todas las letras del abecedario
     restartGame() {
         this.abcRemainingsChars.fullFillAlphabet();
         this.abcAnswersChars.fullFillAlphabet();
         this.failedChars = [];
+        this.gameStateManager()
     }
 
     //---------------------------------------------------------------------------------
+    // Comienza una partida para jugar con las letras falladas
+    reviseGame() {
+
+    }
+
+    //---------------------------------------------------------------------------------
+    // Prepara el siguiente ejercicio
     nextExercise() {
         this.currentAnswersChars = [];
         this.currentChar = this.abcRemainingsChars.extractRandomChar();
@@ -50,20 +62,51 @@ class GamePlayController {
         this.gamePlayView.removeCharsButtons();
         this.gamePlayView.addAnswerCharsButtons(this.currentAnswersChars, !this.options.upperQuestionLowerAnswers);
     }
-    
+
+    //---------------------------------------------------------------------------------
+    // Muestra un mensaje y un menu para reiniciar o repasar en el siguiente juego
+    gameCompleteMenu() {
+        this.gamePlayView.hideAnswersButtons();
+        this.restartMenuView.showView();
+        if(this.failedChars.length > 0) this.restartMenuView.showReviseButton();
+    }
+
+    //---------------------------------------------------------------------------------
+    // Controla que estado de juego debe ejecutarse
+    gameStateManager() {
+        if(this.abcRemainingsChars.length == 0) {
+            this.gameCompleteMenu();
+            return;
+        }
+
+        this.nextExercise();
+    }
+
+
+            // Esconder Cartas de respuesta.
+            // Mostrar Menú restart
+
+            //Mostrar mensaje: Muy bien, has completado todas las letras!
+            //Añadir mensaje: pulsa en reiniciar para jugar con todas las letras
+
+            //Si hay fallos -> 
+            //Añadir mensaje: pulsa en repasar para volver a jugar con las letras difíciles
+                //mostrar botón Repasar
+
+
+    //---------------------------------------------------------------------------------
+    // INTERACTIVITY
     //---------------------------------------------------------------------------------
     handleButtonClick(button) {
-        if(this.currentChar == button.textContent) {
-            this.gamePlayView.veryGoodResultMessage();
+        if(this.currentChar.toLowerCase() == button.textContent.toLowerCase()) {
             button.classList.add('correct-press-button');
             setTimeout(() => {
-                this.gamePlayView.removeResultMessage();
-                this.nextExercise();
+                this.gameStateManager();
             }, 500);
             return;
         }
         this.gamePlayView.disbledCharFailedButton(button);
-        this.gamePlayView.tryAgainResultMessage();
+        this.failedChars.push(button.textContent.toLowerCase());
     }
     
     //---------------------------------------------------------------------------------

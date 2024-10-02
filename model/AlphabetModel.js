@@ -26,6 +26,11 @@ class AlphabetModel {
     }
 
     //---------------------------------------------------------------------------------
+    get length() {
+        return this.chars.length;
+    }
+
+    //---------------------------------------------------------------------------------
     clearAlphabet() {
         this.chars = [];
     }
@@ -76,7 +81,6 @@ class AlphabetModel {
 
     //---------------------------------------------------------------------------------
     extractRandomChar() {
-        if(this.chars.length == 0) this.fullFillAlphabet();
         let randomIndex = Math.floor(Math.random() * this.chars.length);
         return this.chars.splice(randomIndex, 1)[0];
     }

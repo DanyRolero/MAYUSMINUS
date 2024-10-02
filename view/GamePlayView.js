@@ -1,12 +1,10 @@
 class GamePlayView {
     #questionCharElement;
     #answersCharsElement;
-    #resultMessageElement;
 
     constructor() {
         this.handleButtonClick;
         this.#questionCharElement = document.getElementById('current-char-question');
-        this.#resultMessageElement = document.getElementById('result-message');
         this.#answersCharsElement = document.getElementById('current-chars-answers');
     }
 
@@ -42,24 +40,15 @@ class GamePlayView {
         button.disabled = true;
         button.classList.add('button-disabled');
     }
-    
+
     //---------------------------------------------------------------------------------
-    veryGoodResultMessage() {
-        this.#resultMessageElement.classList.remove('try-again-message');
-        this.#resultMessageElement.classList.add('very-good-message');
-        this.#resultMessageElement.textContent = 'MUY BIEN';
+    hideAnswersButtons() {
+        this.#answersCharsElement.classList.add('hidden');
     }
 
     //---------------------------------------------------------------------------------
-    tryAgainResultMessage() {
-        this.#resultMessageElement.classList.remove('very-good-message');
-        this.#resultMessageElement.classList.add('try-again-message');
-        this.#resultMessageElement.textContent = 'OTRA VEZ';
-    }
-
-    //---------------------------------------------------------------------------------
-    removeResultMessage() {
-        this.#resultMessageElement.textContent = '';
+    showAnswersButtons() {
+        this.#answersCharsElement.classList.remove('hidden');
     }
 
     //---------------------------------------------------------------------------------
