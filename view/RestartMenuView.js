@@ -11,7 +11,7 @@ class RestartMenuView {
         this.#viewElement.classList.add('hidden');
 
         this.#restartButtonElement = document.getElementById('restart-button');
-        this.#restartButtonElement.addEventListener('clcik', () => this.handlerRestartClickButton());
+        this.#restartButtonElement.addEventListener('click', () => this.handlerRestartClickButton());
 
         this.#reviseButtonElement = document.getElementById('revise-button');
         this.#reviseButtonElement.addEventListener('click', () => this.handlerReviseClickButton());

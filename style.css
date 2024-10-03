@@ -9,6 +9,7 @@
 
 body {
     background-color:darkkhaki;
+    overscroll-behavior: contain;
 }
 
 header button {

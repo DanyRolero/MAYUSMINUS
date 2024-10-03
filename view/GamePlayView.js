@@ -1,9 +1,12 @@
 class GamePlayView {
+    #viewElement;
     #questionCharElement;
     #answersCharsElement;
 
     constructor() {
         this.handleButtonClick;
+
+        this.#viewElement = document.getElementById('gameplay-view');
         this.#questionCharElement = document.getElementById('current-char-question');
         this.#answersCharsElement = document.getElementById('current-chars-answers');
     }
@@ -39,6 +42,16 @@ class GamePlayView {
     disbledCharFailedButton(button) {
         button.disabled = true;
         button.classList.add('button-disabled');
+    }
+
+    //---------------------------------------------------------------------------------
+    hideView() {
+        this.#viewElement.classList.add('hidden');
+    }
+
+    //---------------------------------------------------------------------------------
+    showView() {
+        this.#viewElement.classList.remove('hidden');
     }
 
     //---------------------------------------------------------------------------------
