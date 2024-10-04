@@ -1,17 +1,37 @@
+/*---------------------------------------------------------------------------------*/
+/* VARIABLES */
 :root {
     --font-chars: Arial, Helvetica, sans-serif;
 }
 
+/*---------------------------------------------------------------------------------*/
+/* GENERAL STYLES */
+/*---------------------------------------------------------------------------------*/
 * {
-    border: 1px solid;
-    box-sizing: border-box;
+    /*border: 1px solid;*/
+    box-sizing:border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html, body {
+    overscroll-behavior: contain;
 }
 
 body {
     background-color:darkkhaki;
-    overscroll-behavior: contain;
+    width: 100vw;
+    height: 100vh;
 }
 
+#app{
+    width: 100%;
+    height: 100%;
+} 
+
+/*---------------------------------------------------------------------------------*/
+/* OPTIONS VIEW */
+/*---------------------------------------------------------------------------------*/
 header button {
     font-weight: bold;
 }
@@ -28,6 +48,9 @@ header button {
     font-family:fantasy;
 }
 
+/*---------------------------------------------------------------------------------*/
+/* GAME PLAY VIEW */
+/*---------------------------------------------------------------------------------*/
 #current-char-question {
     font-size: 10rem;
     text-align: center;
@@ -37,7 +60,6 @@ header button {
 #current-chars-answers {
     display: grid;
     width: 100%;
-
     gap: 15px;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 1rem),1fr));
 }
@@ -53,18 +75,6 @@ header button {
     background-color: red;
     color:black;
     opacity: .5;
-}
-
-#result-message {
-    text-align: center;
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    letter-spacing: .3px;
-    font-size: 4em;
-    height: 100px;
-}
-
-.very-good-message {
-    color: green;
 }
 
 .correct-press-button {
@@ -101,11 +111,26 @@ header button {
     font-weight: 700;
 }
 
+/*---------------------------------------------------------------------------------*/
+/* RESTART MENU VIEW */
+/*---------------------------------------------------------------------------------*/
 #restart-menu-view {
-    
+    display: flex;
+    margin: 0 auto;
+    width: 35vw;
+    height: 100vh;
+    align-items: center;
+    justify-content: space-between;
 }
 
-/*-------------------------------------------------*/
+#restart-menu-view button {
+    width: 200px;
+    height: 300px;
+}
+
+/*---------------------------------------------------------------------------------*/
+/* UTILS CLASSES */
+/*---------------------------------------------------------------------------------*/
 .alphabet {
     font-family: var(--font-chars);
 }

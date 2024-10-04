@@ -29,8 +29,6 @@ class GamePlayController {
         this.restartMenuView.bindReviseClickButton(this.handlerReviseClickButton.bind(this));
         
         this.startGame();
-        this.gameCompleteMenu();
-        this.restartMenuView.showReviseButton();
     }
 
     //---------------------------------------------------------------------------------
@@ -38,14 +36,14 @@ class GamePlayController {
     //---------------------------------------------------------------------------------
     // Comienza una partida para jugar con todas las letras del abecedario
     startGame() {
-        //this.abcRemainingsChars.fullFillAlphabet();
-        this.abcRemainingsChars.addChar('a');
+        this.abcRemainingsChars.fullFillAlphabet();
         this.abcAnswersChars.fullFillAlphabet();
         this.failedChars = [];
         this.nextExercise();
     }
 
     //---------------------------------------------------------------------------------
+    // 
     restartGame() {
         this.restartMenuView.hideReviseButton();
         this.restartMenuView.hideView();
@@ -85,6 +83,7 @@ class GamePlayController {
     //---------------------------------------------------------------------------------
     // Muestra un mensaje y un menu para reiniciar o repasar en el siguiente juego
     gameCompleteMenu() {
+        this.optionsView.hideView();
         this.gamePlayView.hideView();
         this.restartMenuView.showView();
         if(this.failedChars.length > 0) this.restartMenuView.showReviseButton();
