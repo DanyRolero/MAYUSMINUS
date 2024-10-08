@@ -1,5 +1,4 @@
-class OptionsView {
-    #viewElement;
+class OptionsView extends AbstractView {
     #toggleSoundButton;
     #toggleMayusMinusButton;
     #fontFamilyButton_1;
@@ -11,8 +10,8 @@ class OptionsView {
     #levelButton_4;
 
     
-    constructor() {
-        this.#viewElement = document.getElementById('options-view');
+    constructor(domElement) {
+        super(domElement);
 
         this.handlerToggleSoundClick;
         this.handlerToggleMayusMinusClick;
@@ -46,16 +45,6 @@ class OptionsView {
         this.#levelButton_4 = document.getElementById('select-level-button-4');
         this.#levelButton_4.addEventListener('click', () => this.handlerSelectLevelClick(4));
         
-    }
-
-    //---------------------------------------------------------------------------------
-    hideView() {
-        this.#viewElement.classList.add('hidden');
-    }
-
-    //---------------------------------------------------------------------------------
-    showView() {
-        this.#viewElement.classList.remove('hidden');
     }
 
     //---------------------------------------------------------------------------------

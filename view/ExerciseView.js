@@ -1,12 +1,10 @@
-class GamePlayView extends AbstractView {
+class ExerciseView extends AbstractView {
     #questionStatenent = null;
     #answerChoices = null;
 
+    //---------------------------------------------------------------------------------
     constructor(domElement) {
         super(domElement);
-
-        this.handleButtonClick;
-
         this.#questionStatenent = document.getElementById('current-char-question');
         this.#answerChoices = document.getElementById('current-chars-answers');
     }
@@ -21,13 +19,14 @@ class GamePlayView extends AbstractView {
         let answerCharButton = document.createElement('button');
         answerCharButton.textContent = content;
         answerCharButton.addEventListener('click', () => this.handleButtonClick(answerCharButton));
+        answerCharButton.classList.add('alphabet');
 
         this.#answerChoices.appendChild(answerCharButton);       
     }
 
     //---------------------------------------------------------------------------------
     addAnswerChoiceGroup(contentList) {
-        for(let i = 0; i < contentList.length; i++) this.addAnswerChoice(contentList[i]);        
+        for(let i = 0; i < contentList.length; i++) this.addAnswerCharButton(contentList[i]);        
     }
 
     //---------------------------------------------------------------------------------
@@ -41,11 +40,5 @@ class GamePlayView extends AbstractView {
     disabledAnswerChoice(button) {
         button.disabled = true;
         button.classList.add('button-disabled');
-    }
-
-    //---------------------------------------------------------------------------------
-    // Para enlazar el evento click de los botones con el controlador
-    bindButtonClick(handler) {
-        this.handleButtonClick = handler;
     }
 }

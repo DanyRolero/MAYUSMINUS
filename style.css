@@ -2,6 +2,8 @@
 /* VARIABLES */
 :root {
     --font-chars: Arial, Helvetica, sans-serif;
+    --Question-statement-text-transform: uppercase;
+    --Answer-choice-text-transform: lowercase;
 }
 
 /*---------------------------------------------------------------------------------*/
@@ -28,25 +30,6 @@ body {
     width: 100%;
     height: 100%;
 } 
-
-/*---------------------------------------------------------------------------------*/
-/* OPTIONS VIEW */
-/*---------------------------------------------------------------------------------*/
-header button {
-    font-weight: bold;
-}
-
-#choose-font-family-1 {
-    font-family: sans-serif;
-}
-
-#choose-font-family-2 {
-    font-family: 'Times New Roman', Times, serif;
-}
-
-#choose-font-family-3 {
-    font-family:fantasy;
-}
 
 /*---------------------------------------------------------------------------------*/
 /* GAME PLAY VIEW */
@@ -91,7 +74,8 @@ header button {
 
 #options-view button {
     height: 50px;
-    min-width: 100px;
+    min-width: 120px;
+    padding: 10px;
 }
 
 
@@ -136,4 +120,8 @@ header button {
 
 .hidden {
     display: none !important;
+}
+
+.upper-case {
+    text-transform: uppercase;
 }

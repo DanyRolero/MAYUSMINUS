@@ -1,13 +1,13 @@
 class GamePlayController {
     constructor() {
 
-        //---------------------------------------------------------------------------------
-        // MODELS
-        //---------------------------------------------------------------------------------
         this.currentQuestionChar = null;
         this.currentAnswersChars = [];
         this.failedChars = [];
         
+        //---------------------------------------------------------------------------------
+        // MODELS
+        //---------------------------------------------------------------------------------
         this.abcRemainingsChars = new AlphabetModel();
         this.abcAnswersChars = new AlphabetModel();
         this.options = new OptionsModel();
@@ -15,16 +15,19 @@ class GamePlayController {
         //---------------------------------------------------------------------------------
         // VIEWS
         //---------------------------------------------------------------------------------
-        this.optionsView = new OptionsView();
+        this.exerciseView = new AbstractView(document.getElementById('exercise-view'));
+
+        this.optionsView = new OptionsView(document.getElementById('options-view'));
         this.optionsView.bindSoundButtonClick(this.handlerToggleSoundClick.bind(this));
         this.optionsView.bindToggleMayusMinusClick(this.handlerToggleMayusMinusClick.bind(this));
         this.optionsView.bindSelecFontFamilyClick(this.handlerSelectFontFamilyClick.bind(this));
         this.optionsView.bindSelectLevelClick(this.handlerSelectLevelClick.bind(this));
         
-        this.gamePlayView = new GamePlayView();
+        this.gamePlayView = new GamePlayView(document.getElementById('gameplay-view'));
         this.gamePlayView.bindButtonClick(this.handlerButtonClick.bind(this));
 
-        this.restartMenuView = new RestartMenuView();
+        //---------------------------------------------------------------------------------
+        this.restartMenuView = new RestartMenuView(document.getElementById('gameplay-view'));
         this.restartMenuView.bindRestartClickButton(this.handlerRestartClickButton.bind(this));
         this.restartMenuView.bindReviseClickButton(this.handlerReviseClickButton.bind(this));
         
@@ -74,10 +77,10 @@ class GamePlayController {
         this.currentAnswersChars.push(this.currentQuestionChar);
         this.currentAnswersChars.sort();
         
-        this.gamePlayView.updateQuestionChartContent(this.currentQuestionChar, this.options.upperQuestionLowerAnswers);
+        this.gamePlayView.updateQuestionStatement(this.currentQuestionChar);
         
-        this.gamePlayView.removeCharsButtons();
-        this.gamePlayView.addAnswerCharsButtons(this.currentAnswersChars, !this.options.upperQuestionLowerAnswers);
+        this.gamePlayView.removeAnswerChoices();
+        this.gamePlayView.addAnswerChoiceGroup(this.currentAnswersChars);
     }
 
     //---------------------------------------------------------------------------------
@@ -94,7 +97,7 @@ class GamePlayController {
     // INTERACTIVITY
     //---------------------------------------------------------------------------------
     handlerButtonClick(button) {
-        if(this.currentQuestionChar.toLowerCase() == button.textContent.toLowerCase()) {
+        if(this.currentQuestionChar == button.textContent) {
             button.classList.add('correct-press-button');
             setTimeout(() => {
                 if(this.abcRemainingsChars.length == 0) {
@@ -106,8 +109,8 @@ class GamePlayController {
             }, 500);
             return;
         }
-        this.gamePlayView.disbledCharFailedButton(button);
-        this.failedChars.push(button.textContent.toLowerCase());
+        this.gamePlayView.disabledAnswerChoice(button);
+        this.failedChars.push(button.textContent);
     }
     
     //---------------------------------------------------------------------------------
@@ -117,10 +120,10 @@ class GamePlayController {
 
     //---------------------------------------------------------------------------------
     handlerToggleMayusMinusClick() {
-        this.options.toggleUpperQuestionLowerAnswer();
-        this.gamePlayView.updateQuestionChartContent(this.currentQuestionChar, this.options.upperQuestionLowerAnswers);
-        this.gamePlayView.removeCharsButtons();
-        this.gamePlayView.addAnswerCharsButtons(this.currentAnswersChars, !this.options.upperQuestionLowerAnswers);
+        let varCSSfont = document.querySelector(':root');
+        varCSSfont.style.setProperty('--font-chars', this.options.currentFont);
+        varCSSfont.style.setProperty('--font-chars', this.options.currentFont);
+        varCSSfont.style.setProperty('--font-chars', this.options.currentFont);
     }
 
     //---------------------------------------------------------------------------------

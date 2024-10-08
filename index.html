@@ -1,45 +1,52 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-    <link rel="stylesheet" href="style.css?v=2">
+    <link rel="stylesheet" href="style.css?v=3">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MAYUSMINUS</title>
     <script src="model/AlphabetModel.js" defer></script>
     <script src="model/OptionsModel.js" defer></script>
+    <script src="view/AbstractView.js" defer></script>
+    <script src="view/SingleTextContentView.js" defer></script>
+    <script src="view/ButtonView.js" defer></script>
     <script src="view/GamePlayView.js" defer></script>
     <script src="view/OptionsView.js" defer></script>
     <script src="view/RestartMenuView.js" defer></script>
     <script src="controller/GamePlayController.js" defer></script>
     <script src="app.js" defer=""></script>
 </head>
+
 <body>
     <main id="app">
-        <!-- OPTIONS VIEW -->
-        <div id="options-view">
-            <div id="button-group-1">
-                <button id="toggle-sound-buton">SONIDO</button>
-                <button id="toggle-mayus-minus-button">A -> a</button>
+        <div id="exercise-view">
+            <!-- OPTIONS VIEW -->
+            <div id="options-view">
+                <div id="button-group-1">
+                    <button id="toggle-sound-buton">SONIDO</button>
+                    <button id="toggle-mayus-minus-button">A -> a</button>
+                </div>
+
+                <div id="button-group-2">
+                    <button id="select-font-family-button-1">ABC</buttton>
+                        <button id="select-font-family-button-2">ABC</buttton>
+                            <button id="select-font-family-button-3">ABC</buttton>
+                </div>
+
+                <div id="button-group-3">
+                    <button id="select-level-button-1">1</button>
+                    <button id="select-level-button-2">2</button>
+                    <button id="select-level-button-3">3</button>
+                    <button id="select-level-button-4">4</button>
+                </div>
             </div>
 
-            <div id="button-group-2">
-                <button id="select-font-family-button-1">ABC</buttton>
-                <button id="select-font-family-button-2">ABC</buttton>
-                <button id="select-font-family-button-3">ABC</buttton>
+            <!-- GAMEPLAY VIEW -->
+            <div id="gameplay-view">
+                <div id="current-char-question" class="alphabet"></div>
+                <div id="current-chars-answers" class="alphabet"></div>
             </div>
-
-            <div id="button-group-3">
-                <button id="select-level-button-1">1</button>
-                <button id="select-level-button-2">2</button>
-                <button id="select-level-button-3">3</button>
-                <button id="select-level-button-4">4</button>
-            </div>
-        </div>
-
-        <!-- GAMEPLAY VIEW -->
-        <div id="gameplay-view">
-            <div id="current-char-question" class="alphabet"></div>
-            <div id="current-chars-answers" class="alphabet"></div>
         </div>
 
         <!-- RESTART MENU VIEW -->
@@ -48,6 +55,7 @@
             <button id="revise-button">REPASAR</button>
         </div>
     </main>
-    
+
 </body>
+
 </html>
