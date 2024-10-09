@@ -10,7 +10,7 @@ class OptionsModel {
     constructor() {
         this.#fonts['sans'] = 'Arial, Helvetica, sans-serif';
         this.#fonts['serif'] = "font-family: 'Times New Roman', Times, serif";
-        this.#fonts['handwrite'] = 'fantasy';
+        this.#fonts['handwrite'] = "'Dekko', cursive";
     }
     
 

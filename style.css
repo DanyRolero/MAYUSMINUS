@@ -1,5 +1,6 @@
 /*---------------------------------------------------------------------------------*/
 /* VARIABLES */
+/*---------------------------------------------------------------------------------*/
 :root {
     --font-chars: Arial, Helvetica, sans-serif;
     --Question-statement-text-transform: uppercase;
@@ -14,6 +15,10 @@
     box-sizing:border-box;
     padding: 0;
     margin: 0;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none; 
 }
 
 html, body {
@@ -24,6 +29,7 @@ body {
     background-color:darkkhaki;
     width: 100%;
     height: 100vh;
+    padding: 15px;
 }
 
 #app{
@@ -38,6 +44,8 @@ body {
     font-size: 10rem;
     text-align: center;
     text-transform: var(--Question-statement-text-transform);
+    height: 180px;
+    line-height: 178px;
 }
 
 
@@ -93,7 +101,7 @@ body {
 }
 
 #select-font-family-button-3 {
-    font-family: fantasy;
+    font-family: 'Dekko', cursive;
     font-weight: 700;
 }
 
@@ -127,4 +135,17 @@ body {
 
 .upper-case {
     text-transform: uppercase;
+}
+
+/*---------------------------------------------------------------------------------*/
+/* FONTS */
+/*---------------------------------------------------------------------------------*/
+@font-face {
+    font-family: 'Dekko';
+    src: url('assets/fonts/Dekko-Regular.woff2') format('woff2'),
+         url('assets/fonts/Dekko-Regular.woff') format('woff'),
+         url('assets/fonts/Dekko-Regular.eot') format('eot'),
+         url('assets/fonts/Dekko-Regular.otf') format('otf'),
+         url('assets/fonts/Dekko-Regular.ttf') format('ttf');
+    font-weight: 400;
 }
