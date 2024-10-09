@@ -1,6 +1,7 @@
-class GamePlayController {
+class GamePlayController extends BaseController {
     constructor() {
-
+        super();
+        
         this.currentQuestionChar = null;
         this.currentAnswersChars = [];
         this.failedChars = [];
@@ -15,7 +16,8 @@ class GamePlayController {
         //---------------------------------------------------------------------------------
         // VIEWS
         //---------------------------------------------------------------------------------
-        this.exerciseView = new AbstractView(document.getElementById('exercise-view'));
+        this.challengeView = new BaseView(document.getElementById('exercise-view'));
+        this.addView('challenge', this.challengeView);
 
         this.optionsView = new OptionsView(document.getElementById('options-view'));
         this.optionsView.bindSoundButtonClick(this.handlerToggleSoundClick.bind(this));
@@ -27,9 +29,10 @@ class GamePlayController {
         this.gamePlayView.bindButtonClick(this.handlerButtonClick.bind(this));
 
         //---------------------------------------------------------------------------------
-        this.restartMenuView = new RestartMenuView(document.getElementById('gameplay-view'));
+        this.restartMenuView = new RestartMenuView(document.getElementById('restart-menu-view'));
         this.restartMenuView.bindRestartClickButton(this.handlerRestartClickButton.bind(this));
         this.restartMenuView.bindReviseClickButton(this.handlerReviseClickButton.bind(this));
+        this.addView('complete', this.restartMenuView);
         
         this.startGame();
     }
@@ -46,20 +49,16 @@ class GamePlayController {
     }
 
     //---------------------------------------------------------------------------------
-    // 
+    // Reinicia una nueva partida con todas las letras
     restartGame() {
-        this.restartMenuView.hideReviseButton();
-        this.restartMenuView.hideView();
-        this.gamePlayView.showView();
+        this.showOnlyView('challenge');
         this.startGame();    
     }
 
     //---------------------------------------------------------------------------------
     // Comienza una partida para jugar con las letras falladas
     reviseGame() {
-        this.restartMenuView.hideReviseButton();
-        this.restartMenuView.hideView();
-        this.gamePlayView.showView();
+        this.showOnlyView('challenge');
         this.abcRemainingsChars.setChars(this.failedChars);
         this.failedChars = [];
         this.nextExercise();
@@ -86,9 +85,7 @@ class GamePlayController {
     //---------------------------------------------------------------------------------
     // Muestra un mensaje y un menu para reiniciar o repasar en el siguiente juego
     gameCompleteMenu() {
-        this.optionsView.hideView();
-        this.gamePlayView.hideView();
-        this.restartMenuView.showView();
+        this.showOnlyView('complete');
         if(this.failedChars.length > 0) this.restartMenuView.showReviseButton();
     }
 
@@ -98,7 +95,7 @@ class GamePlayController {
     //---------------------------------------------------------------------------------
     handlerButtonClick(button) {
         if(this.currentQuestionChar == button.textContent) {
-            button.classList.add('correct-press-button');
+            this.gamePlayView.setCorrectAnswerChoiceStyle(button);
             setTimeout(() => {
                 if(this.abcRemainingsChars.length == 0) {
                     this.gameCompleteMenu();
@@ -120,30 +117,39 @@ class GamePlayController {
 
     //---------------------------------------------------------------------------------
     handlerToggleMayusMinusClick() {
-        let varCSSfont = document.querySelector(':root');
-        varCSSfont.style.setProperty('--font-chars', this.options.currentFont);
-        varCSSfont.style.setProperty('--font-chars', this.options.currentFont);
-        varCSSfont.style.setProperty('--font-chars', this.options.currentFont);
+        this.options.toggleUpperQuestionLowerAnswer();
+
+        if(this.options.upperQuestionLowerAnswers) {
+            this.gamePlayView.setQuestionStatementTextTransform('uppercase');
+            this.gamePlayView.setAnswerChoiceTextTransform('lowercase');
+            return;
+        }
+
+        this.gamePlayView.setQuestionStatementTextTransform('lowercase');
+        this.gamePlayView.setAnswerChoiceTextTransform('uppercase');
     }
 
     //---------------------------------------------------------------------------------
     handlerSelectFontFamilyClick(font) {
         this.options.selectFont(font);
-        let varCSSfont = document.querySelector(':root');
-        varCSSfont.style.setProperty('--font-chars', this.options.currentFont);
+        this.gamePlayView.setChallengeFont(this.options.currentFont);
     }
 
     //---------------------------------------------------------------------------------
     handlerSelectLevelClick(level) {
         this.options.selectLevel(level);
+
         this.currentAnswersChars = [];
+        
         this.abcAnswersChars.fullFillAlphabet();
         this.abcAnswersChars.extractCharFromChar(this.currentQuestionChar);
         this.currentAnswersChars = this.abcAnswersChars.getRandomUniqueChars(this.options.level);
+
         this.currentAnswersChars.push(this.currentQuestionChar);
         this.currentAnswersChars.sort();
-        this.gamePlayView.removeCharsButtons();
-        this.gamePlayView.addAnswerCharsButtons(this.currentAnswersChars);
+
+        this.gamePlayView.removeAnswerChoices();
+        this.gamePlayView.addAnswerChoiceGroup(this.currentAnswersChars);
     }
 
     //---------------------------------------------------------------------------------

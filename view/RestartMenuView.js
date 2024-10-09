@@ -1,9 +1,10 @@
-class RestartMenuView {
+class RestartMenuView extends BaseView {
     #viewElement;
     #restartButtonElement;
     #reviseButtonElement;
     
-    constructor() {
+    constructor(domElement) {
+        super(domElement);
         this.handlerRestartClickButton = null;
         this.handlerReviseClickButton = null;
 
@@ -18,14 +19,8 @@ class RestartMenuView {
         this.#reviseButtonElement.classList.add('hidden');
     }
 
-    //---------------------------------------------------------------------------------
-    showView() {
-        this.#viewElement.classList.remove('hidden');
-    }
-
-    //---------------------------------------------------------------------------------
-    hideView() {
-        this.#viewElement.classList.add('hidden');
+    onHide() {
+        this.hideReviseButton();
     }
 
     //---------------------------------------------------------------------------------
@@ -37,7 +32,6 @@ class RestartMenuView {
     hideReviseButton() {
         this.#reviseButtonElement.classList.add('hidden');
     }
-
 
     //---------------------------------------------------------------------------------
     bindRestartClickButton(handler) {

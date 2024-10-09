@@ -1,4 +1,4 @@
-class GamePlayView extends AbstractView {
+class GamePlayView extends BaseView {
     #questionStatenent = null;
     #answerChoices = null;
 
@@ -38,11 +38,39 @@ class GamePlayView extends AbstractView {
     }
 
     //---------------------------------------------------------------------------------
+    // STYLES CSS
+    //---------------------------------------------------------------------------------
     disabledAnswerChoice(button) {
         button.disabled = true;
         button.classList.add('button-disabled');
     }
 
+    //---------------------------------------------------------------------------------
+    setQuestionStatementTextTransform(textTransform = 'uppercase') {
+        let varsCSS = document.querySelector(':root');
+        varsCSS.style.setProperty('--Question-statement-text-transform', textTransform);
+    }
+
+    //---------------------------------------------------------------------------------
+    setAnswerChoiceTextTransform(textTransform = 'lowercase') {
+        let varsCSS = document.querySelector(':root');
+        varsCSS.style.setProperty('--Answer-choice-text-transform', textTransform);
+    }
+
+    //---------------------------------------------------------------------------------
+    setChallengeFont(font) {
+        let varCSSfont = document.querySelector(':root');
+        varCSSfont.style.setProperty('--font-chars', font);
+    }
+
+    //---------------------------------------------------------------------------------
+    setCorrectAnswerChoiceStyle(button) {
+        button.classList.add('correct-press-button');
+    }
+
+
+    //---------------------------------------------------------------------------------
+    // BINDS
     //---------------------------------------------------------------------------------
     // Para enlazar el evento click de los botones con el controlador
     bindButtonClick(handler) {

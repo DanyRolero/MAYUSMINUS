@@ -37,6 +37,7 @@ body {
 #current-char-question {
     font-size: 10rem;
     text-align: center;
+    text-transform: var(--Question-statement-text-transform);
 }
 
 
@@ -52,6 +53,8 @@ body {
     height: 200px;
     font-size: 5em;
     border-radius: 15px;
+    font-family: var(--font-chars);
+    text-transform: var(--Answer-choice-text-transform);
 }
 
 .button-disabled {

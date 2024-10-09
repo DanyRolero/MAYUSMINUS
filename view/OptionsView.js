@@ -1,4 +1,4 @@
-class OptionsView extends AbstractView {
+class OptionsView extends BaseView {
     #toggleSoundButton;
     #toggleMayusMinusButton;
     #fontFamilyButton_1;

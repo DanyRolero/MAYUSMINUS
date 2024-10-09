@@ -1,4 +1,4 @@
-class AbstractView {
+class BaseView {
     #viewElement = null;
 
     constructor(domElement) {
@@ -12,12 +12,14 @@ class AbstractView {
     // Muestra el elemento que representa la vista si estaba oculto
     showView() {
         this.#viewElement.classList.remove('hidden');
+        this.onShow();
     }
 
     //---------------------------------------------------------------------------------
     // Oculta el elemento representado por la vista si estaba visible
     hideView() {
         this.#viewElement.classList.add('hidden');
+        this.onHide();
     }
 
     //---------------------------------------------------------------------------------
@@ -33,8 +35,8 @@ class AbstractView {
     }
 
     //---------------------------------------------------------------------------------
-    // Actualiza el contenido del elemento representado por la vista
-    // Cada vista debe implementar su método updateView según sus necesidades
-    // @param data:  
-    updateView(data) {}
+    onHide() {}
+
+    //---------------------------------------------------------------------------------
+    onShow() {}
 }
