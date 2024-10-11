@@ -18,4 +18,6 @@ let lastY = 0;
         }, { passive: false });
 
 
-let app = new GamePlayController();
+
+        
+        let app = new GamePlayController(); 

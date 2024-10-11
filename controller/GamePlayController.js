@@ -12,6 +12,7 @@ class GamePlayController extends BaseController {
         this.abcRemainingsChars = new AlphabetModel();
         this.abcAnswersChars = new AlphabetModel();
         this.options = new OptionsModel();
+        this.speech = new SpanishSpeechModel();
 
         //---------------------------------------------------------------------------------
         // VIEWS
