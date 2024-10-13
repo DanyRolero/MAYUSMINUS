@@ -1,10 +1,11 @@
-class SpanishSpeechModel {
-    #synth = window.speechSynthesis;
+class SpanishSpeakerModel extends SpeakerBaseModel {
+    #synth = null;
     #voicesLoaded = false;
     #voices = [];
     #speech = null;
 
     constructor() {
+        this.#synth = window.speechSynthesis;
         this.#synth.onvoiceschanged = this.loadVoices.bind(this);
         this.#speech = new SpeechSynthesisUtterance();
         this.#speech.lang = 'es-ES'; 
@@ -16,7 +17,6 @@ class SpanishSpeechModel {
    
     //---------------------------------------------------------------------------------
     loadVoices() {
-        console.log('Voces cargadas');
         this.#voicesLoaded = true;
         this.#voices = this.#synth.getVoices();
 
@@ -25,7 +25,6 @@ class SpanishSpeechModel {
         this.#voices.forEach((voice) => {
             if(voice.lang == 'es-ES') spanishVoices.push(voice);
         });
-        console.log(spanishVoices);
         
     }
 

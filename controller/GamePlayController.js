@@ -12,7 +12,7 @@ class GamePlayController extends BaseController {
         this.abcRemainingsChars = new AlphabetModel();
         this.abcAnswersChars = new AlphabetModel();
         this.options = new OptionsModel();
-        this.speech = new SpanishSpeechModel();
+        this.speaker = new SpeakerBaseModel('es-ES');
 
         //---------------------------------------------------------------------------------
         // VIEWS
@@ -71,6 +71,7 @@ class GamePlayController extends BaseController {
         this.currentQuestionChar = this.abcRemainingsChars.extractRandomChar();
         this.abcAnswersChars.fullFillAlphabet();
         this.abcAnswersChars.extractCharFromChar(this.currentQuestionChar);
+        this.speaker.speak(this.currentQuestionChar);
         
         this.currentAnswersChars = [];
         this.currentAnswersChars = this.abcAnswersChars.getRandomUniqueChars(this.options.level);
