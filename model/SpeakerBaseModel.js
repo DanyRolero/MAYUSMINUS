@@ -40,7 +40,7 @@ class SpeakerBaseModel {
     onLoadVoices(handler) {
         let self = this;
         if(this.#voices.length > 0) {
-            this.#loadVoices();
+            self.#loadVoices();
             handler();
             return;
         }
