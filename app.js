@@ -39,5 +39,16 @@ let lastY = 0;
 
 
 */
-        
-        let app = new GamePlayController(); 
+
+function isMobile() {
+    return /Mobi|Android/i.test(navigator.userAgent);
+}
+
+if (isMobile()) {
+    console.log("Dispositivo móvil detectado");
+    alert('MOVIL');
+} else {
+    console.log("Dispositivo de escritorio detectado");
+}
+
+let app = new GamePlayController(); 
