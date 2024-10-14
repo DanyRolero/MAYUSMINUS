@@ -1,3 +1,16 @@
+/* 
+    EVITAR COMPORTAMIENTOS POR DEFECTO EN DISPOSITIVOS MÓVILES Y TABLETAS
+    - Evitar escroll en cualquier dirección para evitar la recarga de la página por deslizamiento.
+    - Evitar los gestos multitouch como zoom o anterior o siguiente.
+    - Suavizar las pulsaciones de los botones implementando eventos touch etc...
+
+
+*/
+
+//---------------------------------------------------------------------------------
+// Evitar deslizamientos
+document.addEventListener('touchmove', function(event) { event.preventDefault();}, { passive: false });
+
 let lastY = 0;
         let preventPullToRefresh = false;
 

@@ -21,6 +21,10 @@
     user-select: none; 
 }
 
+html {
+    touch-action: manipulation;
+}
+
 html, body {
     overscroll-behavior: contain;
 }
