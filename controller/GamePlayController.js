@@ -1,6 +1,7 @@
 class GamePlayController extends BaseController {
     constructor() {
         super();
+        this.correctAnswerSelected = false;
         
         this.currentQuestionChar = null;
         this.currentAnswersChars = [];
@@ -68,6 +69,7 @@ class GamePlayController extends BaseController {
     //---------------------------------------------------------------------------------
     // Prepara el siguiente ejercicio
     nextExercise() {
+        this.correctAnswerSelected = false;
         this.currentQuestionChar = this.abcRemainingsChars.extractRandomChar();
         this.abcAnswersChars.fullFillAlphabet();
         this.abcAnswersChars.extractCharFromChar(this.currentQuestionChar);
@@ -96,7 +98,9 @@ class GamePlayController extends BaseController {
     // INTERACTIVITY
     //---------------------------------------------------------------------------------
     handlerButtonClick(button) {
+        if(this.correctAnswerSelected) return;
         if(this.currentQuestionChar == button.textContent) {
+            this.correctAnswerSelected = true;
             this.gamePlayView.setCorrectAnswerChoiceStyle(button);
             setTimeout(() => {
                 if(this.abcRemainingsChars.length == 0) {
