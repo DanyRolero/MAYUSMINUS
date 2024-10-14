@@ -19,6 +19,8 @@ class GamePlayController extends BaseController {
         this.audio.load('incorrect', 'assets/sounds/fx/incorrect_1.mp3');
         this.audio.load('victory', 'assets/sounds/fx/victory_1.mp3');
 
+        
+
         //---------------------------------------------------------------------------------
         // VIEWS
         //---------------------------------------------------------------------------------
@@ -92,7 +94,7 @@ class GamePlayController extends BaseController {
     //---------------------------------------------------------------------------------
     // Muestra un mensaje y un menu para reiniciar o repasar en el siguiente juego
     gameCompleteMenu() {
-        this.audio.clone('victory', 200);
+        //this.audio.clone('victory', 200);
         this.showOnlyView('complete');
         if(this.failedChars.length > 0) this.restartMenuView.showReviseButton();
     }
@@ -105,7 +107,7 @@ class GamePlayController extends BaseController {
         if(this.correctAnswerSelected) return;
         if(this.currentQuestionChar == button.textContent) {
             this.correctAnswerSelected = true;
-            this.audio.clone('correct', 200);
+            //this.audio.clone('correct', 200);
             this.gamePlayView.setCorrectAnswerChoiceStyle(button);
             setTimeout(() => {
                 if(this.abcRemainingsChars.length == 0) {
@@ -117,7 +119,7 @@ class GamePlayController extends BaseController {
             }, 500);
             return;
         }
-        this.audio.clone('incorrect', 200);
+        //this.audio.clone('incorrect', 200);
         this.gamePlayView.disabledAnswerChoice(button);
         this.failedChars.push(button.textContent);
     }
