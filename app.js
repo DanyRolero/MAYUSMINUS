@@ -9,8 +9,15 @@
 
 //---------------------------------------------------------------------------------
 // Evitar deslizamientos
-document.addEventListener('touchmove', function(event) { event.preventDefault();}, { passive: false });
+document.addEventListener('touchmove', function(event) { event.preventDefault(); }, { passive: false });
 
+//---------------------------------------------------------------------------------
+// Evitar pinzar para hacer zoom
+document.addEventListener('gesturestart', function(event) { event.preventDefault(); }, false);
+
+
+/*
+//---------------------------------------------------------------------------------
 let lastY = 0;
         let preventPullToRefresh = false;
 
@@ -31,6 +38,6 @@ let lastY = 0;
         }, { passive: false });
 
 
-
+*/
         
         let app = new GamePlayController(); 
