@@ -3,7 +3,7 @@ class SpeakerBaseModel {
     #speech = null;
     #synth = null;
     #voices = [];
-    #currentVoice = null;
+    #loadedVoices = false;
 
     //---------------------------------------------------------------------------------
     constructor(lang) {
@@ -17,19 +17,16 @@ class SpeakerBaseModel {
 
         this.#synth = window.speechSynthesis;
         this.#synth.onvoiceschanged = this.#loadVoices.bind(this);
+        this.#loadVoices();
+        
     }
 
     //---------------------------------------------------------------------------------
     #loadVoices() {
         this.#synth.getVoices().forEach((voice) => {
             if(voice.lang == this.#lang) this.#voices.push(voice);
-        });
-        
-        this.#speech.voice = this.#voices[0];
-        console.log(this.#speech.voice);
-        console.log(this.#voices);
-        
-        
+        });        
+        this.#speech.voice = this.#voices.find((voice) => voice.name.includes('Mónica'));        
     }
     
     //---------------------------------------------------------------------------------
