@@ -105,7 +105,7 @@ class GamePlayController extends BaseController {
         if(this.correctAnswerSelected) return;
         if(this.currentQuestionChar == button.textContent) {
             this.correctAnswerSelected = true;
-            this.audio.play('correct');
+            this.audio.clone('correct', 200);
             this.gamePlayView.setCorrectAnswerChoiceStyle(button);
             setTimeout(() => {
                 if(this.abcRemainingsChars.length == 0) {
