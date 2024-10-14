@@ -33,6 +33,7 @@ class SpeakerBaseModel {
     speak(text) {
         if(this.#voices.length == 0) {
             console.warn('Not voices for ' + this.#lang);
+            alert();
             return;
         }
         this.#speech.text = text;
