@@ -3,7 +3,6 @@ class SpeakerBaseModel {
     #speech = null;
     #synth = null;
     #voices = [];
-    #loadedVoices = false;
 
     //---------------------------------------------------------------------------------
     constructor(lang) {
@@ -16,8 +15,6 @@ class SpeakerBaseModel {
         this.#speech.lang = lang;
 
         this.#synth = window.speechSynthesis;
-        this.#synth.onvoiceschanged = this.#loadVoices.bind(this);
-        this.#loadVoices();
         
     }
 
@@ -33,10 +30,25 @@ class SpeakerBaseModel {
     speak(text) {
         if(this.#voices.length == 0) {
             console.warn('Not voices for ' + this.#lang);
-            alert();
             return;
         }
         this.#speech.text = text;
         this.#synth.speak(this.#speech);
+    }
+
+    //---------------------------------------------------------------------------------
+    onLoadVoices(handler) {
+        let self = this;
+        if(this.#voices.length > 0) {
+            this.#loadVoices();
+            handler();
+            return;
+        }
+
+        this.#synth.onvoiceschanged = function() {
+            self.#loadVoices();
+            handler();
+        }
+
     }
 }
