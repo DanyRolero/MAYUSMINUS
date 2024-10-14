@@ -17,6 +17,7 @@ class GamePlayController extends BaseController {
         this.audio = new AudioModel();
         this.audio.load('correct', 'assets/sounds/fx/correct_3.mp3');
         this.audio.load('incorrect', 'assets/sounds/fx/incorrect_1.mp3');
+        this.audio.load('victory', 'assets/sounds/fx/victory_1.mp3');
 
         //---------------------------------------------------------------------------------
         // VIEWS
@@ -91,6 +92,7 @@ class GamePlayController extends BaseController {
     //---------------------------------------------------------------------------------
     // Muestra un mensaje y un menu para reiniciar o repasar en el siguiente juego
     gameCompleteMenu() {
+        this.audio.clone('victory', 200);
         this.showOnlyView('complete');
         if(this.failedChars.length > 0) this.restartMenuView.showReviseButton();
     }
