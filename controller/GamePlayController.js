@@ -18,7 +18,8 @@ class GamePlayController extends BaseController {
         this.audio.load('correct', 'assets/sounds/fx/correct_3.mp3');
         this.audio.load('incorrect', 'assets/sounds/fx/incorrect_1.mp3');
         this.audio.load('victory', 'assets/sounds/fx/victory_1.mp3');
-
+        console.log(this.audio.allReady());
+        
         
 
         //---------------------------------------------------------------------------------
@@ -108,7 +109,8 @@ class GamePlayController extends BaseController {
         if(this.correctAnswerSelected) return;
         if(this.currentQuestionChar == button.textContent) {
             this.correctAnswerSelected = true;
-            this.audio.clone('correct', 200);
+            this.audio.library['correct'].currentTime = 0;
+            this.audio.play('correct');
             this.gamePlayView.setCorrectAnswerChoiceStyle(button);
             setTimeout(() => {
                 if(this.abcRemainingsChars.length == 0) {
