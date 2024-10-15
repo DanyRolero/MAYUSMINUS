@@ -43,7 +43,7 @@ class GamePlayController extends BaseController {
         this.restartMenuView.bindReviseClickButton(this.handlerReviseClickButton.bind(this));
         this.addView('complete', this.restartMenuView);
 
-        this.speaker.onLoadVoices(this.startGame.bind(this));
+        this.startGame();
     }
 
     //---------------------------------------------------------------------------------
