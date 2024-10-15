@@ -24,6 +24,7 @@ class AudioModel {
     //Carga y añade un sonido a la biblioteca de sonidos
     load(sound, url, volume, loop) {
         this.library[sound] = new Audio(url);
+        this.library[sound].preload = 'auto';
         if(loop != undefined) this.library[sound].loop = loop;
         if(volume != undefined) this.library[sound].volume = volume;
     }
