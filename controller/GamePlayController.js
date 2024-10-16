@@ -112,7 +112,8 @@ class GamePlayController extends BaseController {
 
     //---------------------------------------------------------------------------------
     handlerButtonClick(button) {
-
+        this.audio.clone('correct', 200);
+        /*
         if(this.correctAnswerSelected) return;
         if(this.currentQuestionChar == button.textContent) {
             this.correctAnswerSelected = true;
@@ -127,12 +128,12 @@ class GamePlayController extends BaseController {
                 this.nextExercise();
             }, 500);
         }
-
         else {
             this.audio.clone('incorrect', 200);
-            this.gamePlayView.disabledAnswerChoice(button);
-            this.failedChars.push(button.textContent);
-        }
+        this.gamePlayView.disabledAnswerChoice(button);
+        this.failedChars.push(button.textContent);
+    }
+    */
     }
     
     //---------------------------------------------------------------------------------
