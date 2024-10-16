@@ -112,7 +112,7 @@ class GamePlayController extends BaseController {
 
     //---------------------------------------------------------------------------------
     handlerButtonClick(button) {
-        this.audio.clone('correct', 200);
+
         if(this.correctAnswerSelected) return;
         if(this.currentQuestionChar == button.textContent) {
             this.correctAnswerSelected = true;
