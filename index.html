@@ -12,6 +12,7 @@
     <script src="model/SpanishSpeechModel.js" defer></script>
     <script src="model/AudioModel.js" defer></script>
     <script src="view/BaseView.js" defer></script>
+    <script src="view/StartView.js" defer></script>
     <script src="view/GamePlayView.js" defer></script>
     <script src="view/OptionsView.js" defer></script>
     <script src="view/RestartMenuView.js" defer></script>
@@ -22,7 +23,10 @@
 
 <body>
     <main id="app">
-        <div id="exercise-view">
+        <div id="start-view">
+            <button id="start-button">Comenzar</button>
+        </div>
+        <div id="exercise-view" class="hidden">
             <!-- OPTIONS VIEW -->
             <div id="options-view">
                 <div id="button-group-1">
@@ -52,7 +56,7 @@
         </div>
 
         <!-- RESTART MENU VIEW -->
-        <div id="restart-menu-view">
+        <div id="restart-menu-view" class="hidden">
             <button id="restart-button">REINICIAR</button>
             <button id="revise-button">REPASAR</button>
         </div>

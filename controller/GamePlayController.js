@@ -18,13 +18,17 @@ class GamePlayController extends BaseController {
         this.audio.load('correct', 'assets/sounds/fx/correct_3.mp3');
         this.audio.load('incorrect', 'assets/sounds/fx/incorrect_1.mp3');
         this.audio.load('victory', 'assets/sounds/fx/victory_1.mp3');
-        console.log(this.audio.allReady());
+
         
         
 
         //---------------------------------------------------------------------------------
         // VIEWS
         //---------------------------------------------------------------------------------
+        this.startView = new StartView(document.getElementById('start-view'));
+        this.startView.bindStartClickButton(this.handlerStartClickButton.bind(this));
+        this.addView('start', this.startView);
+        
         this.challengeView = new BaseView(document.getElementById('exercise-view'));
         this.addView('challenge', this.challengeView);
 
@@ -42,8 +46,6 @@ class GamePlayController extends BaseController {
         this.restartMenuView.bindRestartClickButton(this.handlerRestartClickButton.bind(this));
         this.restartMenuView.bindReviseClickButton(this.handlerReviseClickButton.bind(this));
         this.addView('complete', this.restartMenuView);
-
-        this.startGame();
     }
 
     //---------------------------------------------------------------------------------
@@ -55,12 +57,12 @@ class GamePlayController extends BaseController {
         this.abcAnswersChars.fullFillAlphabet();
         this.failedChars = [];
         this.nextExercise();
+        this.showOnlyView('challenge');
     }
 
     //---------------------------------------------------------------------------------
     // Reinicia una nueva partida con todas las letras
     restartGame() {
-        this.showOnlyView('challenge');
         this.startGame();    
     }
 
@@ -105,7 +107,14 @@ class GamePlayController extends BaseController {
     //---------------------------------------------------------------------------------
     // INTERACTIVITY
     //---------------------------------------------------------------------------------
+    handlerStartClickButton() {
+        this.startGame();
+    }
+
+
+    //---------------------------------------------------------------------------------
     handlerButtonClick(button) {
+        alert(this.audio.allReady());
         if(this.correctAnswerSelected) return;
         if(this.currentQuestionChar == button.textContent) {
             this.correctAnswerSelected = true;
@@ -171,7 +180,7 @@ class GamePlayController extends BaseController {
 
     //---------------------------------------------------------------------------------
     handlerRestartClickButton() {
-        this.restartGame();
+        this.startGame();
     }
 
     //---------------------------------------------------------------------------------

@@ -15,6 +15,8 @@ class SpeakerBaseModel {
         this.#speech.lang = lang;
 
         this.#synth = window.speechSynthesis;
+
+        this.#synth.onvoiceschanged = this.#loadVoices.bind(this);
         
     }
 
@@ -45,10 +47,7 @@ class SpeakerBaseModel {
             return;
         }
 
-        this.#synth.onvoiceschanged = function() {
-            self.#loadVoices();
-            handler();
-        }
+        
 
     }
 }

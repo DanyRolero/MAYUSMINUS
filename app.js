@@ -38,7 +38,7 @@ let lastY = 0;
         }, { passive: false });
 
 
-*/
+
 
 function isMobile() {
     return /Mobi|Android/i.test(navigator.userAgent);
@@ -50,5 +50,6 @@ if (isMobile()) {
 } else {
     console.log("Dispositivo de escritorio detectado");
 }
+*/
 
 let app = new GamePlayController(); 
