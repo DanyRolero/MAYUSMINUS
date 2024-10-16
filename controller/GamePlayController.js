@@ -118,18 +118,15 @@ class GamePlayController extends BaseController {
             this.audio.library['correct'].currentTime = 0;
             this.audio.play('correct');
             this.gamePlayView.setCorrectAnswerChoiceStyle(button);
-            setTimeout(() => {
                 if(this.abcRemainingsChars.length == 0) {
                     this.gameCompleteMenu();
                     return;
                 }
-        
                 this.nextExercise();
-            }, 500);
         }
 
         else {
-            this.audio.clone('incorrect', 200);
+            this.audio.play('incorrect');
             this.gamePlayView.disabledAnswerChoice(button);
             this.failedChars.push(button.textContent);
         }
