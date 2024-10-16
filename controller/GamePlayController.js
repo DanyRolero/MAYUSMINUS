@@ -15,7 +15,7 @@ class GamePlayController extends BaseController {
         this.options = new OptionsModel();
         this.speaker = new SpeakerBaseModel('es-ES');
         this.audio = new AudioModel();
-        //this.audio.load('correct', 'assets/sounds/fx/correct_3.mp3');
+        this.audio.load('correct', 'assets/sounds/fx/correct_3.mp3');
         this.audio.load('incorrect', 'assets/sounds/fx/incorrect_1.mp3');
         this.audio.load('victory', 'assets/sounds/fx/victory_1.mp3');
         this.sound = new Howl({
@@ -121,9 +121,9 @@ class GamePlayController extends BaseController {
         if(this.correctAnswerSelected) return;
         if(this.currentQuestionChar == button.textContent) {
             this.correctAnswerSelected = true;
-            //this.audio.library['correct'].currentTime = 0;
-            //this.audio.play('correct');
-            this.sound.play();
+            this.audio.load('correct', 'assets/sounds/fx/correct_3.mp3');
+            this.audio.library['correct'].currentTime = 0;
+            this.audio.play('correct');
             this.gamePlayView.setCorrectAnswerChoiceStyle(button);
             setTimeout(() => {
                 if(this.abcRemainingsChars.length == 0) {
