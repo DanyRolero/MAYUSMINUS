@@ -112,12 +112,11 @@ class GamePlayController extends BaseController {
 
     //---------------------------------------------------------------------------------
     handlerButtonClick(button) {
+        this.audio.clone('correct', 200);
         if(this.correctAnswerSelected) return;
         if(this.currentQuestionChar == button.textContent) {
             this.correctAnswerSelected = true;
-            this.audio.load('correct', 'assets/sounds/fx/correct_3.mp3');
-            this.audio.library['correct'].currentTime = 0;
-            this.audio.play('correct');
+            this.audio.clone('correct', 200);
             this.gamePlayView.setCorrectAnswerChoiceStyle(button);
             setTimeout(() => {
                 if(this.abcRemainingsChars.length == 0) {
@@ -126,7 +125,7 @@ class GamePlayController extends BaseController {
                 }
         
                 this.nextExercise();
-            }, 1000);
+            }, 500);
         }
 
         else {
