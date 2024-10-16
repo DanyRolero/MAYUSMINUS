@@ -18,14 +18,7 @@ class GamePlayController extends BaseController {
         this.audio.load('correct', 'assets/sounds/fx/correct_3.mp3');
         this.audio.load('incorrect', 'assets/sounds/fx/incorrect_1.mp3');
         this.audio.load('victory', 'assets/sounds/fx/victory_1.mp3');
-        this.sound = new Howl({
-            src: ['assets/sounds/fx/correct_3.mp3'],
-            preload: true
-          });
-
         
-        
-
         //---------------------------------------------------------------------------------
         // VIEWS
         //---------------------------------------------------------------------------------
@@ -133,11 +126,13 @@ class GamePlayController extends BaseController {
         
                 this.nextExercise();
             }, 500);
-            return;
         }
-        this.audio.clone('incorrect', 200);
-        this.gamePlayView.disabledAnswerChoice(button);
-        this.failedChars.push(button.textContent);
+
+        else {
+            this.audio.clone('incorrect', 200);
+            this.gamePlayView.disabledAnswerChoice(button);
+            this.failedChars.push(button.textContent);
+        }
     }
     
     //---------------------------------------------------------------------------------
