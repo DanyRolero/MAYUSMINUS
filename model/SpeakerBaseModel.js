@@ -25,7 +25,8 @@ class SpeakerBaseModel {
         this.#synth.getVoices().forEach((voice) => {
             if(voice.lang == this.#lang) this.#voices.push(voice);
         });        
-        this.#speech.voice = this.#voices.find((voice) => voice.name.includes('Mónica'));        
+        this.#speech.voice = this.#voices.find((voice) => voice.name.includes('Mónica'));     
+        alert('Voces cargadas');   
     }
     
     //---------------------------------------------------------------------------------
