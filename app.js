@@ -46,7 +46,7 @@ function isMobile() {
 
 if (isMobile()) {
     console.log("Dispositivo móvil detectado");
-    alert('MOVIL');
+    //alert('MOVIL');
 } else {
     console.log("Dispositivo de escritorio detectado");
 }
