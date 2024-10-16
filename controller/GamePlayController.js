@@ -113,10 +113,8 @@ class GamePlayController extends BaseController {
     handlerButtonClick(button) {
         if(this.correctAnswerSelected) return;
         if(this.currentQuestionChar == button.textContent) {
-            this.correctAnswerSelected = true;
-            this.audio.load('correct', 'assets/sounds/fx/correct_3.mp3');
-            this.audio.library['correct'].currentTime = 0;
             this.audio.play('correct');
+            this.correctAnswerSelected = true;
             this.gamePlayView.setCorrectAnswerChoiceStyle(button);
                 if(this.abcRemainingsChars.length == 0) {
                     this.gameCompleteMenu();
