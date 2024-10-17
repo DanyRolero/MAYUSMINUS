@@ -51,5 +51,33 @@ if (isMobile()) {
     console.log("Dispositivo de escritorio detectado");
 }
 */
+var audioContext;
+var audioBuffer;
+
+document.getElementById('start-button').addEventListener('mousedown', () => {
+    if(!audioContext) audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    
+    fetch('assets/sounds/fx/correct_3.mp3')
+    .then(response => response.arrayBuffer())
+    .then(data => audioContext.decodeAudioData(data))
+    .then(buffer => { 
+        audioBuffer = buffer;
+        
+    });
+});
+
+
+
+
+
+function playAudio() {
+    if(!audioBuffer) return;
+    var source = audioContext.createBufferSource();
+    source.connect(audioContext.destination);
+    if(audioContext.state === 'suspended') audioContext.resume();
+    source.start(0);
+    
+}
+
 
 let app = new GamePlayController(); 
