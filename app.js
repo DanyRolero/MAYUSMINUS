@@ -62,8 +62,11 @@ document.getElementById('start-button').addEventListener('mousedown', () => {
     .then(data => audioContext.decodeAudioData(data))
     .then(buffer => { 
         audioBuffer = buffer;
-        
+        playAudio();
     });
+
+    if(audioContext.state === 'suspended') audioContext.resume();
+    else playAudio();
 });
 
 
@@ -72,9 +75,10 @@ document.getElementById('start-button').addEventListener('mousedown', () => {
 
 function playAudio() {
     if(!audioBuffer) return;
+
     var source = audioContext.createBufferSource();
+    source.buffer = audioBuffer;
     source.connect(audioContext.destination);
-    if(audioContext.state === 'suspended') audioContext.resume();
     source.start(0);
     
 }

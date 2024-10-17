@@ -80,7 +80,7 @@ class GamePlayController extends BaseController {
         this.currentQuestionChar = this.abcRemainingsChars.extractRandomChar();
         this.abcAnswersChars.fullFillAlphabet();
         this.abcAnswersChars.extractCharFromChar(this.currentQuestionChar);
-        this.speaker.speak(this.currentQuestionChar);
+        //this.speaker.speak(this.currentQuestionChar);
         
         this.currentAnswersChars = [];
         this.currentAnswersChars = this.abcAnswersChars.getRandomUniqueChars(this.options.level);
