@@ -80,7 +80,7 @@ class GamePlayController extends BaseController {
         this.currentQuestionChar = this.abcRemainingsChars.extractRandomChar();
         this.abcAnswersChars.fullFillAlphabet();
         this.abcAnswersChars.extractCharFromChar(this.currentQuestionChar);
-        this.speaker.speak(this.currentQuestionChar);
+        //this.speaker.speak(this.currentQuestionChar);
         
         this.currentAnswersChars = [];
         this.currentAnswersChars = this.abcAnswersChars.getRandomUniqueChars(this.options.level);
@@ -113,6 +113,7 @@ class GamePlayController extends BaseController {
     //---------------------------------------------------------------------------------
     handlerButtonClick(button) {
         window.playAudio();
+        this.speaker.speak('Hola');
         /*
         if(this.correctAnswerSelected) return;
         if(this.currentQuestionChar == button.textContent) {
