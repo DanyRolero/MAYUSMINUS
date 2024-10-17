@@ -54,6 +54,7 @@ if (isMobile()) {
 var audioContext;
 var audioBuffer;
 
+
 document.getElementById('start-button').addEventListener('mousedown', () => {
     if(!audioContext) audioContext = new (window.AudioContext || window.webkitAudioContext)();
     
@@ -69,10 +70,6 @@ document.getElementById('start-button').addEventListener('mousedown', () => {
     else playAudio();
 });
 
-
-
-
-
 function playAudio() {
     if(!audioBuffer) return;
 
@@ -80,7 +77,15 @@ function playAudio() {
     source.buffer = audioBuffer;
     source.connect(audioContext.destination);
     source.start(0);
-    
+    var utterance = new SpeechSynthesisUtterance('Este es el texto de prueba');
+      utterance.onstart = function(event) {
+        console.log('Síntesis de voz iniciada');
+      };
+      utterance.onend = function(event) {
+        console.log('Síntesis de voz finalizada');
+      };
+      speechSynthesis.speak(utterance);
+      console.log('Síntesis de voz ejecutada');
 }
 
 

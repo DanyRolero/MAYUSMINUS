@@ -13,7 +13,7 @@ class GamePlayController extends BaseController {
         this.abcRemainingsChars = new AlphabetModel();
         this.abcAnswersChars = new AlphabetModel();
         this.options = new OptionsModel();
-        this.speaker = new SpeakerBaseModel('es-ES');
+       // this.speaker = new SpeakerBaseModel('es-ES');
         //this.audio = new AudioModel();
         //this.audio.load('correct', 'assets/sounds/fx/correct_3.mp3');
         //this.audio.load('incorrect', 'assets/sounds/fx/incorrect_1.mp3');
@@ -113,7 +113,6 @@ class GamePlayController extends BaseController {
     //---------------------------------------------------------------------------------
     handlerButtonClick(button) {
         window.playAudio();
-        this.speaker.speak('Hola');
         /*
         if(this.correctAnswerSelected) return;
         if(this.currentQuestionChar == button.textContent) {
