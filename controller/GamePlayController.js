@@ -52,17 +52,21 @@ class GamePlayController extends BaseController {
     //---------------------------------------------------------------------------------
     // Comienza una partida para jugar con todas las letras del abecedario
     startGame() {
-        this.abcRemainingsChars.fullFillAlphabet();
-        this.abcAnswersChars.fullFillAlphabet();
-        this.failedChars = [];
-        this.nextExercise();
-        this.showOnlyView('challenge');
+        let voices;
+        voices = window.speechSynthesis.getVoices();
+
+        if(voices.length > 0) this.restartGame();
+        window.speechSynthesis.onvoiceschanged = this.restartGame.bind(this);
     }
 
     //---------------------------------------------------------------------------------
     // Reinicia una nueva partida con todas las letras
     restartGame() {
-        this.startGame();    
+        this.abcRemainingsChars.fullFillAlphabet();
+        this.abcAnswersChars.fullFillAlphabet();
+        this.failedChars = [];
+        this.nextExercise();
+        this.showOnlyView('challenge');  
     }
 
     //---------------------------------------------------------------------------------
