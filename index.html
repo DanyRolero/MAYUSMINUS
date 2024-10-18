@@ -1,67 +1,77 @@
 <!DOCTYPE html>
-<html lang="es" allow="autoplay">
-
+<html>
 <head>
-    <link rel="stylesheet" href="style.css?v=3">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>MAYUSMINUS</title>
-    <script src="model/AlphabetModel.js" defer></script>
-    <script src="model/OptionsModel.js" defer></script>
-    <script src="model/SpeakerBaseModel.js" defer></script>
-    <script src="model/SpanishSpeechModel.js" defer></script>
-    <script src="model/AudioModel.js" defer></script>
-    <script src="view/BaseView.js" defer></script>
-    <script src="view/StartView.js" defer></script>
-    <script src="view/GamePlayView.js" defer></script>
-    <script src="view/OptionsView.js" defer></script>
-    <script src="view/RestartMenuView.js" defer></script>
-    <script src="controller/BaseController.js" defer></script>
-    <script src="controller/GamePlayController.js" defer></script>
-    <script src="app.js" defer=""></script>
+  <title>Audio con Web Audio API y Síntesis de Voz</title>
 </head>
-
 <body>
-    <main id="app">
-        <div id="start-view">
-            <button id="start-button">Comenzar</button>
-        </div>
-        <div id="exercise-view" class="hidden">
-            <!-- OPTIONS VIEW -->
-            <div id="options-view">
-                <div id="button-group-1">
-                    <button id="toggle-sound-buton">SONIDO</button>
-                    <button id="toggle-mayus-minus-button">A -> a</button>
-                </div>
+  <h1>Reproducción de sonido con Web Audio API y Síntesis de Voz</h1>
+  <button id="playButton">Reproducir Sonido y Voz</button>
+  <p id="status"></p>
 
-                <div id="button-group-2">
-                    <button id="select-font-family-button-1">ABC</buttton>
-                        <button id="select-font-family-button-2">ABC</buttton>
-                            <button id="select-font-family-button-3">ABC</buttton>
-                </div>
+  <script>
+    var audioContext;
+    var audioBuffer;
 
-                <div id="button-group-3">
-                    <button id="select-level-button-1">1</button>
-                    <button id="select-level-button-2">2</button>
-                    <button id="select-level-button-3">3</button>
-                    <button id="select-level-button-4">4</button>
-                </div>
-            </div>
+    document.getElementById('playButton').addEventListener('click', function() {
+      if (!audioContext) {
+        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        loadAudio();
+        
+        // Resumir el contexto de audio si está suspendido
+        if (audioContext.state === 'suspended') {
+          audioContext.resume().then(() => {
+            console.log('AudioContext resumido');
+            document.getElementById('status').textContent = 'AudioContext resumido';
+          });
+        }
+      } else {
+        playAudioAndSpeech(); // Reproducir el audio y la voz si ya está cargado
+      }
+    });
 
-            <!-- GAMEPLAY VIEW -->
-            <div id="gameplay-view">
-                <div id="current-char-question" class="alphabet"></div>
-                <div id="current-chars-answers" class="alphabet"></div>
-            </div>
-        </div>
+    function loadAudio() {
+      fetch('assets/sounds/fx/correct_1.mp3')
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+          }
+          return response.arrayBuffer();
+        })
+        .then(data => audioContext.decodeAudioData(data))
+        .then(buffer => {
+          audioBuffer = buffer;
+          console.log('Audio cargado');
+          document.getElementById('status').textContent = 'Audio cargado';
+          playAudioAndSpeech(); // Reproducir el audio inmediatamente después de cargarlo
+        })
+        .catch(error => {
+          console.error('Hubo un problema con la operación fetch: ', error);
+          document.getElementById('status').textContent = 'Error al cargar el audio';
+        });
+    }
 
-        <!-- RESTART MENU VIEW -->
-        <div id="restart-menu-view" class="hidden">
-            <button id="restart-button">REINICIAR</button>
-            <button id="revise-button">REPASAR</button>
-        </div>
-    </main>
+    function playAudioAndSpeech() {
+      if (!audioBuffer) return;
 
+      // Reproducir audio
+      var source = audioContext.createBufferSource();
+      source.buffer = audioBuffer;
+      source.connect(audioContext.destination);
+      source.start(0);
+      console.log('Audio reproducido');
+      document.getElementById('status').textContent = 'Audio reproducido';
+
+      // Reproducir síntesis de voz
+      var utterance = new SpeechSynthesisUtterance('Hola Cinthia');
+      utterance.onstart = function(event) {
+        console.log('Síntesis de voz iniciada');
+      };
+      utterance.onend = function(event) {
+        console.log('Síntesis de voz finalizada');
+      };
+      speechSynthesis.speak(utterance);
+      console.log('Síntesis de voz ejecutada');
+    }
+  </script>
 </body>
-
 </html>
