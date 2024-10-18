@@ -77,6 +77,8 @@ function playAudio() {
     source.buffer = audioBuffer;
     source.connect(audioContext.destination);
     source.start(0);
+
+    /*
     var utterance = new SpeechSynthesisUtterance('Este es el texto de prueba');
       utterance.onstart = function(event) {
         console.log('Síntesis de voz iniciada');
@@ -86,6 +88,7 @@ function playAudio() {
       };
       speechSynthesis.speak(utterance);
       console.log('Síntesis de voz ejecutada');
+      */
 }
 
 

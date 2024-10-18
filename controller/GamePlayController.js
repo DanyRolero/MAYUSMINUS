@@ -113,6 +113,18 @@ class GamePlayController extends BaseController {
     //---------------------------------------------------------------------------------
     handlerButtonClick(button) {
         window.playAudio();
+              // Reproducir síntesis de voz
+      var utterance = new SpeechSynthesisUtterance('Hola Cinthia');
+      
+      utterance.onstart = function(event) {
+          console.log('Síntesis de voz iniciada');
+        };
+        utterance.onend = function(event) {
+            console.log('Síntesis de voz finalizada');
+        };
+        speechSynthesis.speak(utterance);
+        console.log(utterance.voice);
+      console.log('Síntesis de voz ejecutada');
         /*
         if(this.correctAnswerSelected) return;
         if(this.currentQuestionChar == button.textContent) {
