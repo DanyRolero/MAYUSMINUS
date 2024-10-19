@@ -22,7 +22,8 @@ class GamePlayController extends BaseController {
         // ASYNC PRELOADS
         //---------------------------------------------------------------------------------
         this.speecher = null;
-        //this.correctSound = null;
+        this.correctSound = null;
+        this.incorrectSound = null;
         
 
         //---------------------------------------------------------------------------------
@@ -54,12 +55,10 @@ class GamePlayController extends BaseController {
     //---------------------------------------------------------------------------------
     // FLOW STATES
     //---------------------------------------------------------------------------------
-    // Comienza una partida para jugar con todas las letras del abecedario
-    // Require interacción del usuario para precargar los recursos
-    // Ocurre de forma asincrona y hasta que no se precarguen todos los elementos necesarios
-    // no se inicia el juego.
     startGame() {
         this.speecher = new SpeecherModel();
+        this.correctSound = new SoundModel('assets/sounds/fx/correct_1.mp3');
+        this.incorrectSound = new SoundModel('assets/sounds/fx/incorrect_1.mp3');
         this.restartGame();
     }
 
@@ -124,6 +123,7 @@ class GamePlayController extends BaseController {
         if (this.correctAnswerSelected) return;
         if (this.currentQuestionChar == button.textContent) {
             this.correctAnswerSelected = true;
+            this.correctSound.play();
             this.gamePlayView.setCorrectAnswerChoiceStyle(button);
             setTimeout(() => {
                 if (this.abcRemainingsChars.length == 0) {
@@ -136,6 +136,7 @@ class GamePlayController extends BaseController {
         else {
             this.gamePlayView.disabledAnswerChoice(button);
             this.failedChars.push(button.textContent);
+            this.incorrectSound.play();
         }
 
     }
