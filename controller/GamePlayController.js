@@ -61,7 +61,7 @@ class GamePlayController extends BaseController {
     startGame() {
         // Precargar sintetizador de voz
         this.speecher = new SpeecherModel(this.restartGame.bind(this));
-        this.correctSound = new SoundModel('assets/sounds/fx/correct_1.mp3');
+        //this.correctSound = new SoundModel('assets/sounds/fx/correct_1.mp3');
 
     }
 
