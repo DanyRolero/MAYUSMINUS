@@ -59,9 +59,10 @@ class GamePlayController extends BaseController {
     // Ocurre de forma asincrona y hasta que no se precarguen todos los elementos necesarios
     // no se inicia el juego.
     startGame() {
-        // Precargar sintetizador de voz
-        this.speecher = new SpeecherModel(this.restartGame.bind(this));
+        this.speecher = new SpeecherModel();
+        this.speecher.setVoices();
         //this.correctSound = new SoundModel('assets/sounds/fx/correct_1.mp3');
+        this.restartGame();
 
     }
 
