@@ -59,7 +59,9 @@ class GamePlayController extends BaseController {
     // Ocurre de forma asincrona y hasta que no se precarguen todos los elementos necesarios
     // no se inicia el juego.
     startGame() {
-        this.speecher = new SpeecherModel();
+        //this.speecher = new SpeecherModel();
+        var utterance = new SpeechSynthesisUtterance('comenzar');
+        window.speechSynthesis.speak(utterance);
         //this.correctSound = new SoundModel('assets/sounds/fx/correct_1.mp3');
         this.restartGame();
 
@@ -124,7 +126,7 @@ class GamePlayController extends BaseController {
     handlerButtonClick(button) {
         //window.playAudio();
         //this.correctSound.play();
-        this.speecher.speak(button.textContent);
+        //this.speecher.speak(button.textContent);
         
         if(this.correctAnswerSelected) return;
         if(this.currentQuestionChar == button.textContent) {
