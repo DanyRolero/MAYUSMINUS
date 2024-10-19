@@ -5,8 +5,9 @@ class SpeecherModel {
     this.voices = [];
     this.lang = 'es-Es';
 
-    this.voices = window.speechSynthesis.getVoices();
-    if(this.voices.length > 0) handler();
+    //this.voices = window.speechSynthesis.getVoices();
+    //if(this.voices.length > 0) handler();
+
     window.speechSynthesis.onvoiceschanged = function() {
       this.voices = window.speechSynthesis.getVoices();
       handler();

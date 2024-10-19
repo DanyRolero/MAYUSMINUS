@@ -125,7 +125,7 @@ class GamePlayController extends BaseController {
     handlerButtonClick(button) {
         //window.playAudio();
         this.speecher.speak('Hola Cinthia');
-        this.correctSound.play();
+        //this.correctSound.play();
         /*
         if(this.correctAnswerSelected) return;
         if(this.currentQuestionChar == button.textContent) {
