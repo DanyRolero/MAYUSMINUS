@@ -1,6 +1,8 @@
 class GamePlayController extends BaseController {
     constructor() {
         super();
+        this.voiceLoaded = false;
+        this.audioLoaded = false;
         this.correctAnswerSelected = false;
         
         this.currentQuestionChar = null;
@@ -13,12 +15,14 @@ class GamePlayController extends BaseController {
         this.abcRemainingsChars = new AlphabetModel();
         this.abcAnswersChars = new AlphabetModel();
         this.options = new OptionsModel();
-        this.speecher = new SpeecherModel();
-       // this.speaker = new SpeakerBaseModel('es-ES');
-        //this.audio = new AudioModel();
-        //this.audio.load('correct', 'assets/sounds/fx/correct_3.mp3');
-        //this.audio.load('incorrect', 'assets/sounds/fx/incorrect_1.mp3');
-        //this.audio.load('victory', 'assets/sounds/fx/victory_1.mp3');
+
+
+
+        //---------------------------------------------------------------------------------
+        // ASYNC PRELOADS
+        //---------------------------------------------------------------------------------
+        this.speecher = null;
+        this.correctSound = null;
         
 
         //---------------------------------------------------------------------------------
@@ -51,12 +55,14 @@ class GamePlayController extends BaseController {
     // FLOW STATES
     //---------------------------------------------------------------------------------
     // Comienza una partida para jugar con todas las letras del abecedario
+    // Require interacción del usuario para precargar los recursos
+    // Ocurre de forma asincrona y hasta que no se precarguen todos los elementos necesarios
+    // no se inicia el juego.
     startGame() {
-        let voices;
-        voices = window.speechSynthesis.getVoices();
+        // Precargar sintetizador de voz
+        this.correctSound = new SoundModel('assets/sounds/fx/correct_1.mp3');
+        this.speecher = new SpeecherModel(this.restartGame.bind(this));
 
-        if(voices.length > 0) this.restartGame();
-        window.speechSynthesis.onvoiceschanged = this.restartGame.bind(this);
     }
 
     //---------------------------------------------------------------------------------
@@ -117,8 +123,9 @@ class GamePlayController extends BaseController {
 
     //---------------------------------------------------------------------------------
     handlerButtonClick(button) {
-        window.playAudio();
+        //window.playAudio();
         this.speecher.speak('Hola Cinthia');
+        this.correctSound.play();
         /*
         if(this.correctAnswerSelected) return;
         if(this.currentQuestionChar == button.textContent) {
@@ -186,7 +193,7 @@ class GamePlayController extends BaseController {
 
     //---------------------------------------------------------------------------------
     handlerRestartClickButton() {
-        this.startGame();
+        this.restartGame();
     }
 
     //---------------------------------------------------------------------------------
