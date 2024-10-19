@@ -60,12 +60,7 @@ class GamePlayController extends BaseController {
     // no se inicia el juego.
     startGame() {
         this.speecher = new SpeecherModel();
-        this.speecher.speak('Vamos a ');
-        //var utterance = new SpeechSynthesisUtterance('comenzar');
-        //window.speechSynthesis.speak(utterance);
-        //this.correctSound = new SoundModel('assets/sounds/fx/correct_1.mp3');
         this.restartGame();
-
     }
 
     //---------------------------------------------------------------------------------
@@ -92,6 +87,7 @@ class GamePlayController extends BaseController {
     nextExercise() {
         this.correctAnswerSelected = false;
         this.currentQuestionChar = this.abcRemainingsChars.extractRandomChar();
+        this.speecher.speak(this.currentQuestionChar);
         this.abcAnswersChars.fullFillAlphabet();
         this.abcAnswersChars.extractCharFromChar(this.currentQuestionChar);
 
@@ -125,28 +121,23 @@ class GamePlayController extends BaseController {
 
     //---------------------------------------------------------------------------------
     handlerButtonClick(button) {
-        //window.playAudio();
-        //this.correctSound.play();
-        this.speecher.speak('botón');
-        
-        if(this.correctAnswerSelected) return;
-        if(this.currentQuestionChar == button.textContent) {
+        if (this.correctAnswerSelected) return;
+        if (this.currentQuestionChar == button.textContent) {
             this.correctAnswerSelected = true;
             this.gamePlayView.setCorrectAnswerChoiceStyle(button);
             setTimeout(() => {
-                if(this.abcRemainingsChars.length == 0) {
+                if (this.abcRemainingsChars.length == 0) {
                     this.gameCompleteMenu();
                     return;
                 }
-        
                 this.nextExercise();
             }, 500);
         }
         else {
-        this.gamePlayView.disabledAnswerChoice(button);
-        this.failedChars.push(button.textContent);
-    }
-    
+            this.gamePlayView.disabledAnswerChoice(button);
+            this.failedChars.push(button.textContent);
+        }
+
     }
     
     //---------------------------------------------------------------------------------

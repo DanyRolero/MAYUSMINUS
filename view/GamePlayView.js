@@ -20,18 +20,7 @@ class GamePlayView extends BaseView {
     addAnswerChoice(content) {
         let answerCharButton = document.createElement('button');
         answerCharButton.textContent = content;
-
-        /*
-        answerCharButton.addEventListener('mousedown', (e) => {
-            e.preventDefault();
-            this.handleButtonClick(answerCharButton)},
-            {passive: false});
-        */
-        answerCharButton.addEventListener('touchstart', (e) => {
-            e.preventDefault();
-            this.handleButtonClick(answerCharButton)}, 
-            {passive: false} );
-
+        answerCharButton.addEventListener('mousedown', () => { this.handleButtonClick(answerCharButton);});
         this.#answerChoices.appendChild(answerCharButton);       
     }
 
