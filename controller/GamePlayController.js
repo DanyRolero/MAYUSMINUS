@@ -22,7 +22,7 @@ class GamePlayController extends BaseController {
         // ASYNC PRELOADS
         //---------------------------------------------------------------------------------
         this.speecher = null;
-        this.correctSound = null;
+        //this.correctSound = null;
         
 
         //---------------------------------------------------------------------------------
@@ -123,8 +123,8 @@ class GamePlayController extends BaseController {
 
     //---------------------------------------------------------------------------------
     handlerButtonClick(button) {
-        //window.playAudio();
         this.speecher.speak('Hola Cinthia');
+        //window.playAudio();
         //this.correctSound.play();
         /*
         if(this.correctAnswerSelected) return;
