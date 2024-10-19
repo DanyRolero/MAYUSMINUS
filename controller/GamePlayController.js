@@ -61,8 +61,8 @@ class GamePlayController extends BaseController {
     startGame() {
         this.speecher = new SpeecherModel();
         this.speecher.speak('Vamos a ');
-        var utterance = new SpeechSynthesisUtterance('comenzar');
-        window.speechSynthesis.speak(utterance);
+        //var utterance = new SpeechSynthesisUtterance('comenzar');
+        //window.speechSynthesis.speak(utterance);
         //this.correctSound = new SoundModel('assets/sounds/fx/correct_1.mp3');
         this.restartGame();
 
