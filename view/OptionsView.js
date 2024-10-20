@@ -19,31 +19,32 @@ class OptionsView extends BaseView {
         this.handlerSelectLevelClick;
 
         this.#toggleSoundButton = document.getElementById('toggle-sound-buton');
-        this.#toggleSoundButton.addEventListener('click', () => this.handlerToggleSoundClick());
+        this.#toggleSoundButton.addEventListener('mousedown', () => this.handlerToggleSoundClick());
 
         this.#toggleMayusMinusButton = document.getElementById('toggle-mayus-minus-button');
-        this.#toggleMayusMinusButton.addEventListener('click', () => this.handlerToggleMayusMinusClick());
+        this.#toggleMayusMinusButton.addEventListener('mousedown', () => this.handlerToggleMayusMinusClick());
 
         this.#fontFamilyButton_1 = document.getElementById('select-font-family-button-1');
-        this.#fontFamilyButton_1.addEventListener('click', () => this.handlerSelectFontFamilyClick('sans'));
+        this.#fontFamilyButton_1.addEventListener('mousedown', () => this.handlerSelectFontFamilyClick('sans'));
 
         this.#fontFamilyButton_2 = document.getElementById('select-font-family-button-2');
-        this.#fontFamilyButton_2.addEventListener('click', () => this.handlerSelectFontFamilyClick('serif'));
+        this.#fontFamilyButton_2.addEventListener('mousedown', () => this.handlerSelectFontFamilyClick('serif'));
 
         this.#fontFamilyButton_3 = document.getElementById('select-font-family-button-3');
-        this.#fontFamilyButton_3.addEventListener('click', () => this.handlerSelectFontFamilyClick('handwrite'));
+        this.#fontFamilyButton_3.addEventListener('mousedown', () => this.handlerSelectFontFamilyClick('handwrite'));
 
         this.#levelButton_1 = document.getElementById('select-level-button-1');
-        this.#levelButton_1.addEventListener('click', () => this.handlerSelectLevelClick(1));
+        this.#levelButton_1.addEventListener('mousedown', () => this.handlerSelectLevelClick(1));
         
         this.#levelButton_2 = document.getElementById('select-level-button-2');
-        this.#levelButton_2.addEventListener('click', () => this.handlerSelectLevelClick(2));
+        this.#levelButton_2.addEventListener('mousedown', () => this.handlerSelectLevelClick(2));
 
         this.#levelButton_3 = document.getElementById('select-level-button-3');
-        this.#levelButton_3.addEventListener('click', () => this.handlerSelectLevelClick(3));
+        this.#levelButton_3.addEventListener('mousedown', () => this.handlerSelectLevelClick(3));
 
         this.#levelButton_4 = document.getElementById('select-level-button-4');
-        this.#levelButton_4.addEventListener('click', () => this.handlerSelectLevelClick(4));
+        this.#levelButton_4.addEventListener('mousedown', () => this.handlerSelectLevelClick(4));
+
         
     }
 
