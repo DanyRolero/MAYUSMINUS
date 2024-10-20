@@ -11,7 +11,6 @@ class SoundModel {
         .then(buffer => { 
             this.audioBuffer = buffer;
             if(this.audioContext.state === 'suspended') this.audioContext.resume();
-            this.audioContext.resume();
             if(handler != undefined) handler();
         });
     }
@@ -19,10 +18,10 @@ class SoundModel {
     //---------------------------------------------------------------------------------
     play() {
         if(!this.audioBuffer) return;
+            var source = this.audioContext.createBufferSource();
+            source.buffer = this.audioBuffer;
+            source.connect(this.audioContext.destination);
+            source.start(0);
 
-        var source = this.audioContext.createBufferSource();
-        source.buffer = this.audioBuffer;
-        source.connect(this.audioContext.destination);
-        source.start(0);
     }
 }

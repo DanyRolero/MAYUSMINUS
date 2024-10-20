@@ -16,6 +16,8 @@ class GamePlayController extends BaseController {
         this.abcAnswersChars = new AlphabetModel();
         this.options = new OptionsModel();
 
+
+
         //---------------------------------------------------------------------------------
         // ASYNC PRELOADS
         //---------------------------------------------------------------------------------
@@ -23,6 +25,7 @@ class GamePlayController extends BaseController {
         this.correctSound = null;
         this.incorrectSound = null;
         
+
         //---------------------------------------------------------------------------------
         // VIEWS
         //---------------------------------------------------------------------------------
@@ -131,9 +134,12 @@ class GamePlayController extends BaseController {
             }, 500);
         }
         else {
-            this.gamePlayView.disabledAnswerChoice(button);
-            this.failedChars.push(button.textContent);
+            if(button.disabled) return;
             this.incorrectSound.play();
+            this.gamePlayView.disabledAnswerChoice(button);
+            if(this.failedChars.indexOf(this.currentQuestionChar) == -1) {
+                this.failedChars.push(this.currentQuestionChar);
+            }
         }
 
     }
