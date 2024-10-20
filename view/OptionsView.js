@@ -19,9 +19,17 @@ class OptionsView extends BaseView {
         this.handlerSelectLevelClick;
 
         this.#toggleSoundButton = document.getElementById('toggle-sound-buton');
+        this.#toggleSoundButton.addEventListener('touchstart', (event) => {
+            event.preventDefault();
+            this.handlerToggleSoundClick();
+        }, {passive: false});
         this.#toggleSoundButton.addEventListener('mousedown', () => this.handlerToggleSoundClick());
 
         this.#toggleMayusMinusButton = document.getElementById('toggle-mayus-minus-button');
+        this.#toggleMayusMinusButton.addEventListener('touchstart', (event) => {
+            event.preventDefault();
+            this.handlerToggleMayusMinusClick();
+        }, {passive:false});
         this.#toggleMayusMinusButton.addEventListener('mousedown', () => this.handlerToggleMayusMinusClick());
 
         this.#fontFamilyButton_1 = document.getElementById('select-font-family-button-1');
