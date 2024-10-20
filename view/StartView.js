@@ -7,7 +7,7 @@ class StartView extends BaseView {
         this.handlerClickButton = null;
 
         this.#startButtonElement = document.getElementById('start-button');
-        this.#startButtonElement.addEventListener('click', () => this.handlerClickButton());
+        this.#startButtonElement.addEventListener('touchstart', () => this.handlerClickButton());
     }
 
     bindStartClickButton(handler) {
