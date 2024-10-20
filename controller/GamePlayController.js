@@ -86,9 +86,12 @@ class GamePlayController extends BaseController {
     nextExercise() {
         this.correctAnswerSelected = false;
         this.currentQuestionChar = this.abcRemainingsChars.extractRandomChar();
-        this.speecher.speak(this.currentQuestionChar);
         this.abcAnswersChars.fullFillAlphabet();
         this.abcAnswersChars.extractCharFromChar(this.currentQuestionChar);
+        var utterance = new SpeechSynthesisUtterance(this.currentQuestionChar);
+        utterance.lang = 'es-ES';
+        utterance.rate = 0.4;
+        speechSynthesis.speak(utterance);
 
         
         this.currentAnswersChars = [];
