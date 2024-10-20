@@ -16,8 +16,6 @@ class GamePlayController extends BaseController {
         this.abcAnswersChars = new AlphabetModel();
         this.options = new OptionsModel();
 
-
-
         //---------------------------------------------------------------------------------
         // ASYNC PRELOADS
         //---------------------------------------------------------------------------------
@@ -25,7 +23,6 @@ class GamePlayController extends BaseController {
         this.correctSound = null;
         this.incorrectSound = null;
         
-
         //---------------------------------------------------------------------------------
         // VIEWS
         //---------------------------------------------------------------------------------
