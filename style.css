@@ -81,6 +81,16 @@ body {
     touch-action: manipulation;
 }
 
+#current-chars-answers:disabled {
+    height: 200px;
+    font-size: 5em;
+    border-radius: 15px;
+    font-family: var(--font-chars);
+    text-transform: var(--Answer-choice-text-transform);
+    touch-action: manipulation;
+}
+
+
 .button-disabled {
     background-color: red;
     color:black;
