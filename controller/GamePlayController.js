@@ -52,10 +52,6 @@ class GamePlayController extends BaseController {
     // FLOW STATES
     //---------------------------------------------------------------------------------
     startGame() {
-        //this.correctSound = new SoundModel('assets/sounds/fx/correct_1.mp3');
-        //this.incorrectSound = new SoundModel('assets/sounds/fx/incorrect_1.mp3');
-        let talk = new SpeechSynthesisUtterance("Hola");
-        window.speechSynthesis.speak(talk);
         this.restartGame();
     }
 
@@ -111,6 +107,8 @@ class GamePlayController extends BaseController {
     //---------------------------------------------------------------------------------
     handlerStartClickButton() {
         this.speecher = new SpeecherModel();
+        this.correctSound = new SoundModel('assets/sounds/fx/correct_1.mp3');
+        this.incorrectSound = new SoundModel('assets/sounds/fx/incorrect_1.mp3');
         this.startGame();
     }
 
@@ -120,7 +118,7 @@ class GamePlayController extends BaseController {
         if (this.correctAnswerSelected) return;
         if (this.currentQuestionChar == button.textContent) {
             this.correctAnswerSelected = true;
-            //this.correctSound.play();
+            this.correctSound.play();
             this.gamePlayView.setCorrectAnswerChoiceStyle(button);
             setTimeout(() => {
                 if (this.abcRemainingsChars.length == 0) {
@@ -132,7 +130,7 @@ class GamePlayController extends BaseController {
         }
         else {
             if(button.disabled) return;
-            //this.incorrectSound.play();
+            this.incorrectSound.play();
             this.gamePlayView.disabledAnswerChoice(button);
             if(this.failedChars.indexOf(this.currentQuestionChar) == -1) {
                 this.failedChars.push(this.currentQuestionChar);
