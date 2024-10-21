@@ -7,7 +7,7 @@ class StartView extends BaseView {
         this.handlerClickButton = null;
 
         this.#startButtonElement = document.getElementById('start-button');
-        
+
         this.#startButtonElement.addEventListener("click", (event) => {
             event.preventDefault();
             this.handlerClickButton(); 
@@ -15,14 +15,20 @@ class StartView extends BaseView {
 
         this.#startButtonElement.addEventListener('touchstart', (event) => {
             event.preventDefault();
-            this.handlerClickButton(); 
         }, 
         {passive: false});
+
+
+        this.#startButtonElement.addEventListener("mouseup", (event) => {
+            event.preventDefault();
+            this.handlerClickButton(); 
+        });
+
+
+
     }
 
     bindStartClickButton(handler) {
-        let talk = new SpeechSynthesisUtterance("Hola");
-        //window.speechSynthesis.speak(talk);
         this.handlerClickButton = handler;
     }
 }

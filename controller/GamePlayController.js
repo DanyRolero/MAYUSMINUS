@@ -53,6 +53,8 @@ class GamePlayController extends BaseController {
     startGame() {
         //this.correctSound = new SoundModel('assets/sounds/fx/correct_1.mp3');
         //this.incorrectSound = new SoundModel('assets/sounds/fx/incorrect_1.mp3');
+        let talk = new SpeechSynthesisUtterance("Hola");
+        window.speechSynthesis.speak(talk);
         this.restartGame();
     }
 
@@ -80,7 +82,6 @@ class GamePlayController extends BaseController {
     nextExercise() {
         this.correctAnswerSelected = false;
         this.currentQuestionChar = this.abcRemainingsChars.extractRandomChar();
-        speecher.speak(this.currentQuestionChar);
         this.abcAnswersChars.fullFillAlphabet();
         this.abcAnswersChars.extractCharFromChar(this.currentQuestionChar);    
         this.currentAnswersChars = [];

@@ -7,7 +7,7 @@ document.addEventListener('touchmove', function(event) { event.preventDefault();
 document.addEventListener('gesturestart', function(event) { event.preventDefault(); }, {passive: false});
 
 let app = null;
-const speecher = new SpeecherModel(() => { app = new GamePlayController()});
+app = new GamePlayController();
 
 //---------------------------------------------------------------------------------
 
