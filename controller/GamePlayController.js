@@ -17,6 +17,7 @@ class GamePlayController extends BaseController {
         //---------------------------------------------------------------------------------
         // ASYNC PRELOADS
         //---------------------------------------------------------------------------------
+        this.speecher = null;
         this.correctSound = null;
         this.incorrectSound = null;
         
@@ -82,6 +83,8 @@ class GamePlayController extends BaseController {
     nextExercise() {
         this.correctAnswerSelected = false;
         this.currentQuestionChar = this.abcRemainingsChars.extractRandomChar();
+        this.speecher.speak(this.currentQuestionChar);
+
         this.abcAnswersChars.fullFillAlphabet();
         this.abcAnswersChars.extractCharFromChar(this.currentQuestionChar);    
         this.currentAnswersChars = [];
@@ -107,6 +110,7 @@ class GamePlayController extends BaseController {
     // INTERACTIVITY
     //---------------------------------------------------------------------------------
     handlerStartClickButton() {
+        this.speecher = new SpeecherModel();
         this.startGame();
     }
 
