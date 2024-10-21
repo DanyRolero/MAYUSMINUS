@@ -19,6 +19,8 @@ class SpeecherModel {
     this.voices = this.speechSynth.getVoices();
     
     if(this.voices.length !== 0) {
+        console.log('voces cargadas');
+        alert('voces cargadas');
         onComplete();
     } else {
         return setTimeout(() => { this.loadVoicesWhenAvalables(onComplete)}, 100);
