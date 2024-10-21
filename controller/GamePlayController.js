@@ -14,12 +14,9 @@ class GamePlayController extends BaseController {
         this.abcAnswersChars = new AlphabetModel();
         this.options = new OptionsModel();
 
-
-
         //---------------------------------------------------------------------------------
         // ASYNC PRELOADS
         //---------------------------------------------------------------------------------
-        this.speecher = null;
         this.correctSound = null;
         this.incorrectSound = null;
         
@@ -83,14 +80,9 @@ class GamePlayController extends BaseController {
     nextExercise() {
         this.correctAnswerSelected = false;
         this.currentQuestionChar = this.abcRemainingsChars.extractRandomChar();
+        speecher.speak(this.currentQuestionChar);
         this.abcAnswersChars.fullFillAlphabet();
-        this.abcAnswersChars.extractCharFromChar(this.currentQuestionChar);
-        var utterance = new SpeechSynthesisUtterance(this.currentQuestionChar);
-        utterance.lang = 'es-ES';
-        utterance.rate = 0.4;
-        speechSynthesis.speak(utterance);
-
-        
+        this.abcAnswersChars.extractCharFromChar(this.currentQuestionChar);    
         this.currentAnswersChars = [];
         this.currentAnswersChars = this.abcAnswersChars.getRandomUniqueChars(this.options.level);
         this.currentAnswersChars.push(this.currentQuestionChar);
@@ -114,7 +106,6 @@ class GamePlayController extends BaseController {
     // INTERACTIVITY
     //---------------------------------------------------------------------------------
     handlerStartClickButton() {
-        this.speecher = new SpeecherModel();
         this.startGame();
     }
 
