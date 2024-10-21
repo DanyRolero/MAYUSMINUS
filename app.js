@@ -8,7 +8,16 @@ document.addEventListener('gesturestart', function(event) { event.preventDefault
 
 //---------------------------------------------------------------------------------
 // Prevenir zoom al tocar dos veces seguidas en un elemento
-//document.addEventListener('touchend', function(event) { event.preventDefault();}, false);
+document.addEventListener("touchend", function (event) {
+    let lastTouchEnd = 0;
+    let now = new Date().getTime();
+    if (now - lastTouchEnd <= 100) {
+      event.preventDefault();
+    }
+    lastTouchEnd = now;
+  },
+  false
+);
 
 
 
