@@ -1,8 +1,6 @@
 class GamePlayController extends BaseController {
     constructor() {
         super();
-        this.voiceLoaded = false;
-        this.audioLoaded = false;
         this.correctAnswerSelected = false;
         
         this.currentQuestionChar = null;
@@ -56,7 +54,6 @@ class GamePlayController extends BaseController {
     // FLOW STATES
     //---------------------------------------------------------------------------------
     startGame() {
-        this.speecher = new SpeecherModel();
         //this.correctSound = new SoundModel('assets/sounds/fx/correct_1.mp3');
         //this.incorrectSound = new SoundModel('assets/sounds/fx/incorrect_1.mp3');
         this.restartGame();
@@ -117,6 +114,7 @@ class GamePlayController extends BaseController {
     // INTERACTIVITY
     //---------------------------------------------------------------------------------
     handlerStartClickButton() {
+        this.speecher = new SpeecherModel();
         this.startGame();
     }
 

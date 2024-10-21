@@ -8,10 +8,10 @@ class RestartMenuView extends BaseView {
         this.handlerReviseClickButton = null;
 
         this.#restartButtonElement = document.getElementById('restart-button');
-        this.#restartButtonElement.addEventListener('mousedown', () => this.handlerRestartClickButton());
+        this.#restartButtonElement.addEventListener('touchstart', () => this.handlerRestartClickButton(), {passive: true});
 
         this.#reviseButtonElement = document.getElementById('revise-button');
-        this.#reviseButtonElement.addEventListener('mousedown', () => this.handlerReviseClickButton());
+        this.#reviseButtonElement.addEventListener('touchstart', () => this.handlerReviseClickButton(), {passive: true});
         this.#reviseButtonElement.classList.add('hidden');
     }
 
