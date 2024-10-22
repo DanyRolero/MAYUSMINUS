@@ -1,6 +1,11 @@
 class GamePlayController extends BaseController {
     constructor() {
         super();
+        
+        this.minLevel = 1;
+        this.maxLevel = 4;
+        this.currentLevel = this.minLevel;
+
         this.correctAnswerSelected = false;
         
         this.currentQuestionChar = null;
@@ -39,7 +44,7 @@ class GamePlayController extends BaseController {
         this.optionsView.bindSelectLevelClick(this.handlerSelectLevelClick.bind(this));
         
         this.gamePlayView = new GamePlayView(document.getElementById('gameplay-view'));
-        this.gamePlayView.bindButtonClick(this.handlerButtonClick.bind(this));
+        this.gamePlayView.bindButtonClick(this.handlerTouchAnswer.bind(this));
         this.gamePlayView.bindQuestionTouch(this.handlerQuestionTouch.bind(this));
 
         //---------------------------------------------------------------------------------
@@ -90,7 +95,6 @@ class GamePlayController extends BaseController {
         this.currentAnswersChars.sort();
         
         this.gamePlayView.updateQuestionStatement(this.currentQuestionChar);
-        
         this.gamePlayView.removeAnswerChoices();
         this.gamePlayView.addAnswerChoiceGroup(this.currentAnswersChars);
     }
@@ -113,9 +117,8 @@ class GamePlayController extends BaseController {
         this.startGame();
     }
 
-
     //---------------------------------------------------------------------------------
-    handlerButtonClick(button) {
+    handlerTouchAnswer(button) {
         if (this.correctAnswerSelected) return;
         if (this.currentQuestionChar == button.textContent) {
             this.correctAnswerSelected = true;
@@ -137,7 +140,6 @@ class GamePlayController extends BaseController {
                 this.failedChars.push(this.currentQuestionChar);
             }
         }
-
     }
 
     //---------------------------------------------------------------------------------
@@ -171,11 +173,14 @@ class GamePlayController extends BaseController {
     }
 
     //---------------------------------------------------------------------------------
-    handlerSelectLevelClick(level) {
-        this.options.selectLevel(level);
+    handlerSelectLevelClick() {
+        if(this.currentLevel == this.maxLevel) this.currentLevel = this.minLevel;
+        else this.currentLevel++;
+
+        this.options.selectLevel(this.currentLevel);
+        this.optionsView.updateTextContentLevelButton('<span>'+this.currentLevel+'</span>');
 
         this.currentAnswersChars = [];
-        
         this.abcAnswersChars.fullFillAlphabet();
         this.abcAnswersChars.extractCharFromChar(this.currentQuestionChar);
         this.currentAnswersChars = this.abcAnswersChars.getRandomUniqueChars(this.options.level);
