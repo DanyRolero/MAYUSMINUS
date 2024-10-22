@@ -11,6 +11,7 @@ class OptionsModel {
         this.#fonts['sans'] = 'Arial, Helvetica, sans-serif';
         this.#fonts['serif'] = "font-family: 'Times New Roman', Times, serif";
         this.#fonts['handwrite'] = "'Dekko', cursive";
+        this.#fonts['linked'] = "'Borel'";
     }
     
 

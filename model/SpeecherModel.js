@@ -9,7 +9,7 @@ class SpeecherModel {
   speak(text) {
     var utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = "es-ES";
-    utterance.rate = 0.4;
+    utterance.rate = 0.7;
     this.speechSynth.speak(utterance);
   }
 
@@ -19,7 +19,7 @@ class SpeecherModel {
     this.voices = this.speechSynth.getVoices();
     
     if(this.voices.length !== 0) {
-        console.log('voces cargadas');
+        console.log('\x1b[32mvoces cargadas\x1b[0m');
         onComplete();
     } else {
         return setTimeout(() => { this.loadVoicesWhenAvalables(onComplete)}, 100);

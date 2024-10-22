@@ -40,6 +40,7 @@ class GamePlayController extends BaseController {
         
         this.gamePlayView = new GamePlayView(document.getElementById('gameplay-view'));
         this.gamePlayView.bindButtonClick(this.handlerButtonClick.bind(this));
+        this.gamePlayView.bindQuestionTouch(this.handlerQuestionTouch.bind(this));
 
         //---------------------------------------------------------------------------------
         this.restartMenuView = new RestartMenuView(document.getElementById('restart-menu-view'));
@@ -137,6 +138,11 @@ class GamePlayController extends BaseController {
             }
         }
 
+    }
+
+    //---------------------------------------------------------------------------------
+    handlerQuestionTouch() {
+        this.speecher.speak(this.currentQuestionChar);
     }
     
     //---------------------------------------------------------------------------------

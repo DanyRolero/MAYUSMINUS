@@ -6,8 +6,11 @@ class GamePlayView extends BaseView {
         super(domElement);
 
         this.handleButtonClick;
+        this.handlerQuestionTouch;
 
         this.#questionStatenent = document.getElementById('current-char-question');
+        this.#questionStatenent.addEventListener('touchstart', () => this.handlerQuestionTouch(), {passive: false});
+
         this.#answerChoices = document.getElementById('current-chars-answers');
     }
 
@@ -21,7 +24,7 @@ class GamePlayView extends BaseView {
         let answerCharButton = document.createElement('button');
         answerCharButton.textContent = content;
         answerCharButton.addEventListener('touchstart', () => { this.handleButtonClick(answerCharButton);}, {passive:true});
-        answerCharButton.addEventListener('touchend', (event) => event.preventDefault(), {passive:false});
+        answerCharButton.addEventListener('touchend', (event) => event.preventDefault(), {passive:false}); //Prevenir zoom del doble tap
         this.#answerChoices.appendChild(answerCharButton);       
     }
 
@@ -68,12 +71,15 @@ class GamePlayView extends BaseView {
         button.classList.add('correct-press-button');
     }
 
-
     //---------------------------------------------------------------------------------
     // BINDS
     //---------------------------------------------------------------------------------
     // Para enlazar el evento click de los botones con el controlador
     bindButtonClick(handler) {
         this.handleButtonClick = handler;
+    }
+
+    bindQuestionTouch(handler) {
+        this.handlerQuestionTouch = handler;
     }
 }

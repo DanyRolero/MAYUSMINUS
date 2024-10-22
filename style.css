@@ -29,9 +29,6 @@ html, body {
 
 body {
     background-color:darkkhaki;
-    width: 100%;
-    height: 100vh;
-    padding: 15px;
 }
 
 #app{
@@ -40,7 +37,7 @@ body {
 } 
 
 /*---------------------------------------------------------------------------------*/
-/*START VIEW */
+/* START VIEW */
 /*---------------------------------------------------------------------------------*/
 #start-view {
     text-align: center;
@@ -55,12 +52,41 @@ body {
 /*---------------------------------------------------------------------------------*/
 /* GAME PLAY VIEW */
 /*---------------------------------------------------------------------------------*/
+.total-viewport-size {
+    display: block;
+    width: 100vw;
+    height: 100vh;
+}
+
+#options-view {
+    height: 15vh;
+    border: 1px solid;
+}
+
+#gameplay-view {
+    display: block;
+    height: 80vh;
+}
+
+#question-area {
+    display: block;
+    height: 40vh;
+    border: 1px solid;
+}
+
+#current-chars-answers {
+    display: block;
+    height: 45vh;
+    border: 1px solid;
+}
+/*---------------------------------------------------------------------------------*/
+
+
 #current-char-question {
     font-size: 10rem;
     text-align: center;
     text-transform: var(--Question-statement-text-transform);
-    height: 180px;
-    line-height: 178px;
+
 }
 
 
@@ -132,6 +158,11 @@ body {
     font-weight: 700;
 }
 
+#select-font-family-button-4 {
+    font-family: 'Borel';
+    font-weight: 700;
+}
+
 /*---------------------------------------------------------------------------------*/
 /* RESTART MENU VIEW */
 /*---------------------------------------------------------------------------------*/
@@ -162,17 +193,4 @@ body {
 
 .upper-case {
     text-transform: uppercase;
-}
-
-/*---------------------------------------------------------------------------------*/
-/* FONTS */
-/*---------------------------------------------------------------------------------*/
-@font-face {
-    font-family: 'Dekko';
-    src: url('assets/fonts/Dekko-Regular.woff2') format('woff2'),
-         url('assets/fonts/Dekko-Regular.woff') format('woff'),
-         url('assets/fonts/Dekko-Regular.eot') format('eot'),
-         url('assets/fonts/Dekko-Regular.otf') format('otf'),
-         url('assets/fonts/Dekko-Regular.ttf') format('ttf');
-    font-weight: 400;
 }

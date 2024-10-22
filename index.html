@@ -2,6 +2,35 @@
 <html lang="es" allow="autoplay">
 
 <head>
+    <style>
+        /*---------------------------------------------------------------------------------*/
+        /* FONTS */
+        /*---------------------------------------------------------------------------------*/
+        @font-face {
+            font-display: optional;
+            font-weight: 400;
+
+            font-family: 'Dekko';
+            src: url('assets/fonts/Dekko-Regular.woff2') format('woff2'),
+                url('assets/fonts/Dekko-Regular.woff') format('woff'),
+                url('assets/fonts/Dekko-Regular.eot') format('eot'),
+                url('assets/fonts/Dekko-Regular.otf') format('otf'),
+                url('assets/fonts/Dekko-Regular.ttf') format('ttf');
+        }
+
+        @font-face {
+            font-display: fallback;
+            font-weight: bolder;
+            size-adjust: 70%;
+            ascent-override: -10%;
+            font-family: 'Borel';
+            src: url('assets/fonts/Borel-Regular.woff2') format('woff2'),
+                url('assets/fonts/Borel-Regular.woff') format('woff'),
+                url('assets/fonts/Borel-Regular.eot') format('eot'),
+                url('assets/fonts/Borel-Regular.otf') format('otf'),
+                url('assets/fonts/Borel-Regular.ttf') format('ttf');
+        }
+    </style>
     <link rel="stylesheet" href="style.css?v=4">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -22,11 +51,17 @@
 
 <body>
     <main id="app">
-        <div id="start-view">
+        <!-- ------------------------------------------------------------------ -->
+        <!-- START VIEW -->
+        <div id="start-view" class="total-viewport-size">
             <button id="start-button">Comenzar</button>
         </div>
-        <div id="exercise-view" class="hidden">
-            <!-- OPTIONS VIEW -->
+
+
+        <!-- ------------------------------------------------------------------ -->
+        <!-- CHALLENGE VIEW -->
+        <div id="exercise-view" class="hidden total-viewport-size">
+            <!-- options sub-view -->
             <div id="options-view">
                 <div id="button-group-1">
                     <button id="toggle-sound-buton">SONIDO</button>
@@ -34,9 +69,10 @@
                 </div>
 
                 <div id="button-group-2">
-                    <button id="select-font-family-button-1">ABC</buttton>
-                        <button id="select-font-family-button-2">ABC</buttton>
-                            <button id="select-font-family-button-3">ABC</buttton>
+                    <button id="select-font-family-button-1">ABC</button>
+                    <button id="select-font-family-button-2">ABC</button>
+                    <button id="select-font-family-button-3">ABC</button>
+                    <button id="select-font-family-button-4">ABC</button>
                 </div>
 
                 <div id="button-group-3">
@@ -47,18 +83,24 @@
                 </div>
             </div>
 
-            <!-- GAMEPLAY VIEW -->
+
+            <!-- ------------------------------------------------------------------ -->
+            <!-- gameplay sub-view -->
             <div id="gameplay-view">
-                <div id="current-char-question" class="alphabet"></div>
+                <div id="question-area">
+                    <div id="current-char-question" class="alphabet"></div>
+                </div>
                 <div id="current-chars-answers" class="alphabet"></div>
             </div>
         </div>
 
+        <!-- ------------------------------------------------------------------ -->
         <!-- RESTART MENU VIEW -->
-        <div id="restart-menu-view" class="hidden">
+        <div id="restart-menu-view" class="hidden total-viewport-size">
             <button id="restart-button">REINICIAR</button>
             <button id="revise-button">REPASAR</button>
         </div>
+
     </main>
 
 </body>
