@@ -210,46 +210,66 @@ body {
 /*---------------------------------------------------------------------------------*/
 /* CHAR CARDS */
 /*---------------------------------------------------------------------------------*/
-#char-card-collection {
+#cards-collection {
     display: flex;
-    width: 100%;
-    height: 100vh;
-    align-content: center;
     justify-content: center;
-    padding: 10px;
+    flex-wrap: wrap;
+    padding: 3px;
+    gap: 3px;
 }
 
-#char-card {
+.card-container {
     display: flex;
-    align-content: center;
     justify-content: center;
-    align-items: stretch;
-    background-color: white;
-    width: 90px;
-    height: 130px;
-    border: solid black 14px;
-    margin:0 3px;
+    align-items: center;
+    aspect-ratio: 1/1.4444444444;
+    container-type: inline-size;
+    border-radius: 1.25dvb;
+
+    /* variable */
+    background-color: rgb(143, 61, 201);
+    width: 165px;
 }
 
-.char-card-content {
-    border:1px solid black;
-    font-family: 'Borel';
-    font-size: 4em;
+
+.card-image-container img {
+    width: 75.56%;
 }
 
-.card {
+.card-char-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: relative;
-    width: 90px;
-    height: 130px;
-    background-color: rgb(150, 8, 93);
+    width: 75.56%;
+    aspect-ratio: 1/1.5882352941;
+    
+    /* variable */
+    background-color: white;
+    color:  rgb(143, 61, 201);
 }
-.image-container {
-    padding-top: 69%;
+
+/* Depende de la fuente tipográfica */
+.card-char-content {
     position: absolute;
-    top: 0%;
+
+    font-size: 106cqw;
+    font-family: 'Dekko';
+    bottom:-18%;
+    text-transform: uppercase;
+}
+
+
+
+/* Depende de la altura de cada caracter */
+.card-char-content.dekko-font-neutral {
 
 }
 
-.image-card img {
+.card-char-content.dekko-font-ascendent {
+
+}
+
+.card-char-content.dekko-font-descendent {
 
 }
