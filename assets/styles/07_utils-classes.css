@@ -1,0 +1,14 @@
+/*---------------------------------------------------------------------------------*/
+/* UTILS CLASSES */
+/*---------------------------------------------------------------------------------*/
+.alphabet {
+    font-family: var(--font-chars);
+}
+
+.hidden {
+    display: none !important;
+}
+
+.upper-case {
+    text-transform: uppercase;
+}

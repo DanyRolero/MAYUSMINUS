@@ -1,0 +1,174 @@
+/*---------------------------------------------------------------------------------*/
+/* GAME VIEW */
+/*---------------------------------------------------------------------------------*/
+#options-view {
+    height: 15vh;
+    border: 1px solid;
+}
+
+#gameplay-view {
+    display: block;
+    height: 80vh;
+}
+
+#question-area {
+    display: flex;
+    height: 40vh;
+    border: 1px solid;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+#current-chars-answers {
+    display: block;
+    height: 45vh;
+    border: 1px solid;
+}
+/*---------------------------------------------------------------------------------*/
+
+
+#current-char-question {
+    font-size: 15vh;
+    text-align: center;
+    text-transform: var(--Question-statement-text-transform);
+}
+
+
+#current-chars-answers {
+    display: flex;
+    width: 100%;
+    font-size: 4rem;
+    align-items: baseline;
+    justify-content: center;
+    align-content: space-around;
+    flex-wrap: wrap;
+}
+
+
+#current-chars-answers button {
+    min-width: 90px;
+    max-width: 105px;
+    width: 30%;
+    min-height: 120px;
+    max-height: 200px;
+    height: 20vh;
+    font-size: 1em;
+    border-radius: 15px;
+    font-family: var(--font-chars);
+    text-transform: var(--Answer-choice-text-transform);
+    margin: 0 5px;
+}
+
+#current-chars-answers:disabled {
+    height: 200px;
+    font-size: 5em;
+    border-radius: 15px;
+    font-family: var(--font-chars);
+    text-transform: var(--Answer-choice-text-transform);
+    touch-action: manipulation;
+}
+
+
+.button-disabled {
+    background-color: red;
+    color:black;
+    opacity: .5;
+    touch-action: manipulation;
+}
+
+.correct-press-button {
+    background-color: green;
+    color:black;
+    opacity: .75;
+}
+
+/*---------------------------------------------------------------------------------*/
+/* CHAR CARDS */
+/*---------------------------------------------------------------------------------*/
+#cards-collection {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 3px;
+    gap: 3px;
+}
+
+.card-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1/1.4444444444;
+    container-type: inline-size;
+    border-radius: 1.25dvb;
+
+    /* variable */
+    background-color: rgb(143, 61, 201);
+    width: 165px;
+}
+
+
+.card-image-container img {
+    width: 75.56%;
+}
+
+.card-char-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 75.56%;
+    aspect-ratio: 1/1.5882352941;
+    
+    /* variable */
+    background-color: white;
+    color:  rgb(143, 61, 201);
+}
+
+/* Depende de la fuente tipográfica */
+.card-char-content {
+    position: absolute;
+    font-family: 'Borel';
+    font-size: 94cqw;
+    bottom: -19%;
+
+}
+
+
+/*---------------------------------------------------------------------------------*/
+/* DEKKO FONT */
+/*---------------------------------------------------------------------------------*/
+.card-dekko-font {
+    font-size: 106cqw;
+    font-family: 'Dekko';
+}
+
+.card-char-dekko-lowercase-neutrals {
+    bottom: -19%;
+}
+
+.card-char-dekko-lowercase-ascendents {
+    bottom: -28%;
+}
+
+.card-char-dekko-lowercase-descendents {
+    bottom: -9%;
+}
+
+
+.card-char-dekko-uppercase-neutrals {
+    bottom: -23%;
+    text-transform: uppercase;
+}
+
+.card-char-dekko-uppercase-ascendents {
+    bottom: -32%;
+    text-transform: uppercase;
+}
+
+.card-char-dekko-uppercase-descendents {
+    bottom: -16%;
+    text-transform: uppercase;
+}
+/*---------------------------------------------------------------------------------*/

@@ -1,0 +1,6 @@
+/* VARIABLES */
+:root {
+    --font-chars: Arial, Helvetica, sans-serif;
+    --Question-statement-text-transform: uppercase;
+    --Answer-choice-text-transform: lowercase;
+}

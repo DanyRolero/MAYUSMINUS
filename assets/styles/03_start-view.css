@@ -1,0 +1,10 @@
+/* START VIEW */
+
+#start-view {
+    text-align: center;
+}
+
+#start-view button {
+    width: 300px;
+    height: 400px;
+}

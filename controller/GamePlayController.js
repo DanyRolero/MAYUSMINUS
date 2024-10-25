@@ -43,7 +43,7 @@ class GamePlayController extends BaseController {
         this.optionsView.bindSelecFontFamilyClick(this.handlerSelectFontFamilyClick.bind(this));
         this.optionsView.bindSelectLevelClick(this.handlerSelectLevelClick.bind(this));
         
-        this.gamePlayView = new GamePlayView(document.getElementById('gameplay-view'));
+        this.gamePlayView = new GameView(document.getElementById('gameplay-view'));
         this.gamePlayView.bindButtonClick(this.handlerTouchAnswer.bind(this));
         this.gamePlayView.bindQuestionTouch(this.handlerQuestionTouch.bind(this));
 

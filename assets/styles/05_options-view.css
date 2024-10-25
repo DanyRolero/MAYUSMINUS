@@ -1,0 +1,33 @@
+/*---------------------------------------------------------------------------------*/
+/* OPTIONS VIEW */
+/*---------------------------------------------------------------------------------*/
+#options-view {
+    display:flex;
+    justify-content: flex-start;
+}
+
+#options-view button {
+    height: 50px;
+    min-width: 60px; 
+    padding: 10px;
+}
+
+#select-font-family-button-1 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 700;
+}
+
+#select-font-family-button-2 {
+    font-family:'Times New Roman', Times, serif;
+    font-weight: 700;
+}
+
+#select-font-family-button-3 {
+    font-family: 'Dekko', cursive;
+    font-weight: 700;
+}
+
+#select-font-family-button-4 {
+    font-family: 'Borel';
+    font-weight: 700;
+}

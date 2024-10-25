@@ -1,0 +1,28 @@
+/* APP */
+
+* {
+    /*border: 1px solid;*/
+    box-sizing:border-box;
+    padding: 0;
+    margin: 0;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none; 
+    touch-action: manipulation;
+}
+
+html, body {
+    overscroll-behavior: contain;
+    touch-action: manipulation;
+}
+
+body {
+    background-color:darkkhaki;
+}
+
+#app{
+    width: 100vw;
+    height: 100vh;
+
+} 

@@ -1,4 +1,4 @@
-class GamePlayView extends BaseView {
+class GameView extends BaseView {
     #questionStatenent = null;
     #answerChoices = null;
 

@@ -1,0 +1,16 @@
+/*---------------------------------------------------------------------------------*/
+/* RESTART MENU VIEW */
+/*---------------------------------------------------------------------------------*/
+#restart-menu-view {
+    display: flex;
+    margin: 0 auto;
+    width: 35vw;
+    height: 100vh;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#restart-menu-view button {
+    width: 200px;
+    height: 300px;
+}
