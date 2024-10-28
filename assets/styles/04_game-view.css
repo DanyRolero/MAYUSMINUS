@@ -42,14 +42,12 @@
 
 #current-chars-answers {
     display: flex;
-    width: 100%;
-    font-size: 4rem;
-    align-items: baseline;
     justify-content: center;
-    align-content: space-around;
     flex-wrap: wrap;
+    padding: 10px;
+    gap: 5px;
+    height: 100%;
 }
-
 
 #current-chars-answers button {
     min-width: 90px;
@@ -96,7 +94,7 @@
     justify-content: center;
     flex-wrap: wrap;
     padding: 3px;
-    gap: 3px;
+    gap: 5px;
 }
 
 .card-container {
@@ -109,7 +107,8 @@
 
     /* variable */
     background-color: rgb(143, 61, 201);
-    width: 154px;
+    width: 30%;
+    height: auto;
 }
 
 
@@ -295,5 +294,10 @@
         height: calc((100vh - var(--heigth-top-bar)) / 2);
         background-color: darkgreen;
         color: aliceblue;
+    }
+
+    .card-container {
+        width: auto;
+        height: 40%;
     }
 }

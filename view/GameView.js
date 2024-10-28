@@ -21,12 +21,21 @@ class GameView extends BaseView {
 
     //---------------------------------------------------------------------------------
     addAnswerChoice(content) {
-        let answerCharButton = document.createElement('div');
-        answerCharButton.classList.add('')
-        answerCharButton.textContent = content;
-        answerCharButton.addEventListener('touchstart', () => { this.handleButtonClick(answerCharButton);}, {passive:true});
-        answerCharButton.addEventListener('touchend', (event) => event.preventDefault(), {passive:false}); //Prevenir zoom del doble tap
-        this.#answerChoices.appendChild(answerCharButton);       
+        let answerCard = document.createElement('div');
+        answerCard.classList.add('card-container');
+        answerCard.addEventListener('touchstart', () => { this.handleButtonClick(answerCard);}, {passive:true});
+        answerCard.addEventListener('touchend', (event) => event.preventDefault(), {passive:false}); //Prevenir zoom del doble tap
+        this.#answerChoices.appendChild(answerCard);       
+
+        let cardCharContainer = document.createElement('div');
+        cardCharContainer.classList.add('card-char-container');
+        answerCard.appendChild(cardCharContainer);
+
+        let cardCharContent = document.createElement('div');
+        cardCharContent.classList.add('card-char-content');
+        cardCharContainer.appendChild(cardCharContent)
+        
+        cardCharContent.textContent = content;
     }
 
     //---------------------------------------------------------------------------------

@@ -1,5 +1,5 @@
 class OptionsModel {
-    #level = 1;
+    #level = 5;
     #maxLevel = 27;
     #minLevel = 1;
     #currentFont;
