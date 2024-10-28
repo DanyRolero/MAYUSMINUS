@@ -34,14 +34,8 @@ class GamePlayController extends BaseController {
         this.startView.bindStartClickButton(this.handlerStartClickButton.bind(this));
         this.addView('start', this.startView);
         
-        this.challengeView = new BaseView(document.getElementById('exercise-view'));
+        this.challengeView = new BaseView(document.getElementById('game-view'));
         this.addView('challenge', this.challengeView);
-
-        this.optionsView = new OptionsView(document.getElementById('options-view'));
-        this.optionsView.bindSoundButtonClick(this.handlerToggleSoundClick.bind(this));
-        this.optionsView.bindToggleMayusMinusClick(this.handlerToggleMayusMinusClick.bind(this));
-        this.optionsView.bindSelecFontFamilyClick(this.handlerSelectFontFamilyClick.bind(this));
-        this.optionsView.bindSelectLevelClick(this.handlerSelectLevelClick.bind(this));
         
         this.gamePlayView = new GameView(document.getElementById('gameplay-view'));
         this.gamePlayView.bindButtonClick(this.handlerTouchAnswer.bind(this));

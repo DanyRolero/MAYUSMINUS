@@ -21,7 +21,8 @@ class GameView extends BaseView {
 
     //---------------------------------------------------------------------------------
     addAnswerChoice(content) {
-        let answerCharButton = document.createElement('button');
+        let answerCharButton = document.createElement('div');
+        answerCharButton.classList.add('')
         answerCharButton.textContent = content;
         answerCharButton.addEventListener('touchstart', () => { this.handleButtonClick(answerCharButton);}, {passive:true});
         answerCharButton.addEventListener('touchend', (event) => event.preventDefault(), {passive:false}); //Prevenir zoom del doble tap

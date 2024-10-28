@@ -1,38 +1,42 @@
 /*---------------------------------------------------------------------------------*/
 /* GAME VIEW */
 /*---------------------------------------------------------------------------------*/
-#options-view {
-    height: 15vh;
-    border: 1px solid;
+#options-bar {
+    background-color: brown;
+    height: var(--heigth-top-bar);
+    color: aliceblue;
 }
 
-#gameplay-view {
-    display: block;
-    height: 80vh;
-}
 
-#question-area {
+#exercise-view {
     display: flex;
-    height: 40vh;
-    border: 1px solid;
-    flex-wrap: nowrap;
-    align-content: center;
-    justify-content: center;
-    align-items: center;
+    flex-wrap: wrap;
+    height: calc(100vh - var(--heigth-top-bar));
 }
 
 #current-chars-answers {
     display: block;
-    height: 45vh;
-    border: 1px solid;
 }
+
 /*---------------------------------------------------------------------------------*/
+#question-area {
+    width: 50vw;
+    background-color:cadetblue;
+    color: aliceblue;
+}
 
 
 #current-char-question {
     font-size: 15vh;
     text-align: center;
     text-transform: var(--Question-statement-text-transform);
+}
+
+/*---------------------------------------------------------------------------------*/
+#answer-area {
+    width: 50vw;
+    background-color: darkgreen;
+    color: aliceblue;
 }
 
 
@@ -274,4 +278,22 @@
 .card-char-times-uppercase-descendents {
     bottom: 17%;
     text-transform: uppercase;
+}
+
+
+/*---------------------------------------------------------------------------------*/
+@media screen and (orientation: portrait) {
+    #question-area {
+        width: 100vw;
+        height: calc((100vh - var(--heigth-top-bar)) / 2);
+        background-color:cadetblue;
+        color: aliceblue;
+    }
+    
+    #answer-area {
+        width: 100vw;
+        height: calc((100vh - var(--heigth-top-bar)) / 2);
+        background-color: darkgreen;
+        color: aliceblue;
+    }
 }
