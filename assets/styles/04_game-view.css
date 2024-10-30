@@ -10,8 +10,9 @@
 
 #exercise-view {
     display: flex;
+    flex-direction: var(--flex-direction);
     flex-wrap: wrap;
-    height: calc(100vh - var(--heigth-top-bar));
+
 }
 
 /*---------------------------------------------------------------------------------*/
@@ -31,20 +32,23 @@
 /*---------------------------------------------------------------------------------*/
 #answer-area {
     display: flex;
-
     width: 50vw;
     background-color: darkgreen;
     color: aliceblue;
+    height: calc(100vh - var(--heigth-top-bar));
+    overflow: hidden;
+    justify-content: var(--hand-user);
 }
-
 
 #current-chars-answers {
     display: flex;
-    justify-content: center;
     flex-wrap: wrap;
     gap: 3%;
     aspect-ratio: 1/1;
     height: var(--size-answer-area);
+    padding: 2%;
+    align-items: flex-end;
+
 }
 
 #current-chars-answers:disabled {
@@ -131,6 +135,6 @@
     }
 
     #current-chars-answers {
-        align-items: end;
+        justify-content: center;
     }
 }

@@ -12,9 +12,8 @@ class GameView extends BaseView {
         this.#questionStatenent.addEventListener('touchstart', () => this.handlerQuestionTouch(), {passive: false});
 
         this.#answerChoices = document.getElementById('current-chars-answers');
-        window.addEventListener('load', this._onresizeAnswerHandler.bind(this))
+        window.addEventListener('load', this._onresizeAnswerHandler.bind(this));
         window.addEventListener('resize', this._onresizeAnswerHandler.bind(this));
-        window.addEventListener('orientationchange', this._onresizeAnswerHandler.bind(this));
     }
 
     //---------------------------------------------------------------------------------
@@ -85,6 +84,17 @@ class GameView extends BaseView {
     }
 
     //---------------------------------------------------------------------------------
+    toggleHandUser() {
+        let varsCSS = document.querySelector(':root');
+        let hand = varsCSS.style.getPropertyValue('--hand-user');
+        console.log(hand);
+        
+        let toggleHand = (hand == 'right') ? 'left' : 'right';
+        varsCSS.style.setProperty('--hand-user', toggleHand);
+    }
+
+
+    //---------------------------------------------------------------------------------
     // BINDS
     //---------------------------------------------------------------------------------
     // Para enlazar el evento click de los botones con el controlador
@@ -99,11 +109,11 @@ class GameView extends BaseView {
     //---------------------------------------------------------------------------------
     _onresizeAnswerHandler() {
         let answerArea = document.getElementById('answer-area');
-        let width = answerArea.clientWidth;
-        let height = answerArea.clientHeight;
+        let width = answerArea.offsetWidth;
+        let height = answerArea.offsetHeight;
         let size = width < height ? width : height;
         let varsCSS = document.querySelector(':root');
-        varsCSS.style.setProperty('--size-answer-area', size + 'px');        
+        varsCSS.style.setProperty('--size-answer-area', size + 'px');  
     }
 
 }

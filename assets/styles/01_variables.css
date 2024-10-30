@@ -5,4 +5,6 @@
     --Answer-choice-text-transform: lowercase;
     --heigth-top-bar: 60px;
     --size-answer-area: 80%;
+    --hand-user: right;
+    --flex-direction: row;
 }
