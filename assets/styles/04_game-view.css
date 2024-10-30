@@ -14,10 +14,6 @@
     height: calc(100vh - var(--heigth-top-bar));
 }
 
-#current-chars-answers {
-    display: block;
-}
-
 /*---------------------------------------------------------------------------------*/
 #question-area {
     width: 50vw;
@@ -34,6 +30,8 @@
 
 /*---------------------------------------------------------------------------------*/
 #answer-area {
+    display: flex;
+
     width: 50vw;
     background-color: darkgreen;
     color: aliceblue;
@@ -44,23 +42,9 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    padding: 10px;
-    gap: 5px;
-    height: 100%;
-}
-
-#current-chars-answers button {
-    min-width: 90px;
-    max-width: 105px;
-    width: 30%;
-    min-height: 120px;
-    max-height: 200px;
-    height: 20vh;
-    font-size: 1em;
-    border-radius: 15px;
-    font-family: var(--font-chars);
-    text-transform: var(--Answer-choice-text-transform);
-    margin: 0 5px;
+    gap: 3%;
+    aspect-ratio: 1/1;
+    height: var(--size-answer-area);
 }
 
 #current-chars-answers:disabled {
@@ -107,14 +91,10 @@
 
     /* variable */
     background-color: rgb(143, 61, 201);
-    width: 30%;
-    height: auto;
+    width: auto;
+    height: 44%;
 }
 
-
-.card-image-container img {
-    width: 75.56%;
-}
 
 .card-char-container {
     display: flex;
@@ -132,152 +112,9 @@
 /* Depende de la fuente tipográfica */
 .card-char-content {
     position: absolute;
-    font-family: 'Times New Roman';
-    font-size: 77cqw;
-    bottom: 10%;
-    text-transform: uppercase;
+    font-family: var(--font-chars);
 }
 
-
-/*---------------------------------------------------------------------------------*/
-/* DEKKO FONT */
-/*---------------------------------------------------------------------------------*/
-.card-dekko-font {
-    font-size: 106cqw;
-    font-family: 'Dekko';
-}
-
-.card-char-dekko-lowercase-neutrals {
-    bottom: -19%;
-}
-
-.card-char-dekko-lowercase-ascendents {
-    bottom: -28%;
-}
-
-.card-char-dekko-lowercase-descendents {
-    bottom: -9%;
-}
-
-
-.card-char-dekko-uppercase-neutrals {
-    bottom: -23%;
-    text-transform: uppercase;
-}
-
-.card-char-dekko-uppercase-ascendents {
-    bottom: -32%;
-    text-transform: uppercase;
-}
-
-.card-char-dekko-uppercase-descendents {
-    bottom: -16%;
-    text-transform: uppercase;
-}
-/*---------------------------------------------------------------------------------*/
-/* BOREL FONT */
-/*---------------------------------------------------------------------------------*/
-.card-borel-font {
-    font-size: 106cqw;
-    font-family: 'Borel';
-}
-
-.card-char-borel-lowercase-neutrals {
-    bottom: -19%;
-}
-
-.card-char-borel-lowercase-ascendents {
-    bottom: -28%;
-}
-
-.card-char-borel-lowercase-descendents {
-    bottom: -8%;
-}
-
-.card-char-borel-uppercase-neutrals {
-    bottom: -26%;
-    text-transform: uppercase;
-}
-
-.card-char-borel-uppercase-ascendents {
-    bottom: -32%;
-    text-transform: uppercase;
-}
-
-.card-char-borel-uppercase-descendents {
-    bottom: -16%;
-    text-transform: uppercase;
-}
-
-/*---------------------------------------------------------------------------------*/
-/* SANS ARIAL FONT */
-/*---------------------------------------------------------------------------------*/
-.card-arial-font {
-    font-size: 77cqw;
-    font-family: 'Arial';
-}
-
-.card-char-arial-lowercase-neutrals {
-    bottom: 18%;
-}
-
-.card-char-arial-lowercase-ascendents {
-    bottom: 13%;
-}
-
-.card-char-arial-lowercase-descendents {
-    bottom: 25%;
-}
-
-.card-char-arial-uppercase-neutrals {
-    bottom: 13%;
-    text-transform: uppercase;
-}
-
-.card-char-arial-uppercase-ascendents {
-    bottom: -32%;
-    text-transform: uppercase;
-}
-
-.card-char-arial-uppercase-descendents {
-    bottom: -16%;
-    text-transform: uppercase;
-}
-
-/*---------------------------------------------------------------------------------*/
-/* SANS TIMES NEW ROMAN FONT */
-/*---------------------------------------------------------------------------------*/
-.card-arial-font {
-    font-size: 77cqw;
-    font-family: 'Times New Roman';
-}
-
-.card-char-times-lowercase-neutrals {
-    bottom: 20%;
-}
-
-.card-char-times-lowercase-ascendents {
-    bottom: 12%;
-}
-
-.card-char-times-lowercase-descendents {
-    bottom: 26%;
-}
-
-.card-char-times-uppercase-neutrals {
-    bottom: 13%;
-    text-transform: uppercase;
-}
-
-.card-char-times-uppercase-ascendents {
-    bottom: -32%;
-    text-transform: uppercase;
-}
-
-.card-char-times-uppercase-descendents {
-    bottom: 17%;
-    text-transform: uppercase;
-}
 
 
 /*---------------------------------------------------------------------------------*/
@@ -285,19 +122,15 @@
     #question-area {
         width: 100vw;
         height: calc((100vh - var(--heigth-top-bar)) / 2);
-        background-color:cadetblue;
-        color: aliceblue;
     }
     
     #answer-area {
         width: 100vw;
         height: calc((100vh - var(--heigth-top-bar)) / 2);
-        background-color: darkgreen;
-        color: aliceblue;
+        justify-content: center;
     }
 
-    .card-container {
-        width: auto;
-        height: 40%;
+    #current-chars-answers {
+        align-items: end;
     }
 }

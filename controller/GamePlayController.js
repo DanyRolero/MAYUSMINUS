@@ -34,8 +34,8 @@ class GamePlayController extends BaseController {
         this.startView.bindStartClickButton(this.handlerStartClickButton.bind(this));
         this.addView('start', this.startView);
         
-        this.challengeView = new BaseView(document.getElementById('game-view'));
-        this.addView('challenge', this.challengeView);
+        this.gameView = new BaseView(document.getElementById('game-view'));
+        this.addView('game', this.gameView);
         
         this.gamePlayView = new GameView(document.getElementById('gameplay-view'));
         this.gamePlayView.bindButtonClick(this.handlerTouchAnswer.bind(this));
@@ -46,6 +46,8 @@ class GamePlayController extends BaseController {
         this.restartMenuView.bindRestartClickButton(this.handlerRestartClickButton.bind(this));
         this.restartMenuView.bindReviseClickButton(this.handlerReviseClickButton.bind(this));
         this.addView('complete', this.restartMenuView);
+        this.restartGame();
+
     }
 
     //---------------------------------------------------------------------------------
@@ -62,13 +64,13 @@ class GamePlayController extends BaseController {
         this.abcAnswersChars.fullFillAlphabet();
         this.failedChars = [];
         this.nextExercise();
-        this.showOnlyView('challenge');  
+        this.showOnlyView('game');  
     }
 
     //---------------------------------------------------------------------------------
     // Comienza una partida para jugar con las letras falladas
     reviseGame() {
-        this.showOnlyView('challenge');
+        this.showOnlyView('game');
         this.abcRemainingsChars.setChars(this.failedChars);
         this.failedChars = [];
         this.nextExercise();
@@ -79,7 +81,7 @@ class GamePlayController extends BaseController {
     nextExercise() {
         this.correctAnswerSelected = false;
         this.currentQuestionChar = this.abcRemainingsChars.extractRandomChar();
-        this.speecher.speak(this.currentQuestionChar);
+        //this.speecher.speak(this.currentQuestionChar);
 
         this.abcAnswersChars.fullFillAlphabet();
         this.abcAnswersChars.extractCharFromChar(this.currentQuestionChar);    
@@ -116,7 +118,7 @@ class GamePlayController extends BaseController {
         if (this.correctAnswerSelected) return;
         if (this.currentQuestionChar == button.textContent) {
             this.correctAnswerSelected = true;
-            this.correctSound.play();
+            //this.correctSound.play();
             this.gamePlayView.setCorrectAnswerChoiceStyle(button);
             setTimeout(() => {
                 if (this.abcRemainingsChars.length == 0) {
@@ -128,7 +130,7 @@ class GamePlayController extends BaseController {
         }
         else {
             if(button.disabled) return;
-            this.incorrectSound.play();
+            //this.incorrectSound.play();
             this.gamePlayView.disabledAnswerChoice(button);
             if(this.failedChars.indexOf(this.currentQuestionChar) == -1) {
                 this.failedChars.push(this.currentQuestionChar);

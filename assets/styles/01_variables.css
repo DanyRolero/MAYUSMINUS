@@ -4,4 +4,5 @@
     --Question-statement-text-transform: uppercase;
     --Answer-choice-text-transform: lowercase;
     --heigth-top-bar: 60px;
+    --size-answer-area: 80%;
 }

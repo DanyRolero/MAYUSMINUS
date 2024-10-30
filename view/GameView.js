@@ -5,13 +5,16 @@ class GameView extends BaseView {
     constructor(domElement) {
         super(domElement);
 
-        this.handleButtonClick;
-        this.handlerQuestionTouch;
+        this.handleButtonClick = null;
+        this.handlerQuestionTouch = null;
 
         this.#questionStatenent = document.getElementById('current-char-question');
         this.#questionStatenent.addEventListener('touchstart', () => this.handlerQuestionTouch(), {passive: false});
 
         this.#answerChoices = document.getElementById('current-chars-answers');
+        window.addEventListener('load', this._onresizeAnswerHandler.bind(this))
+        window.addEventListener('resize', this._onresizeAnswerHandler.bind(this));
+        window.addEventListener('orientationchange', this._onresizeAnswerHandler.bind(this));
     }
 
     //---------------------------------------------------------------------------------
@@ -24,7 +27,7 @@ class GameView extends BaseView {
         let answerCard = document.createElement('div');
         answerCard.classList.add('card-container');
         answerCard.addEventListener('touchstart', () => { this.handleButtonClick(answerCard);}, {passive:true});
-        answerCard.addEventListener('touchend', (event) => event.preventDefault(), {passive:false}); //Prevenir zoom del doble tap
+        answerCard.addEventListener('touchend', (event) => event.preventDefault(), {passive:false});
         this.#answerChoices.appendChild(answerCard);       
 
         let cardCharContainer = document.createElement('div');
@@ -92,4 +95,15 @@ class GameView extends BaseView {
     bindQuestionTouch(handler) {
         this.handlerQuestionTouch = handler;
     }
+
+    //---------------------------------------------------------------------------------
+    _onresizeAnswerHandler() {
+        let answerArea = document.getElementById('answer-area');
+        let width = answerArea.clientWidth;
+        let height = answerArea.clientHeight;
+        let size = width < height ? width : height;
+        let varsCSS = document.querySelector(':root');
+        varsCSS.style.setProperty('--size-answer-area', size + 'px');        
+    }
+
 }
