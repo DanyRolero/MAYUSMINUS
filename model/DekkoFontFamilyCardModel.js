@@ -1,6 +1,6 @@
 class DekkoFontFamilyCardModel extends FontFamilyCardModel{
-    constructor(fontName) {
-        super(fontName);
+    constructor() {
+        super('Dekko');
 
         this.lowecaseNeutrals = ['a', 'c', 'e', 'j', 'm', 'n', 'o', 'r', 's', 'u', 'v', 'w', 'x', 'z'];
         this.lowercaseAscendents = ['b', 'd', 'f', 'h', 'i', 'k', 'l', 'ñ', 't'];

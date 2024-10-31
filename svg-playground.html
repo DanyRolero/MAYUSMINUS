@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+ <!-- Aquí se cargará el contenido del archivo SVG externamente -->
+ <div id="svg-sprite-container" style="display: none;"></div>
+
+ <!-- Usa los iconos del sprite en tu HTML -->
+ <svg class="icon">
+     <use xlink:href="#b"></use>
+ </svg>
+ <svg class="icon" style="color: red;">
+     <use xlink:href="#a"></use>
+ </svg>
+
+ <script>
+     fetch('dekko-font-card-collection.svg')
+         .then(response => response.text())
+         .then(data => {
+             document.getElementById('svg-sprite-container').innerHTML = data;
+         })
+         .catch(error => console.error('Error al cargar el sprite SVG:', error));
+ </script>
+</body>
+
+</html>

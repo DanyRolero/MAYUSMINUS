@@ -22,7 +22,7 @@ class GameView extends BaseView {
     }
 
     //---------------------------------------------------------------------------------
-    addAnswerChoice(content) {
+    addAnswerChoice(content, classFont) {
         let answerCard = document.createElement('div');
         answerCard.classList.add('card-container');
         answerCard.addEventListener('touchstart', () => { this.handleButtonClick(answerCard);}, {passive:true});
@@ -84,13 +84,25 @@ class GameView extends BaseView {
     }
 
     //---------------------------------------------------------------------------------
-    toggleHandUser() {
-        let varsCSS = document.querySelector(':root');
-        let hand = varsCSS.style.getPropertyValue('--hand-user');
-        console.log(hand);
-        
-        let toggleHand = (hand == 'right') ? 'left' : 'right';
-        varsCSS.style.setProperty('--hand-user', toggleHand);
+    togleHandUserInteractors() {
+        this._toggleHandUser();
+        this._toggleHandAnswersPosition();
+    }
+    
+    //---------------------------------------------------------------------------------
+    _toggleHandUser() {        
+        const root = document.documentElement;
+        let hand = getComputedStyle(root).getPropertyValue('--hand-user');        
+        hand = (hand == 'right') ? 'left' : 'right';
+        root.style.setProperty('--hand-user', hand);
+    }
+
+    //---------------------------------------------------------------------------------
+    _toggleHandAnswersPosition() {
+        const root = document.documentElement;
+        let flexDirection = getComputedStyle(root).getPropertyValue('--flex-direction');
+        flexDirection = (flexDirection == 'row') ? 'row-reverse' : 'row';
+        root.style.setProperty('--flex-direction', flexDirection);
     }
 
 

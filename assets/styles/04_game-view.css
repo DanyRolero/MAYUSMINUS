@@ -38,6 +38,7 @@
     height: calc(100vh - var(--heigth-top-bar));
     overflow: hidden;
     justify-content: var(--hand-user);
+    align-items: center;
 }
 
 #current-chars-answers {
