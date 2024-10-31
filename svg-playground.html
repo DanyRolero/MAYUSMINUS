@@ -4,21 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        svg {
+            display: block;
+            width: 30%;
+        }
+        use {
+            width: 200px;
+        }
+    </style>
 </head>
 <body>
  <!-- Aquí se cargará el contenido del archivo SVG externamente -->
  <div id="svg-sprite-container" style="display: none;"></div>
 
  <!-- Usa los iconos del sprite en tu HTML -->
- <svg class="icon">
-     <use xlink:href="#b"></use>
- </svg>
- <svg class="icon" style="color: red;">
-     <use xlink:href="#a"></use>
+ <svg  viewBox="0 0 67 107">
+     <use href="#a"></use>
  </svg>
 
+ <svg viewBox="68 0 67 107">
+     <use href="#b"></use>
+ </svg>
+
+ <svg viewBox="136 108 67 107">
+    <use href="#C"></use>
+</svg>
+
  <script>
-     fetch('dekko-font-card-collection.svg')
+     fetch('dekko-font-card-collection2.svg')
          .then(response => response.text())
          .then(data => {
              document.getElementById('svg-sprite-container').innerHTML = data;
