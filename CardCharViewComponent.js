@@ -7,11 +7,12 @@ class CardCharViewComponent extends ViewComponentBase {
 
             this.cardSVvgContainer = document.createElement('div');
 
-            this.svgElement = document.createElement('svg');
+            const svgNS = "http://www.w3.org/2000/svg";
+            this.svgElement = document.createElementNS(svgNS, 'svg');
             this.svgElement.setAttribute('viewBox', svgSpriteData.viewBox);
 
-            this.useSvgElement = document.createElement('use');
-            this.useSvgElement.setAttribute('href', svgSpriteData.href);
+            this.useSvgElement = document.createElementNS(svgNS, 'use');
+            this.useSvgElement.setAttributeNS('http://www.w3.org/1999/xlink', 'href', svgSpriteData.href);
 
             this.domElement.appendChild(this.cardSVvgContainer);
             this.cardSVvgContainer.appendChild(this.svgElement);
