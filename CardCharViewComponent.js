@@ -1,0 +1,3 @@
+class CardCharViewComponent extends ViewComponentBase {
+
+}

@@ -34,6 +34,7 @@ class BaseView {
         parentElement.removeChild(this.#viewElement);
     }
 
+
     //---------------------------------------------------------------------------------
     onHide() {}
 
