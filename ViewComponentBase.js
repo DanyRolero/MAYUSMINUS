@@ -1,4 +1,4 @@
-class ViewComponentBase {
+export class ViewComponentBase {
     #domElement = null;
 
     constructor(domElement = document.createElement("div")) {

@@ -1,3 +1,7 @@
+import { MainViewBase } from './MainViewBase.js';
+import { CardCharVC } from './CardCharViewComponent.js';
+import { CardCharVCTemplateLiteral } from './CardCharViewComponentTemplateLiteral.js';
+
 //---------------------------------------------------------------------------------
 // Evitar deslizamientos
 document.addEventListener('touchmove', function(event) { event.preventDefault(); }, { passive: false });
@@ -15,4 +19,5 @@ fetch('assets/img/dekko-font-card-collection.svg')
 .catch(error => console.error('Error al cargar el sprite SVG:', error));
 
 var view = new MainViewBase();
-view.addComponent(new CardCharViewComponent( {viewBox: '0 0 67 107', href: 'assets/img/dekko-font-card-collection2.svg#a'} ));
+var cr = new CardCharVCTemplateLiteral( {viewBox: '0 0 67 107', href: 'assets/img/dekko-font-card-collection.svg#a'} );
+view.addComponent(cr);

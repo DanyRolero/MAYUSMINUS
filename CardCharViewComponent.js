@@ -1,9 +1,12 @@
-class CardCharViewComponent extends ViewComponentBase {
+import { ViewComponentBase } from './ViewComponentBase.js';
+
+export class CardCharVC extends ViewComponentBase {
 
         //---------------------------------------------------------------------------------
         constructor(svgSpriteData) {
             super(document.createElement('div'));
             this.addClass('card-char-svg-comp');
+            this.domElement.addEventListener('touchstart', () => this.touchEventHandler());
 
             this.cardSVvgContainer = document.createElement('div');
 
@@ -17,6 +20,8 @@ class CardCharViewComponent extends ViewComponentBase {
             this.domElement.appendChild(this.cardSVvgContainer);
             this.cardSVvgContainer.appendChild(this.svgElement);
             this.svgElement.appendChild(this.useSvgElement);    
+
+            this.touchEventHandler = () => {};
         }
 
         //---------------------------------------------------------------------------------
@@ -33,5 +38,10 @@ class CardCharViewComponent extends ViewComponentBase {
         setSvgSpriteData(svgSpriteData) {
             this.svgElement.setAttribute('viewBox', svgSpriteData.viewBox);
             this.useSvgElement.setAttribute('href', svgSpriteData.href);
+        }
+
+        //---------------------------------------------------------------------------------
+        bindTouchEventHandler(handler) {
+            this.touchEventHandler = handler;
         }
 }
