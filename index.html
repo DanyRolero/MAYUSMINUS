@@ -3,10 +3,12 @@
 
 <head>
     <link rel="stylesheet" href="style.css?v=3">
+    <link rel="stylesheet" href="card-char-svg-comp.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>MAYUSMINUS</title>
     <script src="ViewComponentBase.js" defer></script>
+    <script src="CardCharViewComponent.js" defer></script>
     <script src="MainViewBase.js" defer></script>
     <script src="main.js" defer></script>
 </head>
@@ -14,32 +16,7 @@
 <body>
     <div id="svg-sprite-container" style="display: none;"></div>
     <main id="app">
-        <div id="game-view">
-            <div id="options-bar"></div>
-            <div id="exercise-view">
-                <div id="question-area">
-                    <div id="current-char-question" class="alphabet"></div>
-                </div>
-                <div id="answer-area">
-                    <div id="current-chars-answers" class="alphabet">
-                        <svg viewBox="136 108 67 107">
-                            <use href="#C"></use>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-        </div>
-
     </main>
-
-    <script>
-        fetch('assets/img/dekko-font-card-collection2.svg')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('svg-sprite-container').innerHTML = data;
-            })
-            .catch(error => console.error('Error al cargar el sprite SVG:', error));
-    </script>
 </body>
 
 </html>
