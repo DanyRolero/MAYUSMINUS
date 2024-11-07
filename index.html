@@ -12,7 +12,52 @@
 
 <body>
     <div id="svg-sprite-container" style="display: none;"></div>
-    <main id="app">
+
+    <!-- ------------------------------------------------------------------ -->
+    <!-- APP VIEW -->
+    <main id="app-view">
+        <!-- ------------------------------------------------------------------ -->
+        <!-- START GAME VIEW -->
+        <div id="start-game-view" class="total-viewport-size hidden">
+            <div id="start-game-button">Comenzar</div>
+        </div>
+        
+        <!-- ------------------------------------------------------------------ -->
+        <!-- GAME PLAY VIEW -->
+        <div id="game-play-view">
+            <div id="options-bar">
+                <div id="switch-sound-button"></div>
+                <div id="switch-hand-user-button"></div>
+                <div id="options-menu-button"></div>
+            </div>
+
+            <div id="game-play-area">
+                <div id="question-area">
+                    <div id="current-char-question" class="alphabet"></div>
+                </div>
+        
+                <div id="answer-area">
+                    <div id="current-chars-answers" class="alphabet">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- ------------------------------------------------------------------ -->
+        <!-- END GAME VIEW -->
+        <div id="end-game-view" class="hidden">
+            <button id="restart-button">REINICIAR</button>
+            <button id="revise-button">REPASAR</button>
+        </div>
+        
+        <!-- ------------------------------------------------------------------ -->
+        <!-- OPTIONS MENU VIEW -->
+         <div id="options-menu-view" class="hidden"></div>
+        
+         <!-- ------------------------------------------------------------------ -->
+        <!-- TURORIAL GAME VIEW -->
+        <div id="tutorial-menu-view" class="hidden"></div>
     </main>
 </body>
 

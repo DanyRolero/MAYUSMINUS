@@ -1,6 +1,7 @@
-import { MainViewBase } from './MainViewBase.js';
+import { MainViewBase } from './AppViewComponent.js';
 import { CardCharVC } from './CardCharViewComponent.js';
-import { CardCharVCTemplateLiteral } from './CardCharViewComponentTemplateLiteral.js';
+import { CardCharVCTemplateLiteral } from './CardCharVC.js';
+import { GameVC } from './GameVC.js';
 
 //---------------------------------------------------------------------------------
 // Evitar deslizamientos
@@ -20,4 +21,5 @@ fetch('assets/img/dekko-font-card-collection.svg')
 
 var view = new MainViewBase();
 var cr = new CardCharVCTemplateLiteral( {viewBox: '0 0 67 107', href: 'assets/img/dekko-font-card-collection.svg#a'} );
-view.addComponent(cr);
+var gameView = new GameVC();
+view.addComponent(gameView);

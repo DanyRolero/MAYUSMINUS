@@ -1,10 +1,10 @@
 import { ViewComponentBase } from './ViewComponentBase.js';
 
-export class CardCharVCTemplateLiteral extends ViewComponentBase {
+export class CardCharVC extends ViewComponentBase {
 
         //---------------------------------------------------------------------------------
         constructor(svgSpriteData) {
-            super(document.createElement('div'));
+            super();
             this.addClass('card-char-svg-comp');
             this.domElement.addEventListener('touchstart', () => this.touchEventHandler(), {passive: false});
 

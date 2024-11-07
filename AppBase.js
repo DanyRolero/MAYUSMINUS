@@ -19,9 +19,4 @@ class AppBase {
     get view() {return this.#view;}
     get controller() {return this.#controller;}
 
-    //---------------------------------------------------------------------------------
-    
-
-
-
 }

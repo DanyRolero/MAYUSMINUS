@@ -1,4 +1,6 @@
-class ControllerBase {
+import { MainViewBaseViewBase } from "./MainViewBase";
+
+export class MainControllerBase {
     #view = null;
     #model = null;
 
@@ -9,12 +11,7 @@ class ControllerBase {
     }
 
     //---------------------------------------------------------------------------------
-    select() {
-        this.onSelect();
-        
+    renderView(viewName) {
+        this.#view.showOnlyView(viewName);
     }
-
-    //---------------------------------------------------------------------------------
-    onSelect() {}
-
 }
