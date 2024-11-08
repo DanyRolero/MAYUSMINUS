@@ -1,12 +1,15 @@
-import { ViewBase } from "./MainViewBase";
-import { AppView } from "./AppView";
-import { StartGameView } from "./StartGameView";
-import { GamePlayView } from "./GamePlayView";
+import { MainViewBase } from "./base/MainViewBase.js";
+import { AppView } from "./view/AppView.js";
+import { StartGameView } from "./view/startGameView/StartGameView.js";
+import { GamePlayView } from "./view/gamePlayView/GamePlayView.js";
 
-export class MainView extends ViewBase {
+export class MainView extends MainViewBase {
     constructor() {
         super(new AppView());
-        this.addView("start-game-view", new StartGameView());
-        this.addView("game-play-view", new GamePlayView());
+        this.startGame = new StartGameView();
+        this.gamePlay = new GamePlayView();
+
+        this.addView("start-game",  this.startGame);
+        this.addView("game-play", this.gamePlay);
     }
 }

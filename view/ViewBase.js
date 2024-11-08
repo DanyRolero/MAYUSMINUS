@@ -1,4 +1,4 @@
-export class ViewComponentBase {
+export class ViewBase {
     #domElement = null;
 
     constructor(domElement = document.createElement("div")) {
@@ -46,5 +46,4 @@ export class ViewComponentBase {
     removeClass(className) {
         this.#domElement.classList.remove(className);
     }
-
 }

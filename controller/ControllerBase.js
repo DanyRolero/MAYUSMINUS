@@ -1,8 +1,6 @@
-import { MainViewBaseViewBase } from "./MainViewBase";
-
-export class MainControllerBase {
-    #view = null;
+export class ControllerBase {
     #model = null;
+    #view = null;
 
     //---------------------------------------------------------------------------------
     constructor(model, view) {
@@ -11,7 +9,12 @@ export class MainControllerBase {
     }
 
     //---------------------------------------------------------------------------------
-    renderView(viewName) {
-        this.#view.showOnlyView(viewName);
+    get model() {
+        return this.#model;
+    }
+
+    //---------------------------------------------------------------------------------
+    get view() {
+        return this.#view;
     }
 }

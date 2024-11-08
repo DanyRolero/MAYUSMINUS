@@ -13,4 +13,4 @@ export class MainViewBase {
             for (let view in this.views) this.views[view].hide();
             this.views[name].show();        
         }
-    }
+}

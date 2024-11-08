@@ -2,8 +2,7 @@
 <html lang="es" allow="autoplay">
 
 <head>
-    <link rel="stylesheet" href="style.css?v=3">
-    <link rel="stylesheet" href="card-char-svg-comp.css">
+    <link rel="stylesheet" href="assets/styles/style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>MAYUSMINUS</title>
@@ -11,6 +10,8 @@
 </head>
 
 <body>
+    <!-- ------------------------------------------------------------------ -->
+    <!-- IMAGENES PARA INICIAR SU PRECARGA -->
     <div id="svg-sprite-container" style="display: none;"></div>
 
     <!-- ------------------------------------------------------------------ -->
@@ -18,13 +19,13 @@
     <main id="app-view">
         <!-- ------------------------------------------------------------------ -->
         <!-- START GAME VIEW -->
-        <div id="start-game-view" class="total-viewport-size hidden">
+        <div id="start-game-view">
             <div id="start-game-button">Comenzar</div>
         </div>
         
         <!-- ------------------------------------------------------------------ -->
         <!-- GAME PLAY VIEW -->
-        <div id="game-play-view">
+        <div id="game-play-view" class="hidden">
             <div id="options-bar">
                 <div id="switch-sound-button"></div>
                 <div id="switch-hand-user-button"></div>

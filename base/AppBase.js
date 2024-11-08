@@ -1,7 +1,4 @@
-// Extender para cada app o juego
-// Añadir en el constructor todos los controladores que tendrá la app.
-
-class AppBase {
+export class AppBase {
     #model = null;
     #view = null;
     #controller = null;
@@ -18,5 +15,4 @@ class AppBase {
     get model() {return this.#model;}
     get view() {return this.#view;}
     get controller() {return this.#controller;}
-
 }
