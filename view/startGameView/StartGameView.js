@@ -1,9 +1,9 @@
 import { ViewBase } from "../ViewBase.js";
-import { TouchButtonView } from "../TouchButtonView.js";
+import { StartGameButtonView } from "./StartGameButtonView.js";
 
 export class StartGameView extends ViewBase {
     constructor() {
         super(document.getElementById("start-game-view"));
-        this.startGameButton = new TouchButtonView(document.getElementById("start-game-button"));
+        this.startGameButton = new StartGameButtonView();
     }
 }
