@@ -8,7 +8,5 @@ export class StartGameTouchButtonController extends ControllerBase {
 
     startGame() {
         this.view.showOnlyView("game-play");
-        console.log('ok');
-        
     }
 }

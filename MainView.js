@@ -1,7 +1,7 @@
 import { MainViewBase } from "./base/MainViewBase.js";
 import { AppView } from "./view/AppView.js";
-import { StartGameView } from "./view/startGameView/StartGameView.js";
-import { GamePlayView } from "./view/gamePlayView/GamePlayView.js";
+import { StartGameView } from "./view/StartGameView.js";
+import { GamePlayView } from "./view/GamePlayView.js";
 
 export class MainView extends MainViewBase {
     constructor() {
