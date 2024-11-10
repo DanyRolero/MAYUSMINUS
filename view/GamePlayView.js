@@ -1,5 +1,4 @@
 import { ViewBase } from "./ViewBase.js";
-import { CardCharView } from "./CardCharView.js";
 
 export class GamePlayView extends ViewBase {
     constructor() {
@@ -31,12 +30,12 @@ export class GamePlayView extends ViewBase {
         // ----------------------------------------------------------------
         // Current char question component
         this.currentCharQuestion = document.getElementById("current-char-question");
-        this.currentChatQuestion.addEventListener("touchstart", () => this.currentCharQuestionTouchEventHandler(), { passive: false });
+        this.currentCharQuestion.addEventListener("touchstart", () => this.currentCharQuestionTouchEventHandler(), { passive: false });
         this.currentCharQuestionTouchEventHandler = () => { console.log("Touch event handler not set") };
 
         // ----------------------------------------------------------------
         // Current chars answers choices component
-        this.currentCharAnswers = document.getElementById("current-char-answers");
+        this.currentCharAnswers = document.getElementById("current-chars-answers");
         this.currentCharAnswers.addEventListener("touchstart", () => this.currentCharAnswersTouchEventHandler(), { passive: false });
         this.currentCharAnswersTouchEventHandler = () => { console.log("Touch event handler not set") };
     }
@@ -45,16 +44,30 @@ export class GamePlayView extends ViewBase {
     // UPDATE VIEW METHODS
     // ----------------------------------------------------------------
     updateCurrentCharQuestion(svgData) {
-        this.currentCharQuestion.innerHTML = '';
-        // Completar con un elemento de vista de tipo CardCharView
+        this.currentCharQuestion.appendChild(this._createCardCharView(svgData));
     }
 
     // ----------------------------------------------------------------
     updateCurrentCharAnswers(svgDataList) {      
         this.currentCharAnswers.innerHTML = '';
         svgDataList.forEach(svgData => {
-            //completar con un elemento de vista de tipo CardCharView
+            this.currentCharAnswers.appendChild(this._createCardCharView(svgData));
         });
+    }
+
+    // ----------------------------------------------------------------
+    _createCardCharView(svgData) {
+        let cardCharElement = document.createElement('div');
+        cardCharElement.classList.add('card-char-svg-comp');
+        cardCharElement.innerHTML = `
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="${svgData.viewBox}">
+                    <use href="${svgData.href}"></use>
+                </svg>
+            </div>
+            <data value="${svgData.value}"></data>
+        `;
+        return cardCharElement;
     }
 
     // ----------------------------------------------------------------

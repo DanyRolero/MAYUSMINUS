@@ -1,4 +1,4 @@
-import { ControllerBase } from "../ControllerBase.js";
+import { ControllerBase } from "./ControllerBase.js";
 
 export class StartGameController extends ControllerBase {
     constructor(model, view) {
