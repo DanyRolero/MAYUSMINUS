@@ -36,13 +36,19 @@ export class GamePlayController extends ControllerBase {
     // ----------------------------------------------------------------
     /*
         Respuestas de los caracteres actuales
-       - Al tocar una de las respuestas, se verifica si es la respuesta correcta.
+       - Se detiene el sintetizador de voz.
+       - Al tocar una de las respuestas
+       - Se verifica si es la respuesta correcta.
        - Para ello se compara el valor del elemento data con el valor correcto.
          - Si es correcto:
+            - Se emite un sonido de acierto.
             - Se añade una clase a la carta de respuesta.
             - Se bloquean las interacciones con las otras cartas de respuesta.
             - Pasado un tiempo se prepara el siguiente ejercicio.
         - Si es incorrecto:
-            - 
+            - Se detiene el sintetizador de voz.
+            - Se emite un sonido de error.
+            - Se añade una clase a la carta de respuesta.
+            - Se bloquea la interacci´ón con la carta pulsada.
     */
 }
