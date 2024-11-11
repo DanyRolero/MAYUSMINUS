@@ -7,6 +7,23 @@
     color: aliceblue;
 }
 
+#switch-sound-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    width: 60px;
+    height: 60px;
+    background-color:black;
+    overflow: hidden;
+}
+
+#switch-sound-button img {
+    filter:hue-rotate(190deg);
+
+}
+
+
 
 #exercise-view {
     display: flex;

@@ -3,7 +3,7 @@ import { ControllerBase } from "./ControllerBase.js";
 export class GamePlayController extends ControllerBase {
     constructor(model, view) {
         super(model, view);
-
+        
         
     }
 
